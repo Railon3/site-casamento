@@ -2,32 +2,200 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Casamento Railon & [Nathália]</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casamento Railon & [Nome]</title>
+
+  <!-- Fonte caligráfica -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet" />
+
   <style>
-    .titulo-casamento {
-      font-family: 'Great Vibes', cursive;
-      font-size: 3em;
-      text-align: center;
-      color: white;
-      padding: 20px;
-      text-shadow: 2px 2px 4px #000;
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    #contador {
-      font-size: 2.5em;
-      text-align: center;
-      color: #fff;
-      margin-top: 20px;
-      font-family: 'Arial', sans-serif;
+    /* Corpo e fundo */
+    body {
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      position: relative;
+      padding-top: 60px; /* espaço para menu fixo */
+      background: transparent;
+      color: #333;
     }
+
+    /* Fundo fixo */
+    .fundo-fixo {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url('imagens/1.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      filter: brightness(0.7);
+      z-index: -1;
+    }
+
+    /* Menu superior fixo */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #556b2f; /* verde oliva */
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      z-index: 100;
+    }
+
+    .menu {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      padding: 12px 0;
+    }
+
+    .menu li {
+      margin: 0 18px;
+    }
+
+    .menu li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: color 0.3s;
+    }
+
+    .menu li a:hover {
+      color: #a9ba9d;
+    }
+
+    /* Título com fonte caligráfica */
+    .titulo-casamento {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.5em;
+      color: white;
+      text-align: center;
+      margin: 80px 0 20px 0;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    }
+
+    /* Contador delicado */
+    #contador {
+      font-size: 2.2em;
+      font-weight: 500;
+      color: #556b2f;
+      text-align: center;
+      margin-bottom: 40px;
+      font-family: 'Arial', sans-serif;
+      text-shadow: 1px 1px 2px #fff;
+    }
+
+    /* Seções */
+    section {
+      max-width: 900px;
+      margin: 20px auto 50px auto;
+      background-color: rgba(255,255,255,0.9);
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    section h2 {
+      margin-bottom: 15px;
+      color: #556b2f;
+      font-weight: 700;
+      font-size: 1.8em;
+      text-align: center;
+    }
+
+    /* Galeria */
+    .galeria-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .galeria-container img {
+      width: 160px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      box-shadow: 0 0 6px rgba(0,0,0,0.15);
+    }
+
+    .galeria-container img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px rgba(85,107,47,0.8);
+    }
+
+    /* Links de endereço */
+    #endereco p {
+      font-size: 1.1em;
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    #endereco a {
+      color: #556b2f;
+      font-weight: 700;
+      text-decoration: none;
+      transition: text-decoration 0.3s;
+    }
+
+    #endereco a:hover {
+      text-decoration: underline;
+    }
+
+    /* Formulário confirmação */
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input[type="text"],
+    select {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1.5px solid #ccc;
+      font-size: 1em;
+    }
+
+    button {
+      background-color: #556b2f;
+      border: none;
+      padding: 12px;
+      color: white;
+      font-weight: bold;
+      font-size: 1.1em;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #7a8c53;
+    }
+
+    #resposta-presenca, #resultado-sorteio {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #556b2f;
+    }
+
   </style>
 </head>
 <body>
 
-  <div class="fundo-fixo" style="background-image: url('imagens/1.jpg');"></div>
+  <div class="fundo-fixo"></div>
 
   <header>
     <ul class="menu">
@@ -40,36 +208,39 @@
     </ul>
   </header>
 
-  <div class="titulo-casamento">Railon & [Nome]</div>
+  <h1 class="titulo-casamento">Railon & [Nome]</h1>
+
   <div id="contador"></div>
 
   <section id="historia">
     <h2>Nossa História</h2>
-    <p>Coloque aqui a história do casal...</p>
+    <p>Era uma vez dois corações que se encontraram, construindo juntos uma linda trajetória de amor, cumplicidade e sonhos compartilhados...</p>
   </section>
 
   <section id="galeria">
     <h2>Galeria de Fotos</h2>
     <div class="galeria-container">
-      <!-- Suas imagens numeradas (1.jpg, 2.jpg...) -->
-      <img src="imagens/1.jpg" alt="Foto 1">
-      <img src="imagens/2.jpg" alt="Foto 2">
-      <img src="imagens/3.jpg" alt="Foto 3">
+      <img src="imagens/1.jpeg" alt="Foto 1" />
+      <img src="imagens/2.jpeg" alt="Foto 2" />
+      <img src="imagens/3.jpeg" alt="Foto 3" />
+      <img src="imagens/4.jpeg" alt="Foto 4" />
+      <img src="imagens/5.jpeg" alt="Foto 5" />
+      <!-- Adicione mais imagens conforme precisar -->
     </div>
   </section>
 
   <section id="endereco">
     <h2>Local do Evento</h2>
-    <p><strong>Igreja:</strong> <a href="https://share.google/IgxxK4nIJO4nu4dLX" target="_blank">Ver no Google Maps</a></p>
-    <p><strong>Festa:</strong> <a href="https://share.google/Dx2FthylKB4mppEsJ" target="_blank">Ver no Google Maps</a></p>
+    <p><strong>Igreja:</strong> <a href="https://share.google/IgxxK4nIJO4nu4dLX" target="_blank" rel="noopener noreferrer">Clique aqui para ver no mapa</a></p>
+    <p><strong>Festa:</strong> <a href="https://share.google/Dx2FthylKB4mppEsJ" target="_blank" rel="noopener noreferrer">Clique aqui para ver no mapa</a></p>
   </section>
 
   <section id="confirmacao">
     <h2>Confirmação de Presença</h2>
     <form id="form-presenca">
-      <input type="text" placeholder="Seu nome" required />
-      <select>
-        <option value="">Confirma presença?</option>
+      <input type="text" name="nome" placeholder="Seu nome completo" required />
+      <select name="presenca" required>
+        <option value="">Você vai comparecer?</option>
         <option value="sim">Sim</option>
         <option value="nao">Não</option>
       </select>
@@ -81,40 +252,84 @@
   <section id="presentes">
     <h2>Lista de Presentes Engraçados</h2>
     <ul>
-      <li>1kg de arroz simbólico</li>
-      <li>1 beijo no noivo</li>
-      <li>1 abraço apertado</li>
+      <li>Um pacote de miojo gourmet</li>
+      <li>Kit de meias estilosas</li>
+      <li>Manual de sobrevivência para sogros</li>
+      <li>Café para madrugar na dança</li>
+      <li>Kit de piadas para animar a festa</li>
     </ul>
   </section>
 
   <section id="sorteio">
-    <h2>Sorteio via PIX</h2>
+    <h2>Sorteio com Pix</h2>
     <form id="form-sorteio">
-      <input type="text" placeholder="Seu nome" required />
-      <input type="text" placeholder="Chave Pix" required />
-      <button type="submit">Participar</button>
+      <input type="text" name="nomeSorteio" placeholder="Seu nome" required />
+      <button type="submit">Gerar Número e Mostrar Chave Pix</button>
     </form>
     <div id="resultado-sorteio"></div>
   </section>
 
   <script>
-    // Contador regressivo
-    const dataCasamento = new Date("2025-10-11T00:00:00").getTime();
-    const contador = document.getElementById("contador");
+    // Contagem regressiva para 11 de outubro de 2025, 00:00:00
+    const contador = document.getElementById('contador');
+    const dataCasamento = new Date(2025, 9, 11, 0, 0, 0); // mês 9 = outubro (0-based)
 
-    setInterval(() => {
-      const agora = new Date().getTime();
-      const distancia = dataCasamento - agora;
+    function atualizarContador() {
+      const agora = new Date();
+      const diff = dataCasamento - agora;
 
-      const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-      const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+      if(diff <= 0){
+        contador.textContent = "O grande dia chegou! 🎉";
+        clearInterval(intervalo);
+        return;
+      }
 
-      contador.innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
-    }, 1000);
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+      const segundos = Math.floor((diff / 1000) % 60);
+
+      contador.textContent = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+    }
+
+    const intervalo = setInterval(atualizarContador, 1000);
+    atualizarContador();
+
+    // Confirmação de presença
+    const formPresenca = document.getElementById('form-presenca');
+    const respostaPresenca = document.getElementById('resposta-presenca');
+
+    formPresenca.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nome = formPresenca.nome.value.trim();
+      const presenca = formPresenca.presenca.value;
+
+      if(!nome || !presenca){
+        respostaPresenca.textContent = 'Por favor, preencha todos os campos.';
+        return;
+      }
+
+      respostaPresenca.textContent = `Obrigado, ${nome}! Sua presença foi confirmada como "${presenca}".`;
+      formPresenca.reset();
+    });
+
+    // Sorteio Pix
+    const formSorteio = document.getElementById('form-sorteio');
+    const resultadoSorteio = document.getElementById('resultado-sorteio');
+    const chavePix = '123e4567-e89b-12d3-a456-426614174000'; // Exemplo de chave Pix
+
+    formSorteio.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nomeSorteio = formSorteio.nomeSorteio.value.trim();
+      if(!nomeSorteio){
+        resultadoSorteio.textContent = 'Por favor, digite seu nome.';
+        return;
+      }
+      const numeroSorteio = Math.floor(Math.random() * 1000) + 1;
+      resultadoSorteio.innerHTML = `Olá, ${nomeSorteio}! Seu número para o sorteio é <strong>${numeroSorteio}</strong>.<br/>Chave Pix para doação: <code>${chavePix}</code>`;
+      formSorteio.reset();
+    });
   </script>
 
 </body>
 </html>
-
