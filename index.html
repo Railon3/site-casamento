@@ -1,55 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nosso Casamento</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Casamento Railon & [Nome]</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    .titulo-casamento {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      text-align: center;
+      color: white;
+      padding: 20px;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    #contador {
+      font-size: 2.5em;
+      text-align: center;
+      color: #fff;
+      margin-top: 20px;
+      font-family: 'Arial', sans-serif;
+    }
+  </style>
 </head>
 <body>
+
+  <div class="fundo-fixo" style="background-image: url('imagens/1.jpg');"></div>
+
   <header>
-    <h1>Bem-vindo ao nosso site de casamento!</h1>
-    <nav>
-      <ul>
-        <li><a href="#historia">Nossa História</a></li>
-        <li><a href="#galeria">Galeria</a></li>
-        <li><a href="#contador">Contagem Regressiva</a></li>
-        <li><a href="#presenca">Confirme Presença</a></li>
-        <li><a href="#sorteio">Sorteio</a></li>
-      </ul>
-    </nav>
+    <ul class="menu">
+      <li><a href="#historia">Nossa História</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#endereco">Endereço</a></li>
+      <li><a href="#confirmacao">Confirmação</a></li>
+      <li><a href="#presentes">Presentes</a></li>
+      <li><a href="#sorteio">Sorteio</a></li>
+    </ul>
   </header>
+
+  <div class="titulo-casamento">Railon & [Nome]</div>
+  <div id="contador"></div>
 
   <section id="historia">
     <h2>Nossa História</h2>
-    <p>Era uma vez... (adicione sua história aqui)</p>
+    <p>Coloque aqui a história do casal...</p>
   </section>
 
   <section id="galeria">
     <h2>Galeria de Fotos</h2>
-    <div class="galeria">
+    <div class="galeria-container">
+      <!-- Suas imagens numeradas (1.jpg, 2.jpg...) -->
       <img src="imagens/1.jpg" alt="Foto 1">
       <img src="imagens/2.jpg" alt="Foto 2">
       <img src="imagens/3.jpg" alt="Foto 3">
-      <!-- Continue até a imagem 30 -->
     </div>
   </section>
 
-  <section id="contador">
-    <h2>Faltam apenas:</h2>
-    <div id="contador"></div>
+  <section id="endereco">
+    <h2>Local do Evento</h2>
+    <p><strong>Igreja:</strong> <a href="https://share.google/IgxxK4nIJO4nu4dLX" target="_blank">Ver no Google Maps</a></p>
+    <p><strong>Festa:</strong> <a href="https://share.google/Dx2FthylKB4mppEsJ" target="_blank">Ver no Google Maps</a></p>
   </section>
 
-  <section id="presenca">
-    <h2>Confirme sua Presença</h2>
+  <section id="confirmacao">
+    <h2>Confirmação de Presença</h2>
     <form id="form-presenca">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" required>
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-      <label for="presenca">Você irá ao casamento?</label>
-      <select id="presenca" name="presenca" required>
-        <option value="">Selecione</option>
+      <input type="text" placeholder="Seu nome" required />
+      <select>
+        <option value="">Confirma presença?</option>
         <option value="sim">Sim</option>
         <option value="nao">Não</option>
       </select>
@@ -58,21 +78,43 @@
     <div id="resposta-presenca"></div>
   </section>
 
+  <section id="presentes">
+    <h2>Lista de Presentes Engraçados</h2>
+    <ul>
+      <li>1kg de arroz simbólico</li>
+      <li>1 beijo no noivo</li>
+      <li>1 abraço apertado</li>
+    </ul>
+  </section>
+
   <section id="sorteio">
-    <h2>Participe do Sorteio</h2>
+    <h2>Sorteio via PIX</h2>
     <form id="form-sorteio">
-      <label for="nome-sorteio">Seu nome:</label>
-      <input type="text" id="nome-sorteio" name="nome-sorteio" required>
-      <button type="submit">Gerar Número da Sorte</button>
+      <input type="text" placeholder="Seu nome" required />
+      <input type="text" placeholder="Chave Pix" required />
+      <button type="submit">Participar</button>
     </form>
     <div id="resultado-sorteio"></div>
   </section>
 
-  <footer>
-    <p>Com amor, Railon ❤️</p>
-  </footer>
+  <script>
+    // Contador regressivo
+    const dataCasamento = new Date("2025-10-11T00:00:00").getTime();
+    const contador = document.getElementById("contador");
 
-  <script src="script.js"></script>
+    setInterval(() => {
+      const agora = new Date().getTime();
+      const distancia = dataCasamento - agora;
+
+      const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+      contador.innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+    }, 1000);
+  </script>
+
 </body>
 </html>
 
