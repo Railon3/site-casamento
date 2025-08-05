@@ -66,6 +66,7 @@ formSorteio.addEventListener('submit', function (event) {
 // ===== GALERIA DE IMAGENS AUTOMÁTICA =====
 const galeriaContainer = document.querySelector('.galeria-container');
 if (galeriaContainer) {
+  galeriaContainer.innerHTML = ''; // Limpa imagens fixas do HTML, se houver
   for (let i = 1; i <= 30; i++) {
     const img = document.createElement('img');
     img.src = `imagens/${i}.jpg`;
@@ -101,3 +102,4 @@ botaoMusica.addEventListener('click', () => {
 });
 
 document.body.appendChild(botaoMusica);
+
