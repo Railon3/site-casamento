@@ -1,0 +1,135 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fonte e cores */
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+  line-height: 1.6;
+  background: transparent;
+  position: relative;
+  z-index: 0;
+  min-height: 100vh;
+  padding-top: 60px; /* Espaço pro menu fixo */
+}
+
+/* Menu superior fixo */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #556b2f; /* verde oliva */
+  z-index: 100;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.menu li {
+  margin: 0 15px;
+}
+
+.menu li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.menu li a:hover {
+  color: #a9ba9d;
+}
+
+/* Fundo fixo */
+.fundo-fixo {
+  background-image: url('../imagens/fundo-casamento.jpg'); /* Coloque sua imagem de fundo aqui */
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+  filter: brightness(0.7);
+}
+
+/* Seções */
+section {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: rgba(255,255,255,0.9);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Galeria */
+.galeria-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.galeria-container img {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.galeria-container img:hover {
+  transform: scale(1.1);
+}
+
+/* Formulários */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input, select, button {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+button {
+  background-color: #556b2f;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #7a8c53;
+}
+
+/* Contador */
+#contador {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  color: #556b2f;
+}
+
+/* Respostas */
+#resposta-presenca, #resultado-sorteio {
+  margin-top: 15px;
+  font-weight: bold;
+  color: #556b2f;
+  text-align: center;
+}
