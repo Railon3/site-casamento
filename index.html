@@ -1,112 +1,78 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Site Casamento</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosso Casamento</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Menu Superior -->
   <header>
+    <h1>Bem-vindo ao nosso site de casamento!</h1>
     <nav>
-      <ul class="menu">
-        <li><a href="#historia">História</a></li>
+      <ul>
+        <li><a href="#historia">Nossa História</a></li>
         <li><a href="#galeria">Galeria</a></li>
-        <li><a href="#contagem">Contagem Regressiva</a></li>
-        <li><a href="#lista-presenca">Lista de Presença</a></li>
-        <li><a href="#sorteio">Sorteio Pix</a></li>
-        <li><a href="#presentes">Presentes Engraçados</a></li>
-        <li><a href="#playlist">Playlist</a></li>
+        <li><a href="#contador">Contagem Regressiva</a></li>
+        <li><a href="#presenca">Confirme Presença</a></li>
+        <li><a href="#sorteio">Sorteio</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Fundo fixo -->
-  <div class="fundo-fixo"></div>
-
-  <!-- História do casal -->
   <section id="historia">
-    <h1>Nossa História</h1>
-    <p>Era uma vez dois corações que se encontraram...</p>
+    <h2>Nossa História</h2>
+    <p>Era uma vez... (adicione sua história aqui)</p>
   </section>
 
-  <!-- Galeria de fotos -->
   <section id="galeria">
     <h2>Galeria de Fotos</h2>
-    <div class="galeria-container">
-      <!-- Imagens de 1.jpg até 30.jpg -->
-      <img src="imagens/1.jpg" alt="Foto 1" />
-      <img src="imagens/2.jpg" alt="Foto 2" />
-      <img src="imagens/3.jpg" alt="Foto 3" />
-      <!-- continue para as demais -->
+    <div class="galeria">
+      <img src="imagens/1.jpg" alt="Foto 1">
+      <img src="imagens/2.jpg" alt="Foto 2">
+      <img src="imagens/3.jpg" alt="Foto 3">
+      <!-- Continue até a imagem 30 -->
     </div>
   </section>
 
-  <!-- Contagem regressiva -->
-  <section id="contagem">
-    <h2>Contagem Regressiva para o Casamento</h2>
+  <section id="contador">
+    <h2>Faltam apenas:</h2>
     <div id="contador"></div>
   </section>
 
-  <!-- Lista de presença -->
-  <section id="lista-presenca">
+  <section id="presenca">
     <h2>Confirme sua Presença</h2>
     <form id="form-presenca">
-      <label for="nome">Nome completo:</label>
-      <input type="text" id="nome" name="nome" required />
-      
-      <label for="email">E-mail:</label>
-      <input type="email" id="email" name="email" required />
-      
-      <label>Vai comparecer?</label>
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <label for="presenca">Você irá ao casamento?</label>
       <select id="presenca" name="presenca" required>
         <option value="">Selecione</option>
         <option value="sim">Sim</option>
         <option value="nao">Não</option>
       </select>
-      
-      <button type="submit">Enviar</button>
+      <button type="submit">Confirmar</button>
     </form>
     <div id="resposta-presenca"></div>
   </section>
 
-  <!-- Sorteio Pix -->
   <section id="sorteio">
-    <h2>Sorteio com Pix</h2>
-    <p>Insira seu nome para gerar um número do sorteio e fazer o Pix.</p>
+    <h2>Participe do Sorteio</h2>
     <form id="form-sorteio">
-      <label for="nome-sorteio">Nome:</label>
-      <input type="text" id="nome-sorteio" name="nome-sorteio" required />
-      <button type="submit">Gerar Número e Mostrar Chave Pix</button>
+      <label for="nome-sorteio">Seu nome:</label>
+      <input type="text" id="nome-sorteio" name="nome-sorteio" required>
+      <button type="submit">Gerar Número da Sorte</button>
     </form>
     <div id="resultado-sorteio"></div>
   </section>
 
-  <!-- Lista de presentes engraçados -->
-  <section id="presentes">
-    <h2>Lista de Presentes Engraçados</h2>
-    <ul>
-      <li>Um pacote de miojo gourmet</li>
-      <li>Kit de meias estilosas</li>
-      <li>Manual de sobrevivência para sogros</li>
-      <li>Café para madrugar na dança</li>
-      <li>Kit de piadas para animar a festa</li>
-      <!-- Adicione mais -->
-    </ul>
-  </section>
+  <footer>
+    <p>Com amor, Railon ❤️</p>
+  </footer>
 
-  <!-- Playlist -->
-  <section id="playlist">
-    <h2>Playlist do Casamento</h2>
-    <p>Ouça nossa playlist especial:</p>
-    <a href="https://open.spotify.com/playlist/seu-link" target="_blank" rel="noopener noreferrer">Abrir playlist no Spotify</a>
-  </section>
-
-  <!-- Música de fundo -->
-  <audio id="musica-fundo" src="musica.mp3" autoplay loop></audio>
-
-  <script src="js/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
 
