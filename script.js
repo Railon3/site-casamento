@@ -1,49 +1,61 @@
-// Contador regressivo
-const dataCasamento = new Date("2025-12-20T00:00:00").getTime();
+// === CONTAGEM REGRESSIVA ===
+const contador = document.getElementById('contador');
+const dataCasamento = new Date(2025, 11, 25, 15, 0, 0); // 25/12/2025 às 15h
 
 function atualizarContador() {
-  const agora = new Date().getTime();
-  const distancia = dataCasamento - agora;
+  const agora = new Date();
+  const diff = dataCasamento - agora;
 
-  if (distancia <= 0) {
-    document.getElementById("contador").innerHTML = "É HOJE! 💍";
+  if (diff <= 0) {
+    contador.innerHTML = "O grande dia chegou! 🎉";
+    clearInterval(intervalo);
     return;
   }
 
-  const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-  const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-  const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+  const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutos = Math.floor((diff / (1000 * 60)) % 60);
+  const segundos = Math.floor((diff / 1000) % 60);
 
-  document.getElementById("contador").innerHTML = 
-    `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+  contador.innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
 }
 
-setInterval(atualizarContador, 1000);
+const intervalo = setInterval(atualizarContador, 1000);
+atualizarContador();
 
-// Confirmação de presença
-function confirmarPresenca(event) {
+// === CONFIRMAÇÃO DE PRESENÇA ===
+const formPresenca = document.getElementById('form-presenca');
+const respostaPresenca = document.getElementById('resposta-presenca');
+
+formPresenca.addEventListener('submit', function(event) {
   event.preventDefault();
-  const nome = document.getElementById("nome").value;
-  const confirmacao = document.getElementById("confirmacao").value;
-  const mensagem = `${nome}, sua resposta "${confirmacao}" foi registrada! Obrigado! 💌`;
+  const nome = this.nome.value.trim();
+  const email = this.email.value.trim();
+  const presenca = this.presenca.value;
 
-  document.getElementById("resposta-presenca").innerText = mensagem;
-}
+  if (!nome || !email || !presenca) {
+    respostaPresenca.textContent = 'Por favor, preencha todos os campos.';
+    return;
+  }
 
-// Sorteio
-function sortearNumero(event) {
+  respostaPresenca.textContent = `Obrigado, ${nome}! Sua presença foi confirmada como "${presenca}".`;
+  formPresenca.reset();
+});
+
+// === SORTEIO COM PIX ===
+const formSorteio = document.getElementById('form-sorteio');
+const resultadoSorteio = document.getElementById('resultado-sorteio');
+
+formSorteio.addEventListener('submit', function(event) {
   event.preventDefault();
-  const chavePix = document.getElementById("chavePix").value;
-
-  if (!chavePix) {
-    document.getElementById("resultado-sorteio").innerText = "Por favor, insira sua chave Pix.";
+  const nome = this['nome-sorteio'].value.trim();
+  if (!nome) {
+    resultadoSorteio.textContent = 'Por favor, digite seu nome.';
     return;
   }
 
   const numeroSorteado = Math.floor(Math.random() * 1000) + 1;
-  document.getElementById("resultado-sorteio").innerText =
-    `Número da sorte: ${numeroSorteado}. Boa sorte! 🍀`;
-}
+  resultadoSorteio.textContent = `${nome}, seu número da sorte é: ${numeroSorteado}`;
+});
 
 
