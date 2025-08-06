@@ -1,293 +1,136 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Railon & Nathália</title>
-  <link rel="icon" type="image/jpeg" href="imagens/26.jpeg" />
+  <link rel="icon" href="imagens/26.jpeg" type="image/jpeg">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
     body {
       margin: 0;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Segoe UI', cursive;
       background-image: url('imagens/15.jpeg');
       background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       background-position: center;
-      color: #2d3c2e;
+      color: #3d4d3d;
     }
-
     header {
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       padding: 20px;
+      font-size: 2em;
+      font-family: cursive;
     }
-
-    header h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.5em;
-      margin: 0;
-    }
-
     .menu-btn {
       position: absolute;
       top: 20px;
       right: 20px;
-      font-size: 20px;
-      background: white;
-      border: none;
+      background-color: transparent;
+      border: 2px solid #3d4d3d;
+      border-radius: 8px;
       padding: 10px;
       cursor: pointer;
-      z-index: 999;
     }
-
-    .menu {
+    .menu-content {
       display: none;
       position: absolute;
       top: 60px;
       right: 20px;
-      background-color: white;
+      background: white;
       border: 1px solid #ccc;
-      border-radius: 5px;
-      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      z-index: 1000;
     }
-
-    .menu a {
+    .menu-content a {
       display: block;
-      padding: 5px;
-      color: #2d3c2e;
-      text-decoration: none;
-    }
-
-    .menu a:hover {
-      background-color: #eee;
-    }
-
-    .timer-container {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .timer-container h2 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 1.5em;
-      margin-bottom: 5px;
-    }
-
-    .countdown {
-      font-size: 1.5em;
-      letter-spacing: 2px;
-    }
-
-    .intro {
-      text-align: center;
-      margin: 30px 20px;
-      font-size: 1.2em;
-    }
-
-    .intro b {
-      font-family: 'Great Vibes', cursive;
-    }
-
-    .section {
-      margin: 30px 20px;
-      text-align: center;
-    }
-
-    .gallery {
-      display: flex;
-      overflow-x: auto;
-      gap: 10px;
       padding: 10px;
-    }
-
-    .gallery img {
-      height: 200px;
-      cursor: pointer;
-    }
-
-    .btn {
-      padding: 10px 20px;
-      margin: 10px auto;
-      background-color: #556b2f;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      display: inline-block;
       text-decoration: none;
-      font-size: 1em;
+      color: #3d4d3d;
     }
-
-    .btn:hover {
-      background-color: #6e8c3b;
+    .menu-content a:hover {
+      background: #f0f0f0;
     }
-
-    form {
-      max-width: 400px;
-      margin: auto;
-    }
-
-    input, button {
-      width: 100%;
-      padding: 10px;
-      margin: 5px 0;
-    }
-
-    .footer {
+    .save-date {
       text-align: center;
+      font-family: cursive;
+      margin-top: 40px;
+    }
+    .save-date h2 {
+      font-size: 2em;
+      margin: 0;
+    }
+    .save-date h3 {
+      font-size: 1.5em;
+      margin: 0 0 20px;
+    }
+    #timer {
+      font-size: 2em;
+      font-weight: bold;
+      text-align: center;
+    }
+    .text-intro {
+      max-width: 800px;
+      margin: 40px auto;
       padding: 20px;
-      background-color: white;
+      background: rgba(255,255,255,0.8);
+      border-radius: 12px;
+      font-family: cursive;
+      text-align: center;
     }
-
-    .footer img {
-      width: 30px;
-      margin: 0 10px;
-      vertical-align: middle;
-    }
-
-    @media screen and (max-width: 600px) {
-      header h1 {
-        font-size: 1.8em;
-      }
-
-      .countdown {
-        font-size: 1.2em;
-      }
-
-      .gallery img {
-        height: 150px;
-      }
-
-      .btn {
-        width: 90%;
-      }
+    .text-intro b {
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
+  <header>
+    Railon & Nathália
+  </header>
 
-<header>
-  <h1>Railon & Nathália</h1>
   <button class="menu-btn" onclick="toggleMenu()">☰</button>
-  <div class="menu" id="menu">
-    <a href="#sorteio" target="_blank">Sorteio</a>
-    <a href="#presentes" onclick="abrirPresentes()">Presentes</a>
+  <div class="menu-content" id="menu">
+    <a href="#sorteio">Sorteio</a>
+    <a href="#presentes">Presentes</a>
   </div>
-</header>
 
-<div class="timer-container">
-  <h2>Save the Date</h2>
-  <div class="countdown" id="countdown"></div>
-  <p style="font-family:'Great Vibes', cursive;">11 de outubro de 2025 às 18h</p>
-</div>
+  <section class="save-date">
+    <h2>Save the Date</h2>
+    <h3>11 de outubro de 2025 às 18h</h3>
+    <div id="timer"></div>
+  </section>
 
-<div class="intro">
-  <p>É com muito amor que <b>Railon</b> e <b>Nathália</b> convidam você para compartilhar esse momento único.</p>
-</div>
+  <section class="text-intro">
+    <p><b>Railon</b> e <b>Nathália</b> Duas histórias que se cruzaram no tempo,
+    duas vidas que agora seguem juntas rumo a um novo capítulo. <b>Railon</b> e <b>Nathália</b> descobriram no amor a força
+    que une, a leveza que conforta e a beleza de compartilhar os dias bons ou desafiadores com alguém que escolhem amar todos os dias.</p>
+    <p>Casar é mais do que uma celebração, é um ato de coragem, de entrega e de esperança. E é com o coração
+    cheio de gratidão que compartilhamos esse momento com pessoas tão especiais como você.<br>
+    Obrigado por fazer parte da nossa história. Sua presença é o nosso maior presente. 💛</p>
+  </section>
 
-<div class="section">
-  <h3>Galeria</h3>
-  <div class="gallery">
-    <!-- Fotos 1 a 30 -->
-    <!-- Exemplo -->
-    <img src="imagens/1.jpeg" onclick="this.requestFullscreen()" />
-    <img src="imagens/2.jpeg" onclick="this.requestFullscreen()" />
-    <!-- Continue até 30.jpeg -->
-  </div>
-</div>
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("menu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
 
-<div class="section">
-  <h3>Cerimônia</h3>
-  <img src="igreja/igreja externa.jpg" width="300" />
-  <img src="igreja/igreja interna.jpg" width="300" />
-  <br>
-  <a class="btn" href="https://share.google/lLQi3DolCfBUc3H2L" target="_blank">Ver Local</a>
-  <p>Av.L2 Sul, Quadra 601, Módulos 3/4 - Asa Sul, Brasília - DF, 70200-610</p>
-</div>
-
-<div class="section">
-  <h3>Festa</h3>
-  <img src="evento/festa.jpg" width="300" />
-  <br>
-  <a class="btn" href="https://maps.app.goo.gl/zruXh9voZ9H4T8o36" target="_blank">Ver Local</a>
-</div>
-
-<div class="section" id="confirmar">
-  <h3>Confirme sua Presença</h3>
-  <form id="form">
-    <input type="text" name="nome" placeholder="Seu nome" required />
-    <div id="acompanhantes"></div>
-    <button type="button" onclick="addAcompanhante()">+ Acompanhante</button>
-    <button type="submit">Confirmar</button>
-  </form>
-  <p id="msg"></p>
-</div>
-
-<div class="footer">
-  <a href="https://www.instagram.com/railon.q/" target="_blank">
-    <img src="instagram.png" alt="Instagram Noivo" />
-  </a>
-  <a href="https://www.instagram.com/nathesilvaa/" target="_blank">
-    <img src="instagram.png" alt="Instagram Noiva" />
-  </a>
-  <a href="https://open.spotify.com/playlist/1fYtAeDKZPFRjYoYDRHThh" target="_blank">
-    <img src="spotify.png" alt="Playlist Spotify" />
-  </a>
-</div>
-
-<script>
-  function toggleMenu() {
-    const menu = document.getElementById("menu");
-    menu.style.display = menu.style.display === "block" ? "none" : "block";
-  }
-
-  function abrirPresentes() {
-    window.open("presentes.html", "_blank");
-  }
-
-  function addAcompanhante() {
-    const div = document.createElement("div");
-    div.innerHTML = '<input type="text" name="acompanhante[]" placeholder="Nome do acompanhante">';
-    document.getElementById("acompanhantes").appendChild(div);
-  }
-
-  document.getElementById("form").addEventListener("submit", function (e) {
-    e.preventDefault();
-    const data = new FormData(this);
-    fetch("https://script.google.com/macros/s/AKfycbz6n4bA_3QNlMnBbjGIwYldj5gP-SthNea91cxMajIGYJOdyizKmT1vhweT6FbEzDd5dQ/exec", {
-      method: "POST",
-      body: data
-    })
-    .then(response => response.text())
-    .then(res => {
-      document.getElementById("msg").innerText = "Presença confirmada! Obrigado 💕";
-      document.getElementById("form").reset();
-      document.getElementById("acompanhantes").innerHTML = "";
-    })
-    .catch(err => {
-      document.getElementById("msg").innerText = "Erro ao enviar. Tente novamente.";
-    });
-  });
-
-  function countdownTimer() {
-    const endDate = new Date("2025-10-11T18:00:00");
+    const targetDate = new Date("October 11, 2025 18:00:00").getTime();
+    const timer = document.getElementById("timer");
     setInterval(() => {
-      const now = new Date();
-      const diff = endDate - now;
-      if (diff <= 0) {
-        document.getElementById("countdown").innerText = "É hoje!";
-        return;
-      }
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-      document.getElementById("countdown").innerText =
-        `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }, 1000);
-  }
+      const now = new Date().getTime();
+      const distance = targetDate - now;
 
-  countdownTimer();
-</script>
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+  </script>
 </body>
 </html>
