@@ -2,118 +2,117 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Casamento Railon & Nathália</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script defer src="script.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Música -->
-  <audio autoplay loop>
-    <source src="música/um-amor-puro.mp3.mp3" type="audio/mpeg" />
-  </audio>
 
-  <!-- Cabeçalho -->
+  <!-- TOPO COM NOME CENTRALIZADO E MENU CLICÁVEL -->
   <header>
-    <div class="nomes-noivos">Railon & Nathália</div>
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
-    <nav id="menu" class="hidden">
-      <a href="#home">Home</a>
-      <a href="#presente">Presente</a>
-      <a href="#sorteio">Sorteio</a>
-      <a href="#galeria">Galeria</a>
+    <div class="top-bar">
+      <h1 class="nomes-noivos">Railon & Nathália</h1>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    </div>
+    <nav id="mobile-menu" class="hidden">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#presente">Presente</a></li>
+        <li><a href="#sorteio">Sorteio</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+      </ul>
     </nav>
   </header>
 
-  <!-- Temporizador -->
-  <section id="temporizador">
-    <h2>Faltam</h2>
-    <div class="countdown">
-      <div><span id="dias">00</span><small>Dias</small></div>
-      <div><span id="horas">00</span><small>Horas</small></div>
-      <div><span id="minutos">00</span><small>Min</small></div>
-      <div><span id="segundos">00</span><small>Seg</small></div>
+  <!-- TEMPORIZADOR -->
+  <section id="contador">
+    <div class="timer">
+      <h2>Faltam:</h2>
+      <div id="clock">
+        <span id="dias"></span>d :
+        <span id="horas"></span>h :
+        <span id="minutos"></span>m :
+        <span id="segundos"></span>s
+      </div>
     </div>
   </section>
 
-  <!-- Nossa História -->
-  <section id="historia">
+  <!-- HISTÓRIA -->
+  <section id="home">
+    <h2>Nossa História</h2>
     <div class="historia-fotos">
-      <img src="imagens 2/31.jpg" alt="Foto 31" />
-      <img src="imagens 2/32.jpg" alt="Foto 32" />
+      <img src="imagens 2/31.jpg" alt="Foto 31">
+      <img src="imagens 2/32.jpg" alt="Foto 32">
     </div>
-    <p>Essa é a nossa história. Momentos, sonhos e um grande amor construído com carinho. Agora, queremos celebrar esse amor com você!</p>
+    <p>Nos conhecemos de forma simples, mas a conexão foi instantânea...</p>
   </section>
 
-  <!-- Localização -->
-  <section id="localizacao">
+  <!-- LOCALIZAÇÕES -->
+  <section id="local">
     <h2>Localização</h2>
-    <div class="btns-local">
-      <a href="https://share.google/lLQi3DolCfBUc3H2L" target="_blank" class="btn">Cerimônia</a>
-      <a href="https://maps.app.goo.gl/zruXh9voZ9H4T8o36" target="_blank" class="btn">Festa</a>
+    <div class="botoes-local">
+      <a href="https://share.google/lLQi3DolCfBUc3H2L" target="_blank" class="botao-local">Cerimônia</a>
+      <a href="https://maps.app.goo.gl/zruXh9voZ9H4T8o36" target="_blank" class="botao-local">Festa</a>
     </div>
   </section>
 
-  <!-- Confirmação de Presença -->
+  <!-- CONFIRMAÇÃO DE PRESENÇA -->
   <section id="confirmacao">
-    <h2>Confirme sua presença</h2>
+    <h2>Confirme sua Presença</h2>
     <form id="form-presenca">
       <input type="text" name="nome" placeholder="Seu nome" required />
       <div id="acompanhantes"></div>
-      <button type="button" onclick="adicionarAcompanhante()">+ Adicionar Acompanhante</button>
-      <button type="submit">Confirmar</button>
+      <button type="button" onclick="addAcompanhante()">+ Adicionar Acompanhante</button>
+      <button type="submit">Confirmar Presença</button>
     </form>
-    <div id="mensagem-envio"></div>
+    <div id="mensagem"></div>
   </section>
 
-  <!-- Presente -->
+  <!-- PRESENTE -->
   <section id="presente">
     <h2>Dar um Presente</h2>
-    <a href="https://nubank.com.br/pagar/1dp8qd/jof5GpHoYf" class="btn presente-btn" target="_blank">
-      <i class="fas fa-gift"></i> Dar Presente
-    </a>
+    <p>A sua presença é nosso maior presente, mas se desejar nos ajudar:</p>
+    <div class="pix-box">
+      <p>Chave PIX:</p>
+      <input type="text" value="railon@email.com" readonly />
+    </div>
   </section>
 
-  <!-- Sorteio -->
+  <!-- SORTEIO -->
   <section id="sorteio">
     <h2>Sorteio</h2>
-    <a href="sorteio.html" class="btn" target="_blank">Participar do Sorteio</a>
+    <a href="sorteio.html" target="_blank" class="botao-sorteio">Participar do Sorteio</a>
   </section>
 
-  <!-- Galeria -->
+  <!-- GALERIA -->
   <section id="galeria">
     <h2>Galeria de Fotos</h2>
-    <div class="galeria-scroll">
-      <!-- Fotos 1 a 30 -->
-      <!-- Substitua pelos seus arquivos reais -->
-      <script>
-        for (let i = 1; i <= 30; i++) {
-          document.write(`
-            <div class="foto" onclick="expandirImagem(this)">
-              <img src="imagens/${i}.jpeg" alt="Foto ${i}" />
-            </div>
-          `);
-        }
-      </script>
-    </div>
-    <div id="lightbox" onclick="fecharImagem()">
-      <img id="imagem-expandida" />
+    <div class="galeria-container">
+      <!-- Adicione aqui as imagens da 1.jpeg até 30.jpeg -->
+      <!-- Exemplo: -->
+      <img src="imagens/1.jpeg" alt="Foto 1" onclick="abrirModal(this.src)">
+      <img src="imagens/2.jpeg" alt="Foto 2" onclick="abrirModal(this.src)">
+      <!-- ... até 30.jpeg -->
     </div>
   </section>
 
-  <!-- Rodapé -->
+  <!-- MODAL GALERIA -->
+  <div id="modal" class="modal">
+    <span class="close" onclick="fecharModal()">&times;</span>
+    <img class="modal-content" id="imgModal">
+  </div>
+
+  <!-- RODAPÉ -->
   <footer>
-    <a href="https://www.instagram.com/nathesilvaa/" target="_blank">
-      <i class="fab fa-instagram"></i> Nathália
-    </a>
-    <a href="https://www.instagram.com/railon.q/" target="_blank">
-      <i class="fab fa-instagram"></i> Railon
-    </a>
-    <a href="https://open.spotify.com/playlist/6ZvlROb4Kxgc6gorO99Bpy?si=0804e9afddb04aaf" target="_blank">
-      <i class="fab fa-spotify"></i> Playlist
-    </a>
+    <div class="redes">
+      <a href="https://instagram.com/railon" target="_blank">Instagram Railon</a>
+      <a href="https://instagram.com/nathalia" target="_blank">Instagram Nathália</a>
+      <a href="https://open.spotify.com/playlist/xxxxx" target="_blank">Playlist no Spotify</a>
+    </div>
   </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>
