@@ -1,119 +1,76 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Railon & Nathália</title>
   <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
 </head>
 <body>
-  <!-- MENU SUPERIOR -->
-  <nav class="menu">
-    <div class="menu-scroll">
-      <button onclick="scrollToSection('home')">Home</button>
-      <button onclick="scrollToSection('galeria')">Galeria</button>
-      <button onclick="scrollToSection('presenca')">Confirmar Presença</button>
-      <button onclick="scrollToSection('sorteio')">Sorteio</button>
-      <button onclick="scrollToSection('presentes')">Presentes</button>
-      <button onclick="toggleAdmin()">Admin</button>
-    </div>
-  </nav>
 
-  <!-- HOME -->
-  <section id="home" class="home">
-    <div class="background"></div>
-    <h1 class="titulo-casal">Railon & Nathália</h1>
+  <header>
+    <nav>
+      <ul class="menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+        <li><a href="sorteio.html" target="_blank">Sorteio</a></li>
+        <li><a href="presentes.html" target="_blank">Presentes</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <div class="fotos-home">
-      <img src="imagens 2/31.jpg" class="foto-home animada" />
-      <img src="imagens 2/32.jpg" class="foto-home animada" />
+  <section id="home" class="section-home">
+    <div class="titulo">
+      <h1>Railon & Nathália</h1>
     </div>
 
-    <p class="texto-intro">
-      <strong>Railon</strong> e <strong>Nathália</strong> — Duas histórias que se cruzaram no tempo, duas vidas que agora seguem juntas rumo a um novo capítulo. Railon e Nathália descobriram no amor a força que une, a leveza que conforta e a beleza de compartilhar os dias bons ou desafiadores com alguém que escolhem amar todos os dias.  
-      <br /><br />
-      Casar é mais do que uma celebração, é um ato de coragem, de entrega e de esperança. E é com o coração cheio de gratidão que compartilhamos esse momento com pessoas tão especiais como você.
-      <br /><br />
-      Obrigado por fazer parte da nossa história. Sua presença é o nosso maior presente. 💛
-    </p>
+    <div class="fotos-iniciais">
+      <img src="imagens 2/31.jpg" alt="Foto 1" />
+      <img src="imagens 2/32.jpg" alt="Foto 2" />
+    </div>
+
+    <div class="texto-intro">
+      <p><strong>Railon</strong> e <strong>Nathália</strong> descobriram no amor a força que une, a leveza que conforta e a beleza de compartilhar os dias bons ou desafiadores com alguém que escolhem amar todos os dias.</p>
+      <p>Casar é mais do que uma celebração, é um ato de coragem, de entrega e de esperança. E é com o coração cheio de gratidão que compartilhamos esse momento com pessoas tão especiais como você.</p>
+      <p><strong>Obrigado por fazer parte da nossa história. Sua presença é o nosso maior presente. 💛</strong></p>
+    </div>
+
+    <div class="temporizador" id="temporizador"></div>
   </section>
 
-  <!-- GALERIA -->
-  <section id="galeria" class="galeria">
-    <div class="galeria-scroll">
-      <!-- Galeria de 1 a 30 -->
-      <!-- As imagens serão adicionadas com JS -->
+  <section id="galeria">
+    <h2>Galeria</h2>
+    <div class="galeria-container">
+      <!-- Galeria vai ser preenchida via JS -->
     </div>
   </section>
 
-  <!-- LOCALIZAÇÕES -->
-  <section class="locais">
-    <h2>Local da Cerimônia</h2>
-    <a href="https://maps.app.goo.gl/u2XzmJK7yZ8yGpLe6" target="_blank" class="botao-local">Ver Igreja</a>
-
-    <h2>Local da Festa</h2>
-    <a href="https://maps.app.goo.gl/J4ZVtiuDCCJw6n2N8" target="_blank" class="botao-local">Ver Festa</a>
+  <section id="local">
+    <h2>Localização</h2>
+    <p><strong>Cerimônia:</strong> <a href="https://maps.app.goo.gl/gRKtDbH9MnUWtHKH7" target="_blank">Clique aqui</a></p>
+    <p><strong>Festa:</strong> <a href="https://maps.app.goo.gl/kMp1FFobEFMS1bhz9" target="_blank">Clique aqui</a></p>
   </section>
 
-  <!-- CONFIRMAÇÃO DE PRESENÇA -->
-  <section id="presenca" class="presenca">
-    <h2>Confirme sua presença</h2>
+  <section id="confirmar">
+    <h2>Confirmação de Presença</h2>
     <form id="form-presenca">
-      <div id="convidados">
-        <input type="text" name="convidado[]" placeholder="Seu nome" required />
+      <div id="nomes-container">
+        <input type="text" name="nome[]" placeholder="Seu nome" required />
       </div>
       <button type="button" onclick="adicionarConvidado()">+ Adicionar convidado</button>
-      <button type="submit">Confirmar Presença</button>
+      <button type="submit">Confirmar</button>
     </form>
-    <div id="agradecimento"></div>
+    <p id="mensagem-confirmacao"></p>
   </section>
 
-  <!-- PLAYLIST & INSTAGRAM -->
-  <section class="midias">
-    <a href="https://open.spotify.com/playlist/4oyWaBnExCjRbKvc8I2zT4" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" class="icone" /> Playlist
-    </a>
-    <a href="https://www.instagram.com/nathaliacarvalho.sc/" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384031.png" class="icone" /> Noiva
-    </a>
-    <a href="https://www.instagram.com/railonqueiroz/" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384031.png" class="icone" /> Noivo
-    </a>
-  </section>
-
-  <!-- SORTEIO -->
-  <section id="sorteio" class="sorteio">
-    <h2>Sorteio: Buchanans + 4 Redbulls</h2>
-    <img src="imagens 2/33.jpg" class="foto-sorteio" />
-    <form id="form-sorteio">
-      <input type="text" id="nomeSorteio" placeholder="Seu nome" required />
-      <input type="number" id="qtdNumeros" placeholder="Qtd. de números" min="1" required />
-      <p>Valor: R$ <span id="valorTotal">0</span></p>
-      <button type="submit">Comprar Números</button>
-    </form>
-    <p>Faça o pagamento via PIX (copia e cola):</p>
-    <textarea readonly class="pix-copia-cola">00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO DE62070503***6304F2D6</textarea>
-  </section>
-
-  <!-- PRESENTES -->
-  <section id="presentes" class="presentes">
-    <h2>Escolha um presente</h2>
-    <div class="presente">
-      <img src="imagens 2/34.jpg" />
-      <p><strong>Um controle a mais pro casal não brigar</strong></p>
-      <p>R$ 63,00</p>
-      <button onclick="pagarPresente('Um controle', 63)">Dar este presente</button>
+  <footer>
+    <div class="rodape">
+      <a href="https://open.spotify.com/playlist/4Z8n9C3PvOqVnOEEBLrxsb?si=ef1ac6c86b274e3a" target="_blank">🎵 Playlist</a>
+      <a href="https://instagram.com/nathalia_domingues" target="_blank">👰 Instagram da Noiva</a>
+      <a href="https://instagram.com/railon.qs" target="_blank">🤵 Instagram do Noivo</a>
     </div>
-  </section>
+  </footer>
 
-  <!-- ÁREA ADMIN (OCULTA) -->
-  <section id="admin" class="admin">
-    <h2>Administração</h2>
-    <div id="dadosConvidados"></div>
-    <div id="dadosSorteio"></div>
-    <div id="dadosPresentes"></div>
-  </section>
-
-  <script src="script.js"></script>
 </body>
 </html>
