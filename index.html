@@ -1,149 +1,142 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nathália & Railon</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+  <script defer src="script.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
+<body>
+  <audio autoplay loop>
+    <source src="musica/um-amor-puro.mp3.mp3" type="audio/mp3">
+  </audio>
 
-<body style="background-image: url('15.jpeg'); background-size: cover; background-attachment: fixed; color: white; font-family: 'Inter', sans-serif;">
-  <header style="position: sticky; top: 0; background-color: rgba(0, 0, 0, 0.6); overflow-x: auto; white-space: nowrap; padding: 10px;">
-    <img src="1.jpeg" style="height: 50px; margin-right: 10px; border-radius: 10px; animation: float 3s infinite alternate;">
-    <img src="2.jpeg" style="height: 50px; margin-right: 10px; border-radius: 10px; animation: float 3s infinite alternate-reverse;">
-    <button onclick="scrollToSection('historia')">Nossa História</button>
-    <button onclick="scrollToSection('galeria')">Galeria</button>
-    <button onclick="scrollToSection('confirmar')">Confirme Presença</button>
-    <button onclick="scrollToSection('locais')">Locais</button>
-    <button onclick="scrollToSection('sorteio')">Sorteio</button>
-    <button onclick="window.location.href='presentes.html'">Lista de Presentes</button>
+  <header>
+    <h1 class="caligrafia">Nathália & Railon</h1>
+    <nav class="menu-scroll">
+      <a href="#historia">Nossa História</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#confirmar">Confirmar Presença</a>
+      <a href="#locais">Locais</a>
+      <a href="#sorteio">Sorteio</a>
+      <a href="presentes.html">Lista de Presentes</a>
+    </nav>
   </header>
 
-  <section style="text-align: center; padding: 50px 20px;">
-    <h1 style="font-family: 'Great Vibes', cursive; font-size: 3em; color: white;">Nathália & Railon</h1>
-    <div id="contador" style="margin-top: 20px; font-size: 1.5em; background: rgba(255,255,255,0.2); padding: 20px; border-radius: 15px;">
-      <span id="dias"></span> dias <span id="horas"></span>h <span id="minutos"></span>min <span id="segundos"></span>s
+  <section class="slideshow">
+    <img src="imagens 2/31.jpg" class="slide ativo">
+    <img src="imagens 2/32.jpg" class="slide">
+  </section>
+
+  <section class="contador" id="contador">
+    <div class="papel">
+      <h2>Faltam</h2>
+      <div id="timer">
+        <span id="dias">--</span> dias
+        <span id="horas">--</span>h
+        <span id="minutos">--</span>min
+        <span id="segundos">--</span>s
+      </div>
     </div>
   </section>
 
-  <section id="historia" style="padding: 40px 20px;">
+  <section id="historia">
     <h2>Nossa História</h2>
-    <p>Aqui vai nossa história especial...</p>
-    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-      <img src="historia1.jpeg" style="width: 45%; border-radius: 10px;">
-      <img src="historia2.jpeg" style="width: 45%; border-radius: 10px;">
+    <div class="historia-fotos">
+      <img src="imagens 2/31.jpg" alt="Foto 1">
+      <img src="imagens 2/32.jpg" alt="Foto 2">
     </div>
   </section>
 
-  <section id="galeria" style="padding: 40px 20px;">
-    <h2>Galeria de Fotos</h2>
-    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-      <!-- Galeria 30 fotos -->
-      <!-- Adicione todas as fotos de 1.jpeg a 30.jpeg -->
-      <!-- Exemplo -->
-      <script>
-        for (let i = 1; i <= 30; i++) {
-          document.write(`<img src="${i}.jpeg" style="width: 30%; max-width: 150px; border-radius: 10px; cursor: pointer;" onclick="abrirModal('${i}.jpeg')">`);
-        }
-      </script>
+  <section id="galeria">
+    <h2>Galeria</h2>
+    <div class="galeria">
+      <!-- Fotos 1 a 30 -->
+      <!-- Usar script para gerar dinamicamente -->
     </div>
   </section>
 
-  <section id="confirmar" style="padding: 40px 20px;">
+  <section id="confirmar">
     <h2>Confirme sua Presença</h2>
     <form>
-      <input type="text" placeholder="Seu nome" required><br>
-      <input type="text" placeholder="Nome adicional (opcional)"><br>
+      <input type="text" placeholder="Seu nome" required>
+      <input type="text" placeholder="Nome do acompanhante (opcional)">
       <button type="submit">Confirmar</button>
     </form>
   </section>
 
-  <section id="locais" style="padding: 40px 20px;">
+  <section id="locais">
     <h2>Locais</h2>
-    <p>Igreja: <a href="https://share.google/IgxxK4nIJO4nu4dLX" target="_blank">Ver no Google Maps</a></p>
-    <p>Festa: <a href="https://share.google/Dx2FthylKB4mppEsJ" target="_blank">Ver no Google Maps</a></p>
+    <div class="locais">
+      <a href="https://share.google/IgxxK4nIJO4nu4dLX" target="_blank">📍 Igreja - Ver no Google Maps</a>
+      <a href="https://share.google/Dx2FthylKB4mppEsJ" target="_blank">📍 Festa - Ver no Google Maps</a>
+    </div>
   </section>
 
-  <section id="sorteio" style="padding: 40px 20px;">
+  <section id="sorteio">
     <h2>Sorteio</h2>
-    <img src="combo.jpeg" style="width: 100%; max-width: 300px; border-radius: 10px;">
-    <p>Participe do sorteio e concorra a um combo de whisky com redbulls!</p>
+    <img src="imagens/33.jpg" alt="Sorteio Whisky e Redbull" class="sorteio-img">
+    <p>Participe do sorteio do nosso combo especial! 🎁</p>
   </section>
+
+  <footer>
+    <a href="https://open.spotify.com/playlist/6ZvlROb4Kxgc6gorO99Bpy?si=0804e9afddb04aaf" target="_blank">
+      <img src="icons/spotify.png" alt="Spotify">
+    </a>
+    <a href="https://www.instagram.com/nathesilvaa/" target="_blank">
+      <img src="icons/instagram.png" alt="Instagram Nathália">
+    </a>
+    <a href="https://www.instagram.com/railon.q/" target="_blank">
+      <img src="icons/instagram.png" alt="Instagram Railon">
+    </a>
+  </footer>
 
   <script>
-    function scrollToSection(id) {
-      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-    }
+    // Script para slideshow
+    const slides = document.querySelectorAll('.slide');
+    let slideAtual = 0;
+    setInterval(() => {
+      slides[slideAtual].classList.remove('ativo');
+      slideAtual = (slideAtual + 1) % slides.length;
+      slides[slideAtual].classList.add('ativo');
+    }, 4000);
 
-    function abrirModal(imagem) {
-      const modal = document.createElement('div');
-      modal.style.position = 'fixed';
-      modal.style.top = 0;
-      modal.style.left = 0;
-      modal.style.width = '100%';
-      modal.style.height = '100%';
-      modal.style.backgroundColor = 'rgba(0,0,0,0.8)';
-      modal.style.display = 'flex';
-      modal.style.justifyContent = 'center';
-      modal.style.alignItems = 'center';
-      modal.onclick = () => document.body.removeChild(modal);
-      const img = document.createElement('img');
-      img.src = imagem;
-      img.style.maxWidth = '90%';
-      img.style.maxHeight = '90%';
-      modal.appendChild(img);
-      document.body.appendChild(modal);
-    }
+    // Script da contagem regressiva
+    const dataCasamento = new Date('2025-10-11T00:00:00');
+    setInterval(() => {
+      const agora = new Date();
+      const diff = dataCasamento - agora;
 
-    function atualizarContador() {
-      const destino = dayjs('2025-10-11T15:00:00');
-      const agora = dayjs();
-      const diff = destino.diff(agora);
-      const duracao = dayjs.duration(diff);
-      document.getElementById('dias').textContent = Math.floor(duracao.asDays());
-      document.getElementById('horas').textContent = duracao.hours();
-      document.getElementById('minutos').textContent = duracao.minutes();
-      document.getElementById('segundos').textContent = duracao.seconds();
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+      const segundos = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('dias').textContent = dias;
+      document.getElementById('horas').textContent = horas;
+      document.getElementById('minutos').textContent = minutos;
+      document.getElementById('segundos').textContent = segundos;
+    }, 1000);
+
+    // Script para galeria
+    const galeria = document.querySelector(".galeria");
+    for (let i = 1; i <= 30; i++) {
+      const img = document.createElement("img");
+      img.src = `imagens/${i}.jpeg`;
+      img.alt = `Foto ${i}`;
+      img.addEventListener("click", () => {
+        const modal = document.createElement("div");
+        modal.className = "modal";
+        modal.innerHTML = `<div class='modal-content'><img src='imagens/${i}.jpeg'><span class='fechar'>&times;</span></div>`;
+        document.body.appendChild(modal);
+        modal.querySelector(".fechar").onclick = () => modal.remove();
+      });
+      galeria.appendChild(img);
     }
-    setInterval(atualizarContador, 1000);
-    atualizarContador();
   </script>
-
-  <style>
-    button {
-      background-color: #556B2F;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      margin: 5px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: white;
-    }
-    input {
-      padding: 10px;
-      margin: 5px;
-      border-radius: 5px;
-      border: none;
-      width: 80%;
-    }
-    form {
-      text-align: center;
-    }
-    @keyframes float {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-5px); }
-    }
-  </style>
-
 </body>
-
 </html>
+
