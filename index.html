@@ -3,333 +3,174 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Casamento Railon & [Nome]</title>
-
-  <!-- Fonte caligráfica -->
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet" />
-
+  <title>Nathália & Amor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap" rel="stylesheet">
   <style>
-    /* Reset básico */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    /* Corpo e fundo */
     body {
-      font-family: Arial, sans-serif;
-      min-height: 100vh;
-      position: relative;
-      padding-top: 60px; /* espaço para menu fixo */
-      background: transparent;
+      font-family: 'Open Sans', sans-serif;
+      background: url('15.jpeg') no-repeat center center fixed;
+      background-size: cover;
       color: #333;
     }
 
-    /* Fundo fixo */
-    .fundo-fixo {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image: url('imagens/1.jpeg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      filter: brightness(0.7);
-      z-index: -1;
-    }
-
-    /* Menu superior fixo */
     header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: #556b2f; /* verde oliva */
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      z-index: 100;
-    }
-
-    .menu {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      padding: 12px 0;
-    }
-
-    .menu li {
-      margin: 0 18px;
-    }
-
-    .menu li a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1em;
-      transition: color 0.3s;
-    }
-
-    .menu li a:hover {
-      color: #a9ba9d;
-    }
-
-    /* Título com fonte caligráfica */
-    .titulo-casamento {
-      font-family: 'Dancing Script', cursive;
-      font-size: 3.5em;
-      color: white;
       text-align: center;
-      margin: 80px 0 20px 0;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+      padding: 2rem 1rem;
+      background-color: rgba(255, 255, 255, 0.8);
     }
 
-    /* Contador delicado */
-    #contador {
-      font-size: 2.2em;
-      font-weight: 500;
-      color: #556b2f;
+    header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      color: #8b5e3c;
+    }
+
+    nav {
+      overflow-x: auto;
+      white-space: nowrap;
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    nav button {
+      display: inline-block;
+      padding: 1rem;
+      font-size: 1rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #8b5e3c;
+    }
+
+    .countdown {
       text-align: center;
-      margin-bottom: 40px;
-      font-family: 'Arial', sans-serif;
-      text-shadow: 1px 1px 2px #fff;
+      padding: 3rem 1rem;
+      font-size: 2rem;
+      background: rgba(255,255,255,0.6);
     }
 
-    /* Seções */
-    section {
-      max-width: 900px;
-      margin: 20px auto 50px auto;
-      background-color: rgba(255,255,255,0.9);
-      padding: 20px 30px;
-      border-radius: 8px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
-
-    section h2 {
-      margin-bottom: 15px;
-      color: #556b2f;
-      font-weight: 700;
-      font-size: 1.8em;
-      text-align: center;
-    }
-
-    /* Galeria */
-    .galeria-container {
+    .galeria {
       display: flex;
       flex-wrap: wrap;
-      gap: 15px;
+      gap: 10px;
       justify-content: center;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.7);
     }
 
-    .galeria-container img {
-      width: 160px;
-      height: 110px;
-      object-fit: cover;
-      border-radius: 6px;
+    .galeria img {
+      width: 100px;
       cursor: pointer;
-      transition: transform 0.3s ease;
-      box-shadow: 0 0 6px rgba(0,0,0,0.15);
+      transition: transform 0.3s;
     }
 
-    .galeria-container img:hover {
+    .galeria img:hover {
       transform: scale(1.1);
-      box-shadow: 0 0 15px rgba(85,107,47,0.8);
     }
 
-    /* Links de endereço */
-    #endereco p {
-      font-size: 1.1em;
-      margin: 10px 0;
+    .maps {
       text-align: center;
+      padding: 2rem;
     }
 
-    #endereco a {
-      color: #556b2f;
-      font-weight: 700;
-      text-decoration: none;
-      transition: text-decoration 0.3s;
-    }
-
-    #endereco a:hover {
-      text-decoration: underline;
-    }
-
-    /* Formulário confirmação */
-    form {
+    .maps iframe {
+      width: 90%;
       max-width: 400px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    input[type="text"],
-    select {
-      padding: 10px;
-      border-radius: 5px;
-      border: 1.5px solid #ccc;
-      font-size: 1em;
-    }
-
-    button {
-      background-color: #556b2f;
+      height: 300px;
+      margin: 1rem;
       border: none;
-      padding: 12px;
-      color: white;
-      font-weight: bold;
-      font-size: 1.1em;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
+      border-radius: 10px;
     }
 
-    button:hover {
-      background-color: #7a8c53;
-    }
-
-    #resposta-presenca, #resultado-sorteio {
+    .presenca {
+      padding: 2rem;
       text-align: center;
-      margin-top: 15px;
-      font-weight: bold;
-      color: #556b2f;
+      background-color: rgba(255, 255, 255, 0.8);
     }
 
+    .presenca input {
+      margin: 0.5rem;
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .sorteio {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .sorteio img {
+      width: 200px;
+    }
   </style>
 </head>
 <body>
-
-  <div class="fundo-fixo"></div>
-
   <header>
-    <ul class="menu">
-      <li><a href="#historia">Nossa História</a></li>
-      <li><a href="#galeria">Galeria</a></li>
-      <li><a href="#endereco">Endereço</a></li>
-      <li><a href="#confirmacao">Confirmação</a></li>
-      <li><a href="#presentes">Presentes</a></li>
-      <li><a href="#sorteio">Sorteio</a></li>
-    </ul>
+    <h1>Nathália & Amor</h1>
   </header>
 
-  <h1 class="titulo-casamento">Railon & [Nome]</h1>
+  <nav>
+    <button>Início</button>
+    <button>História</button>
+    <button>Galeria</button>
+    <button>Presentes</button>
+    <button>Confirmação</button>
+  </nav>
 
-  <div id="contador"></div>
-
-  <section id="historia">
-    <h2>Nossa História</h2>
-    <p>Era uma vez dois corações que se encontraram, construindo juntos uma linda trajetória de amor, cumplicidade e sonhos compartilhados...</p>
+  <section class="countdown">
+    <p>Faltam <span id="dias">00</span> dias para o grande dia!</p>
   </section>
 
-  <section id="galeria">
-    <h2>Galeria de Fotos</h2>
-    <div class="galeria-container">
-      <img src="imagens/1.jpeg" alt="Foto 1" />
-      <img src="imagens/2.jpeg" alt="Foto 2" />
-      <img src="imagens/3.jpeg" alt="Foto 3" />
-      <img src="imagens/4.jpeg" alt="Foto 4" />
-      <img src="imagens/5.jpeg" alt="Foto 5" />
-      <!-- Adicione mais imagens conforme precisar -->
-    </div>
+  <section class="galeria">
+    <!-- Fotos 1.jpeg a 30.jpeg -->
+    <script>
+      for (let i = 1; i <= 30; i++) {
+        document.write(`<img src="${i}.jpeg" alt="Foto ${i}" onclick="abrirImagem('${i}.jpeg')">`);
+      }
+    </script>
   </section>
 
-  <section id="endereco">
-    <h2>Local do Evento</h2>
-    <p><strong>Igreja:</strong> <a href="https://share.google/IgxxK4nIJO4nu4dLX" target="_blank" rel="noopener noreferrer">Clique aqui para ver no mapa</a></p>
-    <p><strong>Festa:</strong> <a href="https://share.google/Dx2FthylKB4mppEsJ" target="_blank" rel="noopener noreferrer">Clique aqui para ver no mapa</a></p>
+  <section class="maps">
+    <h2>Igreja</h2>
+    <iframe src="https://www.google.com/maps?q=https://share.google/IgxxK4nIJO4nu4dLX&output=embed"></iframe>
+
+    <h2>Festa</h2>
+    <iframe src="https://www.google.com/maps?q=https://share.google/Dx2FthylKB4mppEsJ&output=embed"></iframe>
   </section>
 
-  <section id="confirmacao">
-    <h2>Confirmação de Presença</h2>
-    <form id="form-presenca">
-      <input type="text" name="nome" placeholder="Seu nome completo" required />
-      <select name="presenca" required>
-        <option value="">Você vai comparecer?</option>
-        <option value="sim">Sim</option>
-        <option value="nao">Não</option>
-      </select>
-      <button type="submit">Confirmar</button>
-    </form>
-    <div id="resposta-presenca"></div>
+  <section class="presenca">
+    <h2>Confirme sua presença</h2>
+    <input type="text" placeholder="Seu nome" />
+    <input type="text" placeholder="Acompanhante (opcional)" />
+    <br />
+    <button>Confirmar</button>
   </section>
 
-  <section id="presentes">
-    <h2>Lista de Presentes Engraçados</h2>
-    <ul>
-      <li>Um pacote de miojo gourmet</li>
-      <li>Kit de meias estilosas</li>
-      <li>Manual de sobrevivência para sogros</li>
-      <li>Café para madrugar na dança</li>
-      <li>Kit de piadas para animar a festa</li>
-    </ul>
-  </section>
-
-  <section id="sorteio">
-    <h2>Sorteio com Pix</h2>
-    <form id="form-sorteio">
-      <input type="text" name="nomeSorteio" placeholder="Seu nome" required />
-      <button type="submit">Gerar Número e Mostrar Chave Pix</button>
-    </form>
-    <div id="resultado-sorteio"></div>
+  <section class="sorteio">
+    <h2>Sorteio especial</h2>
+    <img src="combo.jpeg" alt="Combo Whisky + Redbulls">
   </section>
 
   <script>
-    // Contagem regressiva para 11 de outubro de 2025, 00:00:00
-    const contador = document.getElementById('contador');
-    const dataCasamento = new Date(2025, 9, 11, 0, 0, 0); // mês 9 = outubro (0-based)
+    // Contagem regressiva para 11 de outubro de 2025
+    const destino = new Date('2025-10-11').getTime();
+    setInterval(() => {
+      const agora = new Date().getTime();
+      const diferenca = destino - agora;
+      const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+      document.getElementById('dias').innerText = dias;
+    }, 1000);
 
-    function atualizarContador() {
-      const agora = new Date();
-      const diff = dataCasamento - agora;
-
-      if(diff <= 0){
-        contador.textContent = "O grande dia chegou! 🎉";
-        clearInterval(intervalo);
-        return;
-      }
-
-      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutos = Math.floor((diff / (1000 * 60)) % 60);
-      const segundos = Math.floor((diff / 1000) % 60);
-
-      contador.textContent = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+    function abrirImagem(src) {
+      const img = window.open('', '_blank');
+      img.document.write(`<img src="${src}" style="width: 100%">`);
     }
-
-    const intervalo = setInterval(atualizarContador, 1000);
-    atualizarContador();
-
-    // Confirmação de presença
-    const formPresenca = document.getElementById('form-presenca');
-    const respostaPresenca = document.getElementById('resposta-presenca');
-
-    formPresenca.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const nome = formPresenca.nome.value.trim();
-      const presenca = formPresenca.presenca.value;
-
-      if(!nome || !presenca){
-        respostaPresenca.textContent = 'Por favor, preencha todos os campos.';
-        return;
-      }
-
-      respostaPresenca.textContent = `Obrigado, ${nome}! Sua presença foi confirmada como "${presenca}".`;
-      formPresenca.reset();
-    });
-
-    // Sorteio Pix
-    const formSorteio = document.getElementById('form-sorteio');
-    const resultadoSorteio = document.getElementById('resultado-sorteio');
-    const chavePix = '123e4567-e89b-12d3-a456-426614174000'; // Exemplo de chave Pix
-
-    formSorteio.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const nomeSorteio = formSorteio.nomeSorteio.value.trim();
-      if(!nomeSorteio){
-        resultadoSorteio.textContent = 'Por favor, digite seu nome.';
-        return;
-      }
-      const numeroSorteio = Math.floor(Math.random() * 1000) + 1;
-      resultadoSorteio.innerHTML = `Olá, ${nomeSorteio}! Seu número para o sorteio é <strong>${numeroSorteio}</strong>.<br/>Chave Pix para doação: <code>${chavePix}</code>`;
-      formSorteio.reset();
-    });
   </script>
-
 </body>
 </html>
