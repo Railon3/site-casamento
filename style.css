@@ -132,4 +132,11 @@ button:hover {
   font-weight: bold;
   color: #556b2f;
   text-align: center;
+body {
+  color: white;
+  background-color: #333; /* caso não carregue imagem */
+}
+button {
+  background-color: #556B2F;
+  color: white;
 }
