@@ -2,111 +2,116 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>Railon & Nathália - Nosso Casamento</title>
-
-  <!-- Fontes Google: caligrafia + fonte clean -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-
-  <!-- Ícones do Spotify e Instagram -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casamento Railon & Nathália</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
+  <!-- Música -->
+  <audio autoplay loop>
+    <source src="música/um-amor-puro.mp3.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- Cabeçalho -->
   <header>
-    <div class="header-container">
-      <h1 class="nomes-noivos">Railon &amp; Nathália</h1>
-      <button id="menu-toggle" aria-label="Abrir menu">&#9776;</button>
-      <nav id="menu-dropdown" class="menu-escondido" aria-label="Menu de navegação">
-        <ul>
-          <li><a href="#home" onclick="fecharMenu()">Home</a></li>
-          <li><a href="#galeria" onclick="fecharMenu()">Galeria</a></li>
-          <li><a href="#confirmar" onclick="fecharMenu()">Confirmar Presença</a></li>
-          <li><a href="#locais" onclick="fecharMenu()">Locais</a></li>
-          <li><a href="sorteio.html" target="_blank" rel="noopener noreferrer" onclick="fecharMenu()">Sorteio</a></li>
-          <li><a href="presentes.html" target="_blank" rel="noopener noreferrer" onclick="fecharMenu()">Presentes</a></li>
-        </ul>
-      </nav>
-    </div>
+    <div class="nomes-noivos">Railon & Nathália</div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <nav id="menu" class="hidden">
+      <a href="#home">Home</a>
+      <a href="#presente">Presente</a>
+      <a href="#sorteio">Sorteio</a>
+      <a href="#galeria">Galeria</a>
+    </nav>
   </header>
 
-  <main id="home" tabindex="-1">
-    <section class="temporizador-container">
-      <div id="contador" aria-live="polite" aria-atomic="true">
-        <span id="dias"></span> dias
-        <span id="horas"></span>h
-        <span id="minutos"></span>m
-        <span id="segundos"></span>s
-      </div>
-    </section>
-
-    <section class="boas-vindas">
-      <p>
-        <strong>Railon</strong> e <strong>Nathália</strong> — Duas histórias que se cruzaram no tempo, duas vidas que agora seguem juntas rumo a um novo capítulo.<br />
-        Descobriram no amor a força que une, a leveza que conforta e a beleza de compartilhar os dias bons ou desafiadores com alguém que escolhem amar todos os dias.<br /><br />
-        Casar é mais do que uma celebração, é um ato de coragem, entrega e esperança.<br />
-        É com o coração cheio de gratidão que compartilhamos esse momento com pessoas tão especiais como você.<br /><br />
-        Obrigado por fazer parte da nossa história. Sua presença é o nosso maior presente. 💛
-      </p>
-    </section>
-
-    <section class="fotos-animadas">
-      <img src="imagens2/31.jpg" alt="Foto 31 - Railon & Nathália" />
-      <img src="imagens2/32.jpg" alt="Foto 32 - Railon & Nathália" />
-    </section>
-
-    <section id="galeria" class="galeria">
-      <h2>Galeria de Fotos</h2>
-      <div class="galeria-container" aria-label="Galeria de fotos do casal">
-        <!-- Fotos de 1.jpeg a 30.jpeg serão inseridas via JS -->
-      </div>
-    </section>
-
-    <section id="locais" class="locais">
-      <h2>Locais</h2>
-      <div class="botao-locais">
-        <a href="https://share.google/lLQi3DolCfBUc3H2L" target="_blank" rel="noopener noreferrer" class="botao" aria-label="Local da cerimônia - Igreja">
-          Cerimônia
-        </a>
-        <a href="https://maps.app.goo.gl/zruXh9voZ9H4T8o36" target="_blank" rel="noopener noreferrer" class="botao" aria-label="Local da festa">
-          Festa
-        </a>
-      </div>
-    </section>
-
-    <section id="confirmar" class="confirmar-presenca">
-      <h2>Confirme sua Presença</h2>
-      <form id="form-presenca" aria-label="Formulário de confirmação de presença">
-        <div class="input-group">
-          <label for="nome-principal">Seu nome completo</label>
-          <input type="text" id="nome-principal" name="nome-principal" required autocomplete="name" />
-        </div>
-
-        <div id="acompanhantes-container">
-          <label>Acompanhantes (opcional)</label>
-          <!-- Acompanhantes inputs vão aqui -->
-        </div>
-
-        <button type="button" id="adicionar-acompanhante" aria-label="Adicionar acompanhante">+ Adicionar acompanhante</button>
-        <button type="submit">Confirmar Presença</button>
-      </form>
-      <div id="resposta-presenca" role="alert" aria-live="assertive"></div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-container">
-      <a href="https://open.spotify.com/playlist/6ZvlROb4Kxgc6gorO99Bpy?si=0804e9afddb04aaf" target="_blank" rel="noopener noreferrer" aria-label="Playlist no Spotify" class="icon-link">
-        <i class="fab fa-spotify"></i> Playlist
-      </a>
-      <a href="https://www.instagram.com/nathesilvaa/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer" aria-label="Instagram Nathália" class="icon-link">
-        <i class="fab fa-instagram"></i> Nathália
-      </a>
-      <a href="https://www.instagram.com/railon.q/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer" aria-label="Instagram Railon" class="icon-link">
-        <i class="fab fa-instagram"></i> Railon
-      </a>
+  <!-- Temporizador -->
+  <section id="temporizador">
+    <h2>Faltam</h2>
+    <div class="countdown">
+      <div><span id="dias">00</span><small>Dias</small></div>
+      <div><span id="horas">00</span><small>Horas</small></div>
+      <div><span id="minutos">00</span><small>Min</small></div>
+      <div><span id="segundos">00</span><small>Seg</small></div>
     </div>
+  </section>
+
+  <!-- Nossa História -->
+  <section id="historia">
+    <div class="historia-fotos">
+      <img src="imagens 2/31.jpg" alt="Foto 31" />
+      <img src="imagens 2/32.jpg" alt="Foto 32" />
+    </div>
+    <p>Essa é a nossa história. Momentos, sonhos e um grande amor construído com carinho. Agora, queremos celebrar esse amor com você!</p>
+  </section>
+
+  <!-- Localização -->
+  <section id="localizacao">
+    <h2>Localização</h2>
+    <div class="btns-local">
+      <a href="https://share.google/lLQi3DolCfBUc3H2L" target="_blank" class="btn">Cerimônia</a>
+      <a href="https://maps.app.goo.gl/zruXh9voZ9H4T8o36" target="_blank" class="btn">Festa</a>
+    </div>
+  </section>
+
+  <!-- Confirmação de Presença -->
+  <section id="confirmacao">
+    <h2>Confirme sua presença</h2>
+    <form id="form-presenca">
+      <input type="text" name="nome" placeholder="Seu nome" required />
+      <div id="acompanhantes"></div>
+      <button type="button" onclick="adicionarAcompanhante()">+ Adicionar Acompanhante</button>
+      <button type="submit">Confirmar</button>
+    </form>
+    <div id="mensagem-envio"></div>
+  </section>
+
+  <!-- Presente -->
+  <section id="presente">
+    <h2>Dar um Presente</h2>
+    <a href="https://nubank.com.br/pagar/1dp8qd/jof5GpHoYf" class="btn presente-btn" target="_blank">
+      <i class="fas fa-gift"></i> Dar Presente
+    </a>
+  </section>
+
+  <!-- Sorteio -->
+  <section id="sorteio">
+    <h2>Sorteio</h2>
+    <a href="sorteio.html" class="btn" target="_blank">Participar do Sorteio</a>
+  </section>
+
+  <!-- Galeria -->
+  <section id="galeria">
+    <h2>Galeria de Fotos</h2>
+    <div class="galeria-scroll">
+      <!-- Fotos 1 a 30 -->
+      <!-- Substitua pelos seus arquivos reais -->
+      <script>
+        for (let i = 1; i <= 30; i++) {
+          document.write(`
+            <div class="foto" onclick="expandirImagem(this)">
+              <img src="imagens/${i}.jpeg" alt="Foto ${i}" />
+            </div>
+          `);
+        }
+      </script>
+    </div>
+    <div id="lightbox" onclick="fecharImagem()">
+      <img id="imagem-expandida" />
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer>
+    <a href="https://www.instagram.com/nathesilvaa/" target="_blank">
+      <i class="fab fa-instagram"></i> Nathália
+    </a>
+    <a href="https://www.instagram.com/railon.q/" target="_blank">
+      <i class="fab fa-instagram"></i> Railon
+    </a>
+    <a href="https://open.spotify.com/playlist/6ZvlROb4Kxgc6gorO99Bpy?si=0804e9afddb04aaf" target="_blank">
+      <i class="fab fa-spotify"></i> Playlist
+    </a>
   </footer>
 
   <script src="script.js"></script>
