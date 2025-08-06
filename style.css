@@ -1,132 +1,473 @@
-body {
+/* Reset básico */
+* {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: url('imagens/15.jpeg') no-repeat fixed center center;
-  background-size: cover;
-  color: #333;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* Body e fundo */
+body {
+  font-family: 'Inter', sans-serif;
+  background-image: url('imagens/15.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
 header {
-  background: rgba(255,255,255,0.8);
+  background-color: rgba(85, 107, 47, 0.85); /* verde oliva semi-transparente */
   position: sticky;
   top: 0;
-  z-index: 10;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
-.menu {
+.header-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 10px 20px;
   display: flex;
-  overflow-x: auto;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.nomes-noivos {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.8rem;
+  letter-spacing: 2px;
+  user-select: none;
+  white-space: nowrap;
+  color: #e9f0d7;
+}
+
+#menu-toggle {
+  position: absolute;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #e9f0d7;
+  font-size: 2.5rem;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+#menu-toggle:hover {
+  color: #c4d8a4;
+}
+
+/* Menu dropdown */
+#menu-dropdown {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background: rgba(85, 107, 47, 0.95);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  width: 180px;
+  display: none;
+  flex-direction: column;
+  z-index: 120;
+}
+
+#menu-dropdown ul {
   list-style: none;
-  margin: 0;
-  padding: 1rem;
-  gap: 1rem;
-  justify-content: center;
-  font-weight: 300;
 }
 
-.menu li a {
+#menu-dropdown li {
+  border-bottom: 1px solid #a9ba9d;
+}
+
+#menu-dropdown li:last-child {
+  border-bottom: none;
+}
+
+#menu-dropdown a {
+  color: #e9f0d7;
   text-decoration: none;
-  color: #444;
+  display: block;
+  padding: 12px 18px;
+  font-weight: 600;
   font-size: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  background: #eee;
-  transition: 0.3s;
+  transition: background-color 0.3s ease;
 }
 
-.menu li a:hover {
-  background: #c0d9af;
+#menu-dropdown a:hover {
+  background-color: #a9ba9d;
+  color: #556b2f;
+  font-weight: 700;
 }
 
-.titulo h1 {
+/* Mostrar menu */
+#menu-dropdown.menu-visivel {
+  display: flex;
+}
+
+/* Temporizador */
+.temporizador-container {
+  max-width: 960px;
+  margin: 20px auto 0;
+  background: rgba(0,0,0,0.5);
+  border-radius: 12px;
+  padding: 15px 0;
   text-align: center;
-  font-family: 'Brush Script MT', cursive;
-  font-size: 3rem;
-  margin-top: 2rem;
-  color: #2d4a2d;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #c4d8a4;
+  user-select: none;
 }
 
-.fotos-iniciais {
+/* Boas vindas */
+.boas-vindas {
+  max-width: 960px;
+  margin: 25px auto 40px;
+  padding: 0 20px;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #e9f0d7;
+  background: rgba(0,0,0,0.4);
+  border-radius: 12px;
+  text-align: center;
+}
+
+/* Fotos animadas */
+.fotos-animadas {
+  max-width: 960px;
+  margin: 0 auto 40px;
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 20px;
+  padding: 0 10px;
 }
 
-.fotos-iniciais img {
-  width: 45%;
-  border-radius: 12px;
-  animation: float 6s ease-in-out infinite;
+.fotos-animadas img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+  animation: float 5s ease-in-out infinite alternate;
+  cursor: default;
+}
+
+.fotos-animadas img:nth-child(2) {
+  animation-direction: alternate-reverse;
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
 }
 
-.texto-intro {
-  max-width: 800px;
-  margin: 2rem auto;
-  background: rgba(255,255,255,0.85);
-  padding: 1.5rem;
-  border-radius: 10px;
-  line-height: 1.6;
-  font-size: 1.1rem;
+/* Galeria */
+.galeria {
+  max-width: 960px;
+  margin: 0 auto 50px;
+  padding: 0 20px;
 }
 
-.temporizador {
+.galeria h2 {
   text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 2rem 0;
+  margin-bottom: 20px;
+  font-weight: 700;
+  color: #c4d8a4;
 }
 
 .galeria-container {
   display: flex;
   overflow-x: auto;
-  gap: 1rem;
-  padding: 1rem;
-  scroll-snap-type: x mandatory;
+  gap: 10px;
+  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .galeria-container img {
-  width: 200px;
-  height: auto;
-  border-radius: 8px;
-  scroll-snap-align: start;
-  transition: transform 0.3s;
-  cursor: pointer;
-}
-
-.galeria-container img:hover {
-  transform: scale(1.1);
-}
-
-#local, #confirmar {
-  max-width: 600px;
-  margin: auto;
-  padding: 2rem;
-  background: rgba(255,255,255,0.85);
+  width: 130px;
+  height: 90px;
+  object-fit: cover;
   border-radius: 10px;
-  margin-bottom: 2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
-form input {
+.galeria-container img:hover,
+.galeria-container img:focus {
+  transform: scale(1.1);
+  outline: none;
+}
+
+/* Modal galeria */
+#modal-foto {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 150;
+  cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-footer {
-  background: #2d4a2d;
-  color: white;
-  padding: 2rem 1rem;
+#modal-foto.mostrar {
+  visibility: visible;
+  opacity: 1;
+}
+
+#modal-foto img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.7);
+}
+
+/* Locais */
+.locais {
+  max-width: 960px;
+  margin: 0 auto 50px;
+  padding: 0 20px;
   text-align: center;
 }
 
-.rodape a {
+.locais h2 {
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #c4d8a4;
+}
+
+.botao-locais {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.botao-locais .botao {
+  background-color: #556b2f;
   color: white;
-  margin: 0 1rem;
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
   text-decoration: none;
-  font-weight: bold;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+  transition: background-color 0.3s ease;
+}
+
+.botao-locais .botao:hover,
+.botao-locais .botao:focus {
+  background-color: #7a8c53;
+  outline: none;
+}
+
+/* Confirmar presença */
+.confirmar-presenca {
+  max-width: 960px;
+  margin: 0 auto 50px;
+  padding: 0 20px;
+  background: rgba(0,0,0,0.45);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  color: #e9f0d7;
+}
+
+.confirmar-presenca h2 {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #c4d8a4;
+}
+
+#form-presenca {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.input-group input {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  transition: box-shadow 0.2s ease;
+}
+
+.input-group input:focus {
+  box-shadow: 0 0 8px #a9ba9d;
+}
+
+#acompanhantes-container {
+  margin-top: 10px;
+}
+
+#acompanhantes-container label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+#acompanhantes-container input {
+  margin-bottom: 8px;
+}
+
+#adicionar-acompanhante {
+  background-color: #7a8c53;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  width: 160px;
+  align-self: center;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+
+#adicionar-acompanhante:hover {
+  background-color: #95ab70;
+}
+
+#form-presenca button[type="submit"] {
+  background-color: #556b2f;
+  color: white;
+  border: none;
+  padding: 14px;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#form-presenca button[type="submit"]:hover {
+  background-color: #7a8c53;
+}
+
+#resposta-presenca {
+  text-align: center;
+  font-weight: 700;
+  margin-top: 10px;
+  color: #a9ba9d;
+  min-height: 24px;
+}
+
+/* Footer */
+footer {
+  background-color: rgba(85, 107, 47, 0.85);
+  padding: 12px 0;
+  margin-top: auto;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.4);
+}
+
+.footer-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-weight: 600;
+  color: #e9f0d7;
+  font-size: 1.2rem;
+}
+
+.footer-container a {
+  color: #e9f0d7;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+.footer-container a:hover,
+.footer-container a:focus {
+  color: #c4d8a4;
+  outline: none;
+}
+
+/* Ícones do footer */
+.footer-container i {
+  font-size: 1.5rem;
+}
+
+/* Scrollbar customizado para galeria */
+.galeria-container::-webkit-scrollbar {
+  height: 10px;
+}
+
+.galeria-container::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+}
+
+.galeria-container::-webkit-scrollbar-thumb {
+  background: #556b2f;
+  border-radius: 8px;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .nomes-noivos {
+    font-size: 2rem;
+  }
+  .fotos-animadas {
+    gap: 15px;
+  }
+  .fotos-animadas img {
+    width: 100px;
+    height: 100px;
+  }
+  .temporizador-container {
+    font-size: 1.4rem;
+  }
+  .boas-vindas {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+  .galeria-container img {
+    width: 110px;
+    height: 75px;
+  }
+  #form-presenca {
+    max-width: 100%;
+  }
+  #adicionar-acompanhante {
+    width: 100%;
+  }
 }
