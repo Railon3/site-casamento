@@ -1,76 +1,114 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Railon & Nathália</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Railon & Nathália - Nosso Casamento</title>
+
+  <!-- Fontes Google: caligrafia + fonte clean -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Ícones do Spotify e Instagram -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
   <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
 </head>
 <body>
-
   <header>
-    <nav>
-      <ul class="menu">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#galeria">Galeria</a></li>
-        <li><a href="sorteio.html" target="_blank">Sorteio</a></li>
-        <li><a href="presentes.html" target="_blank">Presentes</a></li>
-      </ul>
-    </nav>
+    <div class="header-container">
+      <h1 class="nomes-noivos">Railon &amp; Nathália</h1>
+      <button id="menu-toggle" aria-label="Abrir menu">&#9776;</button>
+      <nav id="menu-dropdown" class="menu-escondido" aria-label="Menu de navegação">
+        <ul>
+          <li><a href="#home" onclick="fecharMenu()">Home</a></li>
+          <li><a href="#galeria" onclick="fecharMenu()">Galeria</a></li>
+          <li><a href="#confirmar" onclick="fecharMenu()">Confirmar Presença</a></li>
+          <li><a href="#locais" onclick="fecharMenu()">Locais</a></li>
+          <li><a href="sorteio.html" target="_blank" rel="noopener noreferrer" onclick="fecharMenu()">Sorteio</a></li>
+          <li><a href="presentes.html" target="_blank" rel="noopener noreferrer" onclick="fecharMenu()">Presentes</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <section id="home" class="section-home">
-    <div class="titulo">
-      <h1>Railon & Nathália</h1>
-    </div>
-
-    <div class="fotos-iniciais">
-      <img src="imagens 2/31.jpg" alt="Foto 1" />
-      <img src="imagens 2/32.jpg" alt="Foto 2" />
-    </div>
-
-    <div class="texto-intro">
-      <p><strong>Railon</strong> e <strong>Nathália</strong> descobriram no amor a força que une, a leveza que conforta e a beleza de compartilhar os dias bons ou desafiadores com alguém que escolhem amar todos os dias.</p>
-      <p>Casar é mais do que uma celebração, é um ato de coragem, de entrega e de esperança. E é com o coração cheio de gratidão que compartilhamos esse momento com pessoas tão especiais como você.</p>
-      <p><strong>Obrigado por fazer parte da nossa história. Sua presença é o nosso maior presente. 💛</strong></p>
-    </div>
-
-    <div class="temporizador" id="temporizador"></div>
-  </section>
-
-  <section id="galeria">
-    <h2>Galeria</h2>
-    <div class="galeria-container">
-      <!-- Galeria vai ser preenchida via JS -->
-    </div>
-  </section>
-
-  <section id="local">
-    <h2>Localização</h2>
-    <p><strong>Cerimônia:</strong> <a href="https://maps.app.goo.gl/gRKtDbH9MnUWtHKH7" target="_blank">Clique aqui</a></p>
-    <p><strong>Festa:</strong> <a href="https://maps.app.goo.gl/kMp1FFobEFMS1bhz9" target="_blank">Clique aqui</a></p>
-  </section>
-
-  <section id="confirmar">
-    <h2>Confirmação de Presença</h2>
-    <form id="form-presenca">
-      <div id="nomes-container">
-        <input type="text" name="nome[]" placeholder="Seu nome" required />
+  <main id="home" tabindex="-1">
+    <section class="temporizador-container">
+      <div id="contador" aria-live="polite" aria-atomic="true">
+        <span id="dias"></span> dias
+        <span id="horas"></span>h
+        <span id="minutos"></span>m
+        <span id="segundos"></span>s
       </div>
-      <button type="button" onclick="adicionarConvidado()">+ Adicionar convidado</button>
-      <button type="submit">Confirmar</button>
-    </form>
-    <p id="mensagem-confirmacao"></p>
-  </section>
+    </section>
+
+    <section class="boas-vindas">
+      <p>
+        <strong>Railon</strong> e <strong>Nathália</strong> — Duas histórias que se cruzaram no tempo, duas vidas que agora seguem juntas rumo a um novo capítulo.<br />
+        Descobriram no amor a força que une, a leveza que conforta e a beleza de compartilhar os dias bons ou desafiadores com alguém que escolhem amar todos os dias.<br /><br />
+        Casar é mais do que uma celebração, é um ato de coragem, entrega e esperança.<br />
+        É com o coração cheio de gratidão que compartilhamos esse momento com pessoas tão especiais como você.<br /><br />
+        Obrigado por fazer parte da nossa história. Sua presença é o nosso maior presente. 💛
+      </p>
+    </section>
+
+    <section class="fotos-animadas">
+      <img src="imagens2/31.jpg" alt="Foto 31 - Railon & Nathália" />
+      <img src="imagens2/32.jpg" alt="Foto 32 - Railon & Nathália" />
+    </section>
+
+    <section id="galeria" class="galeria">
+      <h2>Galeria de Fotos</h2>
+      <div class="galeria-container" aria-label="Galeria de fotos do casal">
+        <!-- Fotos de 1.jpeg a 30.jpeg serão inseridas via JS -->
+      </div>
+    </section>
+
+    <section id="locais" class="locais">
+      <h2>Locais</h2>
+      <div class="botao-locais">
+        <a href="https://share.google/lLQi3DolCfBUc3H2L" target="_blank" rel="noopener noreferrer" class="botao" aria-label="Local da cerimônia - Igreja">
+          Cerimônia
+        </a>
+        <a href="https://maps.app.goo.gl/zruXh9voZ9H4T8o36" target="_blank" rel="noopener noreferrer" class="botao" aria-label="Local da festa">
+          Festa
+        </a>
+      </div>
+    </section>
+
+    <section id="confirmar" class="confirmar-presenca">
+      <h2>Confirme sua Presença</h2>
+      <form id="form-presenca" aria-label="Formulário de confirmação de presença">
+        <div class="input-group">
+          <label for="nome-principal">Seu nome completo</label>
+          <input type="text" id="nome-principal" name="nome-principal" required autocomplete="name" />
+        </div>
+
+        <div id="acompanhantes-container">
+          <label>Acompanhantes (opcional)</label>
+          <!-- Acompanhantes inputs vão aqui -->
+        </div>
+
+        <button type="button" id="adicionar-acompanhante" aria-label="Adicionar acompanhante">+ Adicionar acompanhante</button>
+        <button type="submit">Confirmar Presença</button>
+      </form>
+      <div id="resposta-presenca" role="alert" aria-live="assertive"></div>
+    </section>
+  </main>
 
   <footer>
-    <div class="rodape">
-      <a href="https://open.spotify.com/playlist/4Z8n9C3PvOqVnOEEBLrxsb?si=ef1ac6c86b274e3a" target="_blank">🎵 Playlist</a>
-      <a href="https://instagram.com/nathalia_domingues" target="_blank">👰 Instagram da Noiva</a>
-      <a href="https://instagram.com/railon.qs" target="_blank">🤵 Instagram do Noivo</a>
+    <div class="footer-container">
+      <a href="https://open.spotify.com/playlist/6ZvlROb4Kxgc6gorO99Bpy?si=0804e9afddb04aaf" target="_blank" rel="noopener noreferrer" aria-label="Playlist no Spotify" class="icon-link">
+        <i class="fab fa-spotify"></i> Playlist
+      </a>
+      <a href="https://www.instagram.com/nathesilvaa/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer" aria-label="Instagram Nathália" class="icon-link">
+        <i class="fab fa-instagram"></i> Nathália
+      </a>
+      <a href="https://www.instagram.com/railon.q/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer" aria-label="Instagram Railon" class="icon-link">
+        <i class="fab fa-instagram"></i> Railon
+      </a>
     </div>
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>
