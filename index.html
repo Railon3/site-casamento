@@ -84,6 +84,52 @@
     .text-intro b {
       font-weight: bold;
     }
+    .galeria {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 20px;
+      gap: 10px;
+    }
+    .galeria img {
+      height: 200px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .galeria img:hover {
+      transform: scale(1.1);
+    }
+    .local-section {
+      text-align: center;
+      padding: 30px;
+      background-color: rgba(255, 255, 255, 0.8);
+      margin: 20px;
+      border-radius: 12px;
+    }
+    .local-section img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 12px;
+    }
+    .confirmacao {
+      text-align: center;
+      padding: 30px;
+      background-color: rgba(255,255,255,0.8);
+      margin: 20px;
+      border-radius: 12px;
+    }
+    .rodape {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      background-color: white;
+    }
+    .rodape img {
+      width: 40px;
+      height: 40px;
+    }
   </style>
 </head>
 <body>
@@ -94,7 +140,7 @@
   <button class="menu-btn" onclick="toggleMenu()">☰</button>
   <div class="menu-content" id="menu">
     <a href="#sorteio">Sorteio</a>
-    <a href="#presentes">Presentes</a>
+    <a href="presentes.html" target="_blank">Presentes</a>
   </div>
 
   <section class="save-date">
@@ -112,6 +158,67 @@
     Obrigado por fazer parte da nossa história. Sua presença é o nosso maior presente. 💛</p>
   </section>
 
+  <section class="galeria">
+    <!-- Galeria de fotos 1 a 30 -->
+    <!-- Exemplo de imagem -->
+    <!-- <img src="imagens/1.jpeg" alt="Foto 1"> -->
+    <!-- Repetir para as demais até 30.jpeg -->
+    <script>
+      const galeria = document.currentScript.parentElement;
+      for (let i = 1; i <= 30; i++) {
+        const img = document.createElement('img');
+        img.src = `imagens/${i}.jpeg`;
+        img.alt = `Foto ${i}`;
+        img.onclick = () => img.requestFullscreen();
+        galeria.appendChild(img);
+      }
+    </script>
+  </section>
+
+  <section class="local-section">
+    <h3>Cerimônia</h3>
+    <div class="galeria">
+      <img src="igreja/igreja externa.jpg" alt="Igreja Externa">
+      <img src="igreja/igreja interna.jpg" alt="Igreja Interna">
+    </div>
+    <a href="https://share.google/UPtoWQbdjtaDD3sYw" target="_blank">
+      <img src="localização.png" alt="Localização">
+    </a>
+    <p>Av.L2 Sul, Quadra 601, Módulos 3/4 - Asa Sul, Brasília - DF, 70200-610</p>
+  </section>
+
+  <section class="local-section">
+    <h3>Festa</h3>
+    <img src="evento/festa.jpg" alt="Festa">
+    <a href="https://maps.app.goo.gl/zruXh9voZ9H4T8o36" target="_blank">
+      <img src="localização.png" alt="Localização">
+    </a>
+    <p>Rua divina providência, chacara 08 - Ponte alta norte do Gama, Brasília - DF, 72426-150</p>
+  </section>
+
+  <section class="confirmacao">
+    <h3>Confirmação de Presença</h3>
+    <form id="rsvp-form">
+      <input type="text" name="nome" placeholder="Seu nome" required><br><br>
+      <div id="acompanhantes"></div>
+      <button type="button" onclick="adicionarAcompanhante()">+ Acompanhante</button><br><br>
+      <button type="submit">Confirmar Presença</button>
+    </form>
+    <p id="mensagem-confirmacao"></p>
+  </section>
+
+  <div class="rodape">
+    <a href="https://open.spotify.com/playlist/7IRDa27ZR2ouWWPGsdcz2B?si=51dfd98ef3ea40f9" target="_blank">
+      <img src="spotify.png" alt="Spotify">
+    </a>
+    <a href="https://www.instagram.com/railon.q/" target="_blank">
+      <img src="instagram.png" alt="Instagram Noivo">
+    </a>
+    <a href="https://www.instagram.com/nathesilvaa/" target="_blank">
+      <img src="instagram.png" alt="Instagram Noiva">
+    </a>
+  </div>
+
   <script>
     function toggleMenu() {
       const menu = document.getElementById("menu");
@@ -123,14 +230,34 @@
     setInterval(() => {
       const now = new Date().getTime();
       const distance = targetDate - now;
-
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
       timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }, 1000);
+
+    function adicionarAcompanhante() {
+      const div = document.createElement('div');
+      div.innerHTML = '<input type="text" name="acompanhante" placeholder="Nome do acompanhante"><br><br>';
+      document.getElementById('acompanhantes').appendChild(div);
+    }
+
+    document.getElementById("rsvp-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const nome = this.nome.value;
+      const total = 1 + document.querySelectorAll('[name=acompanhante]').length;
+      const data = new Date().toLocaleDateString();
+      fetch("https://script.google.com/macros/s/AKfycbz6n4bA_3QNlMnBbjGIwYldj5gP-SthNea91cxMajIGYJOdyizKmT1vhweT6FbEzDd5dQ/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ Nome: nome, Quantidade: total, Data: data })
+      });
+      document.getElementById("mensagem-confirmacao").innerText = `Obrigado, ${nome}, por confirmar presença!`;
+      this.reset();
+      document.getElementById("acompanhantes").innerHTML = "";
+    });
   </script>
 </body>
 </html>
