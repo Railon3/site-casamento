@@ -1,142 +1,86 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nathália & Railon</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casamento Railon & Nathália</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
   <script defer src="script.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <audio autoplay loop>
-    <source src="musica/um-amor-puro.mp3.mp3" type="audio/mp3">
-  </audio>
+  <div class="fundo-fixo"></div>
 
   <header>
-    <h1 class="caligrafia">Nathália & Railon</h1>
-    <nav class="menu-scroll">
-      <a href="#historia">Nossa História</a>
-      <a href="#galeria">Galeria</a>
-      <a href="#confirmar">Confirmar Presença</a>
-      <a href="#locais">Locais</a>
-      <a href="#sorteio">Sorteio</a>
-      <a href="presentes.html">Lista de Presentes</a>
-    </nav>
+    <ul class="menu">
+      <li><a href="#historia">Nossa História</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#locais">Locais</a></li>
+      <li><a href="#confirmacao">Confirmação</a></li>
+      <li><a href="#presentes">Presentes</a></li>
+    </ul>
   </header>
 
-  <section class="slideshow">
-    <img src="imagens 2/31.jpg" class="slide ativo">
-    <img src="imagens 2/32.jpg" class="slide">
-  </section>
-
-  <section class="contador" id="contador">
-    <div class="papel">
-      <h2>Faltam</h2>
-      <div id="timer">
-        <span id="dias">--</span> dias
-        <span id="horas">--</span>h
-        <span id="minutos">--</span>min
-        <span id="segundos">--</span>s
-      </div>
-    </div>
+  <section id="inicio" class="topo">
+    <h1 class="nomes">Nathália & Railon</h1>
+    <p id="contador"></p>
   </section>
 
   <section id="historia">
     <h2>Nossa História</h2>
     <div class="historia-fotos">
-      <img src="imagens 2/31.jpg" alt="Foto 1">
-      <img src="imagens 2/32.jpg" alt="Foto 2">
+      <img src="imagens 2/31.jpg" alt="Foto 31" />
+      <img src="imagens 2/32.jpg" alt="Foto 32" />
     </div>
   </section>
 
   <section id="galeria">
     <h2>Galeria</h2>
-    <div class="galeria">
-      <!-- Fotos 1 a 30 -->
-      <!-- Usar script para gerar dinamicamente -->
+    <div class="galeria-container">
+      <!-- 30 fotos -->
+      ${[...Array(30)].map((_, i) => `<img src="imagens/${i + 1}.jpeg" alt="Foto ${i + 1}" />`).join('')}
     </div>
   </section>
 
-  <section id="confirmar">
-    <h2>Confirme sua Presença</h2>
+  <section id="locais">
+    <h2>Locais do Evento</h2>
+    <p><strong>Cerimônia:</strong> <a href="https://share.google/IgxxK4nIJO4nu4dLX" target="_blank">Clique aqui para abrir no Google Maps</a></p>
+    <p><strong>Festa:</strong> <a href="https://share.google/Dx2FthylKB4mppEsJ" target="_blank">Clique aqui para abrir no Google Maps</a></p>
+  </section>
+
+  <section id="confirmacao">
+    <h2>Confirmação de Presença</h2>
     <form>
-      <input type="text" placeholder="Seu nome" required>
-      <input type="text" placeholder="Nome do acompanhante (opcional)">
+      <input type="text" placeholder="Seu nome" required />
+      <select>
+        <option value="">Você irá?</option>
+        <option value="sim">Sim</option>
+        <option value="nao">Não</option>
+      </select>
       <button type="submit">Confirmar</button>
     </form>
   </section>
 
-  <section id="locais">
-    <h2>Locais</h2>
-    <div class="locais">
-      <a href="https://share.google/IgxxK4nIJO4nu4dLX" target="_blank">📍 Igreja - Ver no Google Maps</a>
-      <a href="https://share.google/Dx2FthylKB4mppEsJ" target="_blank">📍 Festa - Ver no Google Maps</a>
-    </div>
-  </section>
-
-  <section id="sorteio">
-    <h2>Sorteio</h2>
-    <img src="imagens/33.jpg" alt="Sorteio Whisky e Redbull" class="sorteio-img">
-    <p>Participe do sorteio do nosso combo especial! 🎁</p>
+  <section id="presentes">
+    <h2>Lista de Presentes</h2>
+    <p>Em breve!</p>
   </section>
 
   <footer>
     <a href="https://open.spotify.com/playlist/6ZvlROb4Kxgc6gorO99Bpy?si=0804e9afddb04aaf" target="_blank">
-      <img src="icons/spotify.png" alt="Spotify">
+      <img src="icones/spotify.png" alt="Spotify" class="icone" />
     </a>
     <a href="https://www.instagram.com/nathesilvaa/" target="_blank">
-      <img src="icons/instagram.png" alt="Instagram Nathália">
+      <img src="icones/instagram.png" alt="Instagram Nathália" class="icone" />
     </a>
     <a href="https://www.instagram.com/railon.q/" target="_blank">
-      <img src="icons/instagram.png" alt="Instagram Railon">
+      <img src="icones/instagram.png" alt="Instagram Railon" class="icone" />
     </a>
   </footer>
 
-  <script>
-    // Script para slideshow
-    const slides = document.querySelectorAll('.slide');
-    let slideAtual = 0;
-    setInterval(() => {
-      slides[slideAtual].classList.remove('ativo');
-      slideAtual = (slideAtual + 1) % slides.length;
-      slides[slideAtual].classList.add('ativo');
-    }, 4000);
-
-    // Script da contagem regressiva
-    const dataCasamento = new Date('2025-10-11T00:00:00');
-    setInterval(() => {
-      const agora = new Date();
-      const diff = dataCasamento - agora;
-
-      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutos = Math.floor((diff / (1000 * 60)) % 60);
-      const segundos = Math.floor((diff / 1000) % 60);
-
-      document.getElementById('dias').textContent = dias;
-      document.getElementById('horas').textContent = horas;
-      document.getElementById('minutos').textContent = minutos;
-      document.getElementById('segundos').textContent = segundos;
-    }, 1000);
-
-    // Script para galeria
-    const galeria = document.querySelector(".galeria");
-    for (let i = 1; i <= 30; i++) {
-      const img = document.createElement("img");
-      img.src = `imagens/${i}.jpeg`;
-      img.alt = `Foto ${i}`;
-      img.addEventListener("click", () => {
-        const modal = document.createElement("div");
-        modal.className = "modal";
-        modal.innerHTML = `<div class='modal-content'><img src='imagens/${i}.jpeg'><span class='fechar'>&times;</span></div>`;
-        document.body.appendChild(modal);
-        modal.querySelector(".fechar").onclick = () => modal.remove();
-      });
-      galeria.appendChild(img);
-    }
-  </script>
+  <audio autoplay loop>
+    <source src="música/um-amor-puro.mp3.mp3" type="audio/mpeg" />
+    Seu navegador não suporta áudio.
+  </audio>
 </body>
 </html>
-
