@@ -1,86 +1,87 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Casamento Railon & Nathália</title>
+  <title>Casamento Nathália & Railon</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
-  <script defer src="script.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
-<body>
-  <div class="fundo-fixo"></div>
+<body onload="tocarMusica()">
+  <audio id="musica" autoplay loop>
+    <source src="musica/um-amor-puro.mp3" type="audio/mp3">
+    Seu navegador não suporta áudio.
+  </audio>
 
   <header>
     <ul class="menu">
-      <li><a href="#historia">Nossa História</a></li>
       <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#historia">Nossa História</a></li>
+      <li><a href="#confirmar">Confirmação</a></li>
       <li><a href="#locais">Locais</a></li>
-      <li><a href="#confirmacao">Confirmação</a></li>
-      <li><a href="#presentes">Presentes</a></li>
+      <li><a href="#sorteio">Sorteio</a></li>
+      <li><a href="presentes.html">Presentes</a></li>
     </ul>
   </header>
 
-  <section id="inicio" class="topo">
-    <h1 class="nomes">Nathália & Railon</h1>
-    <p id="contador"></p>
+  <div class="fundo-fixo"></div>
+
+  <section class="topo">
+    <h1>Nathália & Railon</h1>
+    <div id="contador"></div>
+  </section>
+
+  <section id="galeria">
+    <h2>Galeria</h2>
+    <div class="galeria-container" id="galeria-container">
+      <!-- Fotos serão inseridas via JS -->
+    </div>
   </section>
 
   <section id="historia">
     <h2>Nossa História</h2>
     <div class="historia-fotos">
-      <img src="imagens 2/31.jpg" alt="Foto 31" />
-      <img src="imagens 2/32.jpg" alt="Foto 32" />
+      <img src="imagens/31.jpg" alt="Foto história 1" />
+      <img src="imagens/32.jpg" alt="Foto história 2" />
     </div>
   </section>
 
-  <section id="galeria">
-    <h2>Galeria</h2>
-    <div class="galeria-container">
-      <!-- 30 fotos -->
-      ${[...Array(30)].map((_, i) => `<img src="imagens/${i + 1}.jpeg" alt="Foto ${i + 1}" />`).join('')}
-    </div>
+  <section id="confirmar">
+    <h2>Confirme sua presença</h2>
+    <form id="form-presenca">
+      <input type="text" placeholder="Seu nome" required />
+      <input type="text" placeholder="Nome de mais alguém (opcional)" />
+      <button type="submit">Confirmar</button>
+    </form>
+    <div id="resposta-presenca"></div>
   </section>
 
   <section id="locais">
-    <h2>Locais do Evento</h2>
-    <p><strong>Cerimônia:</strong> <a href="https://share.google/IgxxK4nIJO4nu4dLX" target="_blank">Clique aqui para abrir no Google Maps</a></p>
-    <p><strong>Festa:</strong> <a href="https://share.google/Dx2FthylKB4mppEsJ" target="_blank">Clique aqui para abrir no Google Maps</a></p>
+    <h2>Locais</h2>
+    <p><a href="https://share.google/IgxxK4nIJO4nu4dLX" target="_blank">📍 Igreja - Clique aqui</a></p>
+    <p><a href="https://share.google/Dx2FthylKB4mppEsJ" target="_blank">🎉 Festa - Clique aqui</a></p>
   </section>
 
-  <section id="confirmacao">
-    <h2>Confirmação de Presença</h2>
-    <form>
-      <input type="text" placeholder="Seu nome" required />
-      <select>
-        <option value="">Você irá?</option>
-        <option value="sim">Sim</option>
-        <option value="nao">Não</option>
-      </select>
-      <button type="submit">Confirmar</button>
-    </form>
-  </section>
-
-  <section id="presentes">
-    <h2>Lista de Presentes</h2>
-    <p>Em breve!</p>
+  <section id="sorteio">
+    <h2>Sorteio</h2>
+    <img src="imagens/15.jpeg" alt="Combo Sorteio" style="width:100%; border-radius:10px;" />
+    <button onclick="sortear()">Participar</button>
+    <div id="resultado-sorteio"></div>
   </section>
 
   <footer>
     <a href="https://open.spotify.com/playlist/6ZvlROb4Kxgc6gorO99Bpy?si=0804e9afddb04aaf" target="_blank">
-      <img src="icones/spotify.png" alt="Spotify" class="icone" />
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111624.png" alt="Spotify" class="icone">
     </a>
     <a href="https://www.instagram.com/nathesilvaa/" target="_blank">
-      <img src="icones/instagram.png" alt="Instagram Nathália" class="icone" />
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram Nath" class="icone">
     </a>
     <a href="https://www.instagram.com/railon.q/" target="_blank">
-      <img src="icones/instagram.png" alt="Instagram Railon" class="icone" />
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111421.png" alt="Instagram Railon" class="icone">
     </a>
   </footer>
 
-  <audio autoplay loop>
-    <source src="música/um-amor-puro.mp3.mp3" type="audio/mpeg" />
-    Seu navegador não suporta áudio.
-  </audio>
+  <script src="script.js"></script>
 </body>
 </html>
