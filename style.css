@@ -1,148 +1,143 @@
-/* Reset básico */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Fonte e paleta geral */
 body {
   font-family: Arial, sans-serif;
-  color: white;
-  background-color: #333; /* fallback */
-  min-height: 100vh;
-  position: relative;
+  color: #333;
+  background-color: #fff;
+  line-height: 1.6;
   padding-top: 60px;
 }
 
-/* Fundo fixo */
 .fundo-fixo {
-  background-image: url('../imagens/15.jpeg');
+  background-image: url('imagens/1.jpeg');
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
   position: fixed;
-  inset: 0;
+  top: 0; left: 0; right: 0; bottom: 0;
   z-index: -1;
-  filter: brightness(0.7);
+  filter: brightness(0.6);
 }
 
-/* Cabeçalho com botões roláveis */
 header {
+  background-color: #556b2f;
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: rgba(85,107,47,0.9);
+  z-index: 10;
+}
+
+.menu {
   display: flex;
-  overflow-x: auto;
-  padding: 10px;
-  z-index: 100;
+  justify-content: center;
+  padding: 10px 0;
+  list-style: none;
 }
-header img {
-  height: 60px;
-  margin-right: 10px;
-  border-radius: 10px;
-  animation: float 3s ease-in-out infinite alternate;
+
+.menu li {
+  margin: 0 15px;
 }
-header img:nth-child(2) {
-  animation-direction: alternate-reverse;
-}
-header button {
-  background: none;
-  border: none;
+
+.menu li a {
   color: white;
+  text-decoration: none;
   font-weight: bold;
-  font-size: 1.1em;
-  margin: 0 8px;
-  cursor: pointer;
 }
 
-/* Efeito flutuar nas imagens do topo */
-@keyframes float {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-6px); }
+.menu li a:hover {
+  color: #d0e6a5;
 }
 
-/* Título principal */
-.titulo-casamento {
-  font-family: 'Great Vibes', cursive;
-  font-size: 3rem;
-  text-align: center;
-  color: white;
-  margin: 80px auto 20px;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-}
-
-/* Contador estilizado */
-#contador {
-  font-size: 2em;
-  color: white;
-  background: rgba(255, 255, 255, 0.2);
-  max-width: 400px;
-  margin: 0 auto 40px;
-  padding: 20px;
-  border-radius: 15px;
-  text-align: center;
-}
-
-/* Seções em card leve */
 section {
   max-width: 900px;
-  margin: 20px auto;
-  background-color: rgba(255,255,255,0.9);
-  padding: 30px;
+  margin: 40px auto;
+  padding: 20px;
+  background: rgba(255,255,255,0.9);
   border-radius: 10px;
 }
 
-/* Galeria de fotos */
+.topo {
+  text-align: center;
+}
+
+.nomes {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3em;
+  color: #556b2f;
+  margin-bottom: 10px;
+}
+
+#contador {
+  font-size: 1.5em;
+  color: #333;
+}
+
 .galeria-container {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
 }
+
 .galeria-container img {
-  width: 120px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: transform 0.3s;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
 }
+
 .galeria-container img:hover {
   transform: scale(1.1);
 }
 
-/* Formulário presença */
+.historia-fotos {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.historia-fotos img {
+  width: 200px;
+  border-radius: 10px;
+}
+
 form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 15px;
-}
-form input, form button {
-  width: 80%;
-  max-width: 350px;
-  padding: 12px;
-  font-size: 1em;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-form button {
-  background-color: #556B2F;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-form button:hover {
-  background-color: #7A8C53;
+  gap: 10px;
 }
 
-/* Respostas de ação */
-#resposta-presenca, #resultado-sorteio {
-  text-align: center;
-  margin-top: 20px;
+input, select, button {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #556b2f;
+  color: white;
+  border: none;
   font-weight: bold;
-  color: #556B2F;
+}
+
+button:hover {
+  background-color: #6d8c3f;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.icone {
+  width: 30px;
+  height: 30px;
 }
