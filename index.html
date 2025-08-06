@@ -1,168 +1,203 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Railon & Nathália - Casamento</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <title>Railon & Nathália</title>
+  <link rel="icon" href="imagens/26.jpeg" type="image/jpeg" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
-      font-family: 'Open Sans', sans-serif;
-      background: url('imagens/15.jpeg') no-repeat center center fixed;
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url('imagens/15.jpeg');
       background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
       color: #333;
     }
+
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 30px;
-      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.7);
     }
-    .nomes-topo {
-      font-size: 22px;
-      font-weight: bold;
+
+    .noivos {
+      font-family: 'Great Vibes', cursive;
+      font-size: 32px;
+      color: #556B2F;
       margin: auto;
     }
-    .menu-btn {
-      background: none;
-      border: none;
-      font-size: 28px;
-      cursor: pointer;
+
+    .menu-toggle {
       position: absolute;
+      top: 20px;
       right: 20px;
+      background-color: #556B2F;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
     }
-    .menu {
+
+    .menu-options {
       display: none;
       position: absolute;
       top: 60px;
       right: 20px;
       background-color: white;
-      border: 1px solid #ccc;
       border-radius: 5px;
-      z-index: 100;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 999;
     }
-    .menu a {
+
+    .menu-options a {
       display: block;
       padding: 10px 20px;
+      color: #556B2F;
       text-decoration: none;
-      color: #333;
     }
-    .menu a:hover {
+
+    .menu-options a:hover {
       background-color: #eee;
     }
+
     .save-the-date {
       text-align: center;
+      margin-top: 40px;
+    }
+
+    .save-the-date h2 {
       font-family: 'Great Vibes', cursive;
-      font-size: 36px;
-      margin-top: 20px;
-      color: #556b2f;
+      font-size: 40px;
+      color: #556B2F;
+      margin-bottom: 10px;
     }
-    .timer {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
+
+    #timer {
       font-size: 28px;
-      font-weight: bold;
-      margin-top: 10px;
+      letter-spacing: 4px;
     }
-    section.texto {
+
+    .texto-central {
       max-width: 800px;
-      margin: 40px auto;
+      margin: 30px auto;
       padding: 20px;
-      background-color: rgba(255,255,255,0.9);
-      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
     }
+
+    .texto-central strong {
+      font-weight: bold;
+    }
+
     .galeria {
       display: flex;
       overflow-x: auto;
       gap: 10px;
       padding: 20px;
     }
+
     .galeria img {
-      width: 200px;
-      border-radius: 8px;
+      height: 150px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: transform 0.3s;
+      transition: transform 0.3s ease;
     }
+
     .galeria img:hover {
       transform: scale(1.1);
     }
+
     .modal {
       display: none;
       position: fixed;
-      z-index: 200;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.8);
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
       justify-content: center;
       align-items: center;
+      z-index: 1000;
     }
+
     .modal img {
       max-width: 90%;
       max-height: 90%;
     }
-    .localizacao {
+
+    .botoes-locais {
       text-align: center;
-      margin: 30px 0;
+      margin-top: 30px;
     }
-    .localizacao button {
+
+    .botoes-locais a {
+      display: inline-block;
       margin: 10px;
-      padding: 12px 24px;
-      background-color: #556b2f;
+      padding: 15px 25px;
+      background-color: #556B2F;
       color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .formulario {
-      text-align: center;
-      padding: 30px;
-      background-color: rgba(255,255,255,0.9);
-      margin: 20px;
+      text-decoration: none;
       border-radius: 8px;
     }
-    .formulario input {
-      padding: 10px;
-      width: 80%;
-      margin-bottom: 10px;
-      font-size: 16px;
-    }
-    .formulario button {
-      padding: 10px 20px;
-      margin: 5px;
-      background-color: #556b2f;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: rgba(255,255,255,0.9);
-      margin-top: 20px;
-    }
-    footer a {
-      margin: 0 10px;
-      text-decoration: none;
-      font-size: 22px;
+
+    .botoes-locais p {
+      margin-top: 5px;
       color: #333;
     }
+
+    .confirmacao {
+      max-width: 600px;
+      margin: 30px auto;
+      background: rgba(255,255,255,0.9);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .confirmacao input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .confirmacao button {
+      background-color: #556B2F;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .rodape {
+      text-align: center;
+      padding: 30px 0;
+    }
+
+    .rodape a {
+      margin: 0 10px;
+      font-size: 24px;
+      color: #556B2F;
+    }
+
     @media (max-width: 768px) {
       .galeria img {
-        width: 150px;
+        height: 100px;
       }
-      .timer {
-        flex-direction: column;
-        font-size: 24px;
+
+      .save-the-date h2 {
+        font-size: 30px;
+      }
+
+      #timer {
+        font-size: 20px;
+      }
+
+      .menu-toggle {
+        padding: 8px;
+        font-size: 14px;
       }
     }
   </style>
@@ -170,56 +205,57 @@
 <body>
 
   <header>
-    <div class="nomes-topo">Railon & Nathália</div>
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
-    <div class="menu" id="menu">
-      <a href="#home">Home</a>
-      <a href="#sorteio">Sorteio</a>
-      <a href="#presentes">Presentes</a>
-      <a href="#galeria">Galeria</a>
+    <h1 class="noivos">Railon & Nathália</h1>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <div class="menu-options" id="menu">
+      <a href="#">Home</a>
+      <a href="#">Sorteio</a>
+      <a href="#">Presentes</a>
+      <a href="#">Galeria</a>
     </div>
   </header>
 
-  <div class="save-the-date">Save the Date</div>
-  <div class="timer" id="timer">00d 00h 00m 00s</div>
-
-  <section class="texto">
-    <p><strong>Railon</strong> e <strong>Nathália</strong> — Duas histórias que se cruzaram no tempo, duas vidas que agora seguem juntas rumo a um novo capítulo. <strong>Railon</strong> e <strong>Nathália</strong> descobriram no amor a força que une, a leveza que conforta e a beleza de compartilhar os dias bons ou desafiadores com alguém que escolhem amar todos os dias.</p>
-    <p>Casar é mais do que uma celebração, é um ato de coragem, de entrega e de esperança. E é com o coração cheio de gratidão que compartilhamos esse momento com pessoas tão especiais como você.</p>
-    <p><strong>Obrigado por fazer parte da nossa história. Sua presença é o nosso maior presente. 💛</strong></p>
-  </section>
-
-  <section class="galeria" id="galeria">
-    <!-- Imagens de 1.jpeg a 30.jpeg -->
-    <!-- Adicionaremos via JavaScript -->
-  </section>
-
-  <div class="modal" id="modal" onclick="this.style.display='none'">
-    <img id="modal-img" />
+  <div class="save-the-date">
+    <h2>Save the Date</h2>
+    <div id="timer"></div>
   </div>
 
-  <section class="localizacao">
-    <button onclick="window.open('https://share.google/lLQi3DolCfBUc3H2L')">Cerimônia</button>
+  <div class="texto-central">
+    <p><strong>Railon</strong> e <strong>Nathália</strong> Duas histórias que se cruzaram no tempo, duas vidas que agora seguem juntas rumo a um novo capítulo. <strong>Railon</strong> e <strong>Nathália</strong> descobriram no amor a força que une, a leveza que conforta e a beleza de compartilhar os dias bons ou desafiadores com alguém que escolhem amar todos os dias.</p>
+    <p>Casar é mais do que uma celebração, é um ato de coragem, de entrega e de esperança. E é com o coração cheio de gratidão que compartilhamos esse momento com pessoas tão especiais como você.</p>
+    <p>Obrigado por fazer parte da nossa história. Sua presença é o nosso maior presente. 💛</p>
+  </div>
+
+  <div class="galeria" id="galeria">
+    <!-- Galeria de 1 a 30.jpeg -->
+    <!-- Adicionadas via JS -->
+  </div>
+
+  <div class="modal" id="modal" onclick="fecharModal()">
+    <img id="modal-img" src="" alt="Imagem ampliada" />
+  </div>
+
+  <div class="botoes-locais">
+    <a href="https://share.google/lLQi3DolCfBUc3H2L" target="_blank">Local da Cerimônia</a>
     <p>Av.L2 Sul, Quadra 601, Módulos 3/4 - Asa Sul, Brasília - DF, 70200-610</p>
-    <button onclick="window.open('https://maps.app.goo.gl/zruXh9voZ9H4T8o36')">Festa</button>
-  </section>
+    <a href="https://maps.app.goo.gl/zruXh9voZ9H4T8o36" target="_blank">Local da Festa</a>
+  </div>
 
-  <section class="formulario">
-    <h3>Confirme sua presença</h3>
-    <form id="rsvp-form">
-      <input type="text" name="nome" placeholder="Seu nome" required><br>
+  <div class="confirmacao">
+    <form id="rsvpForm">
+      <input type="text" name="nome" placeholder="Seu nome" required />
       <div id="acompanhantes"></div>
-      <button type="button" onclick="addAcompanhante()">+ Acompanhante</button><br><br>
+      <button type="button" onclick="adicionarAcompanhante()">+ Acompanhantes</button><br><br>
       <button type="submit">Confirmar Presença</button>
-      <p id="mensagem" style="margin-top: 10px; font-weight: bold;"></p>
     </form>
-  </section>
+    <p id="mensagem"></p>
+  </div>
 
-  <footer>
+  <div class="rodape">
     <a href="https://instagram.com/railon" target="_blank">📷</a>
     <a href="https://instagram.com/nathalia" target="_blank">📷</a>
-    <a href="https://open.spotify.com/playlist/xyz" target="_blank">🎵 Playlist</a>
-  </footer>
+    <a href="https://open.spotify.com/playlist/7eB7kpi9m7nFpkDhgAyZC1" target="_blank">🎵</a>
+  </div>
 
   <script>
     function toggleMenu() {
@@ -227,55 +263,56 @@
       menu.style.display = menu.style.display === "block" ? "none" : "block";
     }
 
-    // Temporizador
-    const weddingDate = new Date("2025-12-20T18:00:00");
+    const dataCasamento = new Date("2025-12-20T18:00:00");
     setInterval(() => {
-      const now = new Date();
-      const diff = weddingDate - now;
-      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const m = Math.floor((diff / (1000 * 60)) % 60);
-      const s = Math.floor((diff / 1000) % 60);
-      document.getElementById("timer").textContent = `${d}d ${h}h ${m}m ${s}s`;
+      const agora = new Date();
+      const diff = dataCasamento - agora;
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+      const segundos = Math.floor((diff / 1000) % 60);
+      document.getElementById("timer").textContent =
+        `${dias}d ${horas}h ${minutos}m ${segundos}s`;
     }, 1000);
 
-    // Galeria
     const galeria = document.getElementById("galeria");
     for (let i = 1; i <= 30; i++) {
       const img = document.createElement("img");
       img.src = `imagens/${i}.jpeg`;
-      img.onclick = () => {
-        document.getElementById("modal-img").src = img.src;
-        document.getElementById("modal").style.display = "flex";
-      };
+      img.onclick = () => abrirModal(img.src);
       galeria.appendChild(img);
     }
 
-    // Acompanhantes dinâmicos
-    function addAcompanhante() {
-      const div = document.createElement("div");
-      div.innerHTML = `<input type="text" name="acompanhante" placeholder="Nome do acompanhante">`;
-      document.getElementById("acompanhantes").appendChild(div);
+    function abrirModal(src) {
+      document.getElementById("modal-img").src = src;
+      document.getElementById("modal").style.display = "flex";
     }
 
-    // Google Sheets
-    const form = document.getElementById("rsvp-form");
-    form.addEventListener("submit", async (e) => {
+    function fecharModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+
+    function adicionarAcompanhante() {
+      const container = document.getElementById("acompanhantes");
+      const input = document.createElement("input");
+      input.type = "text";
+      input.name = "acompanhante";
+      input.placeholder = "Nome do acompanhante";
+      container.appendChild(input);
+    }
+
+    document.getElementById("rsvpForm").addEventListener("submit", async function (e) {
       e.preventDefault();
-      const formData = new FormData(form);
-      const entries = Array.from(document.querySelectorAll('[name="acompanhante"]')).map(el => el.value).filter(Boolean);
-      formData.append("acompanhantes", entries.join(", "));
-
-      await fetch("https://script.google.com/macros/s/AKfycbxUCpRiKYV4tNvIKJJGzInarCCGrg6Dg1InOTPNfdQm7WS6pibPXunP8eJ6TEmJ76Mkjg/exec", {
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+      await fetch("https://api.sheetmonkey.io/form/SEU_ID_AQUI", {
         method: "POST",
-        body: formData
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
       });
-
-      document.getElementById("mensagem").textContent = "Obrigado! Sua presença foi confirmada ❤️";
-      form.reset();
-      document.getElementById("acompanhantes").innerHTML = "";
+      document.getElementById("mensagem").innerText = "Obrigado por confirmar sua presença! 💚";
+      e.target.reset();
     });
   </script>
-
 </body>
 </html>
