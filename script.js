@@ -1,126 +1,72 @@
-// Toggle menu dropdown
-const menuToggleBtn = document.getElementById('menu-toggle');
-const menuDropdown = document.getElementById('menu-dropdown');
-
-menuToggleBtn.addEventListener('click', () => {
-  menuDropdown.classList.toggle('menu-visivel');
-});
-
-// Fecha menu ao clicar fora
-document.addEventListener('click', (e) => {
-  if (!menuDropdown.contains(e.target) && e.target !== menuToggleBtn) {
-    menuDropdown.classList.remove('menu-visivel');
-  }
-});
-
-// Temporizador de contagem regressiva
-function atualizarTemporizador() {
-  const destino = dayjs('2025-10-11T15:00:00');
-  const agora = dayjs();
-  const diff = destino.diff(agora);
-  if (diff <= 0) {
-    document.querySelector('.temporizador-container').textContent = 'O grande dia chegou!';
-    clearInterval(intervaloTemporizador);
-    return;
-  }
-
-  const duracao = dayjs.duration(diff);
-
-  const dias = duracao.days();
-  const horas = duracao.hours();
-  const minutos = duracao.minutes();
-  const segundos = duracao.seconds();
-
-  const texto = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
-  document.querySelector('.temporizador-container').textContent = texto;
-}
-const intervaloTemporizador = setInterval(atualizarTemporizador, 1000);
-atualizarTemporizador();
-
-// Galeria - abrir modal da imagem clicada
-const galeriaContainer = document.querySelector('.galeria-container');
-const modalFoto = document.getElementById('modal-foto');
-const modalImagem = modalFoto.querySelector('img');
-
-function abrirModal(imagemSrc) {
-  modalImagem.src = imagemSrc;
-  modalFoto.classList.add('mostrar');
-  document.body.style.overflow = 'hidden'; // trava scroll ao abrir
+// Botão do menu superior
+function toggleMenu() {
+  const menu = document.getElementById("menu");
+  menu.classList.toggle("hidden");
 }
 
-function fecharModal() {
-  modalFoto.classList.remove('mostrar');
-  document.body.style.overflow = '';
+// Temporizador
+const dataCasamento = new Date("2025-10-10T15:30:00-03:00").getTime();
+setInterval(() => {
+  const agora = new Date().getTime();
+  const distancia = dataCasamento - agora;
+
+  const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+  const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+  const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+  document.getElementById("dias").textContent = dias;
+  document.getElementById("horas").textContent = horas;
+  document.getElementById("minutos").textContent = minutos;
+  document.getElementById("segundos").textContent = segundos;
+}, 1000);
+
+// Adicionar acompanhantes
+function adicionarAcompanhante() {
+  const div = document.createElement("div");
+  div.innerHTML = `<input type="text" name="acompanhante" placeholder="Nome do acompanhante" />`;
+  document.getElementById("acompanhantes").appendChild(div);
 }
 
-modalFoto.addEventListener('click', fecharModal);
-
-// Criar imagens da galeria dinamicamente (1.jpeg até 30.jpeg)
-for (let i = 1; i <= 30; i++) {
-  const img = document.createElement('img');
-  img.src = `imagens/${i}.jpeg`;
-  img.alt = `Foto ${i}`;
-  img.tabIndex = 0;
-  img.addEventListener('click', () => abrirModal(img.src));
-  galeriaContainer.appendChild(img);
-}
-
-// Formulário presença com acompanhantes
-const formPresenca = document.getElementById('form-presenca');
-const acompanhantesContainer = document.getElementById('acompanhantes-container');
-const botaoAdicionar = document.getElementById('adicionar-acompanhante');
-const respostaPresenca = document.getElementById('resposta-presenca');
-
-botaoAdicionar.addEventListener('click', () => {
-  const inputNovo = document.createElement('input');
-  inputNovo.type = 'text';
-  inputNovo.name = 'acompanhantes[]';
-  inputNovo.placeholder = 'Nome do acompanhante';
-  acompanhantesContainer.appendChild(inputNovo);
-  inputNovo.focus();
-});
-
-formPresenca.addEventListener('submit', async (e) => {
+// Enviar para Google Sheets
+document.getElementById("form-presenca").addEventListener("submit", async function (e) {
   e.preventDefault();
 
-  const nomePrincipal = formPresenca.querySelector('input[name="nome"]').value.trim();
-  if (!nomePrincipal) {
-    respostaPresenca.textContent = 'Por favor, preencha seu nome.';
-    return;
-  }
+  const nome = this.nome.value.trim();
+  const acompanhantes = Array.from(this.querySelectorAll("input[name='acompanhante']"))
+    .map(input => input.value.trim())
+    .filter(val => val !== "");
 
-  const acompanhantesInputs = acompanhantesContainer.querySelectorAll('input[name="acompanhantes[]"]');
-  const acompanhantes = [];
-  acompanhantesInputs.forEach(input => {
-    if (input.value.trim()) {
-      acompanhantes.push(input.value.trim());
-    }
-  });
-
-  const dados = {
-    nome: nomePrincipal,
-    acompanhantes
-  };
+  const formData = new FormData();
+  formData.append("nome", nome);
+  formData.append("acompanhantes", acompanhantes.join(", "));
 
   try {
-    const resposta = await fetch('https://script.google.com/macros/s/AKfycbxUCpRiKYV4tNvIKJJGzInarCCGrg6Dg1InOTPNfdQm7WS6pibPXunP8eJ6TEmJ76Mkjg/exec', {
-      method: 'POST',
-      mode: 'cors',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(dados)
+    const response = await fetch("https://script.google.com/macros/s/AKfycbxUCpRiKYV4tNvIKJJGzInarCCGrg6Dg1InOTPNfdQm7WS6pibPXunP8eJ6TEmJ76Mkjg/exec", {
+      method: "POST",
+      body: formData,
     });
 
-    if (resposta.ok) {
-      respostaPresenca.style.color = '#a9ba9d';
-      respostaPresenca.textContent = `Obrigado, ${nomePrincipal}! Sua confirmação foi registrada.`;
-      formPresenca.reset();
-      acompanhantesContainer.innerHTML = ''; // limpa acompanhantes
+    if (response.ok) {
+      document.getElementById("mensagem-envio").textContent = "Presença confirmada com sucesso!";
+      this.reset();
+      document.getElementById("acompanhantes").innerHTML = "";
     } else {
-      throw new Error('Falha ao enviar confirmação.');
+      document.getElementById("mensagem-envio").textContent = "Erro ao enviar. Tente novamente.";
     }
   } catch (error) {
-    respostaPresenca.style.color = 'salmon';
-    respostaPresenca.textContent = 'Erro ao enviar confirmação. Tente novamente mais tarde.';
-    console.error(error);
+    document.getElementById("mensagem-envio").textContent = "Erro de conexão.";
   }
 });
+
+// Galeria - Lightbox
+function expandirImagem(el) {
+  const lightbox = document.getElementById("lightbox");
+  const imgExpandida = document.getElementById("imagem-expandida");
+  imgExpandida.src = el.querySelector("img").src;
+  lightbox.style.display = "flex";
+}
+
+function fecharImagem() {
+  document.getElementById("lightbox").style.display = "none";
+}
