@@ -1,198 +1,200 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Presentes - Railon & Nathália</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presentes</title>
+  <link rel="icon" type="image/jpeg" href="imagens/26.jpeg">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #f8f8f8;
-      font-family: 'Georgia', serif;
+      background-color: #f9f9f9;
+      font-family: 'Open Sans', sans-serif;
       margin: 0;
       padding: 0;
-      text-align: center;
+    }
+
+    header {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      background-color: #e0e0e0;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+    }
+
+    .menu-button {
+      background-color: #6B8E23;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 10px 20px;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
     }
 
     h1 {
-      font-family: 'Georgia', serif;
-      font-size: 2.5rem;
-      margin: 20px;
+      text-align: center;
+      margin: 20px 0;
+      font-family: "Brush Script MT", cursive;
       color: #556B2F;
     }
 
-    .container {
+    .presentes-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
       padding: 20px;
     }
 
-    .item {
-      background: white;
+    .presente {
+      background-color: white;
+      border: 1px solid #ddd;
       border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      padding: 10px;
-      width: 280px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin: 15px;
+      padding: 15px;
+      width: 220px;
       text-align: center;
     }
 
-    .item img {
-      width: 100%;
+    .presente img {
+      max-width: 100%;
       border-radius: 10px;
     }
 
-    .botao {
-      margin-top: 10px;
-      background-color: #6B8E23;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s;
+    .presente h3 {
+      margin: 10px 0 5px;
+      font-size: 16px;
+      color: #333;
     }
 
-    .botao:hover {
+    .presente p {
+      font-weight: bold;
+      margin: 5px 0;
+      color: #556B2F;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 15px;
+      background-color: #6B8E23;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
       background-color: #556B2F;
     }
 
     .pix-link {
+      word-break: break-all;
       margin-top: 10px;
+      color: #0066cc;
+      font-size: 0.9em;
       display: none;
-      font-size: 0.9rem;
-      word-break: break-word;
     }
 
-    .pix-link a {
-      color: #6B8E23;
-      font-weight: bold;
-      text-decoration: underline;
+    .thanks {
+      margin-top: 5px;
+      font-size: 0.85em;
+      color: green;
+      display: none;
     }
-
   </style>
 </head>
+
 <body>
-  <h1>Escolha um presente para o casal</h1>
-  <div class="container">
-    <!-- Replicando item de 34.jpg a 50.jpg -->
-    <!-- Substitua o número da imagem abaixo de acordo -->
-    <!-- Modelo base (replicado 17x com imagens de 34 a 50) -->
-    <!-- Você pode substituir o texto do botão se quiser algo diferente por presente -->
-
-    <!-- INÍCIO DOS ITENS -->
-    <!-- Cada bloco representa uma imagem com botão e link Pix -->
-    <!-- Você pode ajustar os valores ou adicionar legenda se quiser -->
-    <!-- Começando por 34.jpg -->
-    <!-- ------------------------- -->
-    <!-- Aqui vai 34 até 50 -->
-
-    <!-- Loop gerado por código para facilitar manutenção -->
-    <!-- Começo -->
-    <!-- Os IDs de botão e pix são dinâmicos: botao34, pix34, etc -->
-    <!-- O link Pix é o mesmo para todos -->
-    <!-- O código abaixo está completo com os 17 itens -->
-
-    <!-- Geração dinâmica em HTML puro -->
-    <!-- Começa -->
-    <!-- Vai até a 50 -->
-    <!-- Copiado abaixo -->
-
-    <!-- Blocos de imagem com botão -->
-    <!-- --------------------------- -->
-
-    <!-- Geração automática -->
-    <!-- START -->
-    <!-- Gerado por código -->
-    <!-- Copie até o final -->
-
-    <!-- Loop de imagens de 34 a 50 -->
-    <!-- Cada bloco tem imagem, botão e link Pix -->
-    <!-- Link Pix: https://nubank.com.br/pagar/1zotf/MHoFOTnMoG -->
-
-    <!-- INÍCIO DA REPETIÇÃO -->
-
-    <!-- Aqui começa a repetição real (34 a 50) -->
-    <!-- Só esse trecho é necessário -->
-
-    <!-- Lista de blocos -->
-    <!-- Obs: substituí manualmente por segurança -->
-
-    <!-- 34 -->
-    <div class="item">
-      <img src="imagens 2/34.jpg" alt="Presente 34" />
-      <button class="botao" onclick="document.getElementById('pix34').style.display='block'">Presentear</button>
-      <div id="pix34" class="pix-link">
-        <a href="https://nubank.com.br/pagar/1zotf/MHoFOTnMoG" target="_blank">Clique aqui para copiar o Pix</a>
-      </div>
+  <header>
+    <button class="menu-button" onclick="toggleDropdown()">Menu</button>
+    <div id="dropdown" class="dropdown">
+      <a href="sorteio.html" target="_blank">Sorteio</a>
+      <a href="#">Presentes</a>
     </div>
+  </header>
 
-    <!-- 35 -->
-    <div class="item">
-      <img src="imagens 2/35.jpg" alt="Presente 35" />
-      <button class="botao" onclick="document.getElementById('pix35').style.display='block'">Presentear</button>
-      <div id="pix35" class="pix-link">
-        <a href="https://nubank.com.br/pagar/1zotf/MHoFOTnMoG" target="_blank">Clique aqui para copiar o Pix</a>
-      </div>
-    </div>
+  <h1>Escolha um Presente para Nos Abençoar</h1>
+  <div class="presentes-container" id="presentesContainer"></div>
 
-    <!-- 36 -->
-    <div class="item">
-      <img src="imagens 2/36.jpg" alt="Presente 36" />
-      <button class="botao" onclick="document.getElementById('pix36').style.display='block'">Presentear</button>
-      <div id="pix36" class="pix-link">
-        <a href="https://nubank.com.br/pagar/1zotf/MHoFOTnMoG" target="_blank">Clique aqui para copiar o Pix</a>
-      </div>
-    </div>
+  <script>
+    const pixCode = '00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO DE62070503***6304F2D6';
 
-    <!-- 37 -->
-    <div class="item">
-      <img src="imagens 2/37.jpg" alt="Presente 37" />
-      <button class="botao" onclick="document.getElementById('pix37').style.display='block'">Presentear</button>
-      <div id="pix37" class="pix-link">
-        <a href="https://nubank.com.br/pagar/1zotf/MHoFOTnMoG" target="_blank">Clique aqui para copiar o Pix</a>
-      </div>
-    </div>
+    const presentes = [
+      { img: '34.jpg', desc: 'Mais um controle pra que o casal não brigue', valor: '68$' },
+      { img: '35.jpg', desc: 'Miojo gourmet', valor: '35R$' },
+      { img: '36.jpg', desc: 'Toma aqui um', valor: '50R$' },
+      { img: '37.jpg', desc: 'Caneca pro noivo', valor: '90R$' },
+      { img: '38.jpg', desc: 'Cílios da noiva', valor: '190R$' },
+      { img: '39.jpg', desc: 'Pra Dizer que eu nao ajudei com nada', valor: '60R$' },
+      { img: '40.jpg', desc: 'Comprar a paciencia do noivo', valor: '189R$' },
+      { img: '41.jpg', desc: 'Cueca pra noite núpcias', valor: '120R$' },
+      { img: '42.jpg', desc: 'Curso de culinária pra noiva', valor: '320R$' },
+      { img: '43.jpg', desc: 'Rolo pra quando noivo precisar', valor: '150R$' },
+      { img: '44.jpg', desc: 'Aviãozinho', valor: '100R$' },
+      { img: '45.jpg', desc: 'Ajudar com o terno do noivo', valor: '430R$' },
+      { img: '46.jpg', desc: 'Vale pra noiva deixar o noivo jogar', valor: '110R$' },
+      { img: '47.jpg', desc: 'Barbeador pro noivo', valor: '70R$' },
+      { img: '48.jpg', desc: 'Deus te iluminou e você resolveu dar uma ótima ajuda na nossa lua de mel', valor: '4.999R$' },
+      { img: '49.jpg', desc: 'Dar pitaco/falar mal da festa', valor: '3.500R$' },
+      { img: '50.jpg', desc: 'Capacete pra se proterger do rolo', valor: '310R$' }
+    ];
 
-    <!-- ... -->
+    const container = document.getElementById('presentesContainer');
 
-    <!-- Vamos continuar até a 50 -->
+    presentes.forEach(p => {
+      const div = document.createElement('div');
+      div.className = 'presente';
+      div.innerHTML = `
+        <img src="imagens 2/${p.img}" alt="Presente">
+        <h3>${p.desc}</h3>
+        <p>${p.valor}</p>
+        <button class="btn" onclick="copiarPix(this)">Presentear</button>
+        <div class="pix-link">${pixCode}</div>
+        <div class="thanks">Obrigado pelo presente! ❤️</div>
+      `;
+      container.appendChild(div);
+    });
 
-    <!-- 38 -->
-    <div class="item">
-      <img src="imagens 2/38.jpg" alt="Presente 38" />
-      <button class="botao" onclick="document.getElementById('pix38').style.display='block'">Presentear</button>
-      <div id="pix38" class="pix-link">
-        <a href="https://nubank.com.br/pagar/1zotf/MHoFOTnMoG" target="_blank">Clique aqui para copiar o Pix</a>
-      </div>
-    </div>
+    function copiarPix(btn) {
+      const pix = btn.nextElementSibling.innerText;
+      navigator.clipboard.writeText(pix).then(() => {
+        btn.nextElementSibling.style.display = 'block';
+        btn.nextElementSibling.nextElementSibling.style.display = 'block';
+      });
+    }
 
-    <!-- 39 -->
-    <div class="item">
-      <img src="imagens 2/39.jpg" alt="Presente 39" />
-      <button class="botao" onclick="document.getElementById('pix39').style.display='block'">Presentear</button>
-      <div id="pix39" class="pix-link">
-        <a href="https://nubank.com.br/pagar/1zotf/MHoFOTnMoG" target="_blank">Clique aqui para copiar o Pix</a>
-      </div>
-    </div>
-
-    <!-- 40 -->
-    <div class="item">
-      <img src="imagens 2/40.jpg" alt="Presente 40" />
-      <button class="botao" onclick="document.getElementById('pix40').style.display='block'">Presentear</button>
-      <div id="pix40" class="pix-link">
-        <a href="https://nubank.com.br/pagar/1zotf/MHoFOTnMoG" target="_blank">Clique aqui para copiar o Pix</a>
-      </div>
-    </div>
-
-    <!-- ... e assim por diante até 50 -->
-
-    <!-- Final (exemplos de 41 a 50 copiados e ajustados, se quiser o restante posso completar) -->
-    
-    <!-- 41 a 50 -->
-    <!-- Posso colar os restantes se quiser agora, mas o padrão acima já funciona e é só repetir o modelo -->
-
-  </div>
+    function toggleDropdown() {
+      const dropdown = document.getElementById('dropdown');
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
 </body>
+
 </html>
