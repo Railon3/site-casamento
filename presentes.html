@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Presentes</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap"/>
+  <title>Presentes Criativos</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"/>
   <style>
     body {
       background-color: #ffffff;
@@ -14,12 +14,52 @@
       color: #333;
     }
 
+    header {
+      display: flex;
+      justify-content: flex-end;
+      background-color: #f4f4f4;
+      padding: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .menu-button {
+      background-color: #556b2f;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 10px 20px;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
     h1 {
       text-align: center;
-      font-family: 'Great Vibes', cursive;
-      font-size: 3em;
-      color: #556b2f;
-      margin-top: 30px;
+      font-size: 2em;
+      margin: 30px 0;
     }
 
     .grid {
@@ -27,64 +67,51 @@
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
       padding: 20px;
-      max-width: 1100px;
+      max-width: 1200px;
       margin: auto;
     }
 
     .item {
-      background-color: #f9f9f9;
       border: 1px solid #ddd;
-      border-radius: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       text-align: center;
-      transition: transform 0.2s;
-    }
-
-    .item:hover {
-      transform: scale(1.02);
+      padding: 15px;
     }
 
     .item img {
       width: 100%;
       height: 220px;
       object-fit: cover;
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
+      border-radius: 10px;
     }
 
     .descricao {
-      padding: 10px 15px;
-      font-family: 'Great Vibes', cursive;
-      font-size: 1.3em;
-      color: #556b2f;
+      margin: 15px 0 10px;
+      font-size: 1.1em;
+      font-weight: 600;
+      color: #444;
     }
 
     .valor {
-      font-size: 1.1em;
-      color: #444;
-      margin-bottom: 10px;
+      font-size: 1em;
+      color: #666;
     }
 
     .btn {
       background-color: #556b2f;
       color: white;
-      padding: 10px 20px;
-      margin-bottom: 15px;
+      padding: 10px 18px;
       border: none;
-      border-radius: 25px;
-      font-size: 1em;
+      border-radius: 20px;
+      margin-top: 10px;
       cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .btn:hover {
-      background-color: #6b8e23;
     }
 
     .pix-container {
-      margin-top: 15px;
       display: none;
+      margin-top: 10px;
     }
 
     .pix-link {
@@ -94,73 +121,87 @@
       text-decoration: underline;
     }
 
-    .copy-btn {
-      margin-top: 8px;
-      background-color: #444;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 15px;
-      cursor: pointer;
+    .thanks {
+      margin-top: 10px;
       font-size: 0.9em;
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2em;
-      }
-
-      .descricao {
-        font-size: 1.2em;
-      }
-
-      .btn {
-        width: 90%;
-        font-size: 1em;
-      }
+      color: green;
+      display: none;
     }
   </style>
 </head>
 <body>
 
-  <h1>Presentes</h1>
-
-  <div class="grid">
-    <!-- Repita isso para cada imagem de 34.jpg a 50.jpg -->
-    <!-- Exemplo com uma imagem -->
-    <div class="item">
-      <img src="imagens 2/34.jpg" alt="Presente 1">
-      <div class="descricao">Para ajudar na nossa nova jornada</div>
-      <div class="valor">R$ 100,00</div>
-      <button class="btn" onclick="mostrarPix(this)">Presentear</button>
-      <div class="pix-container">
-        <a class="pix-link" href="pix://00020126360014BR.GOV.BCB.PIX0114+55619845737670215Railon & Nathália5204000053039865802BR5920RAILON E NATHALIA6009BRASILIA61080540900062070503***63041F2F" target="_blank">
-          00020126360014BR.GOV.BCB.PIX0114+55619845737670215Railon & Nathália5204000053039865802BR5920RAILON E NATHALIA6009BRASILIA61080540900062070503***63041F2F
-        </a>
-        <br/>
-        <button class="copy-btn" onclick="copiarPix(this)">Copiar Pix</button>
-      </div>
-    </div>
-
-    <!-- Copie e edite para os outros presentes (35.jpg até 50.jpg) -->
-
+<header>
+  <button class="menu-button" onclick="toggleDropdown()">Menu</button>
+  <div id="dropdown" class="dropdown">
+    <a href="sorteio.html" target="_blank">Sorteio</a>
+    <a href="#">Presentes</a>
   </div>
+</header>
 
-  <script>
-    function mostrarPix(button) {
-      const container = button.nextElementSibling;
-      const allContainers = document.querySelectorAll('.pix-container');
-      allContainers.forEach(c => c.style.display = 'none');
-      container.style.display = 'block';
-    }
+<h1>Presentes Criativos</h1>
+<div class="grid" id="presentesGrid"></div>
 
-    function copiarPix(button) {
-      const pix = button.previousElementSibling.textContent;
-      navigator.clipboard.writeText(pix).then(() => {
-        alert("Chave Pix copiada com sucesso!");
-      });
-    }
-  </script>
+<script>
+  const presentes = [
+    { img: '34.jpg', desc: 'Mais um controle pra que o casal não brigue', valor: '68$', pix: '00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO DE62070503***6304F2D6' },
+    { img: '35.jpg', desc: 'Miojo gourmet', valor: '', pix: '' },
+    { img: '36.jpg', desc: 'Toma aqui um 50R$', valor: '', pix: '' },
+    { img: '37.jpg', desc: 'Caneca pro noivo 90R$', valor: '', pix: '' },
+    { img: '38.jpg', desc: 'Cílios da noiva 190R$', valor: '', pix: '' },
+    { img: '39.jpg', desc: 'Pra Dizer que eu não ajudei com nada 60R$', valor: '', pix: '' },
+    { img: '40.jpg', desc: 'Comprar a paciência do noivo 189R$', valor: '', pix: '' },
+    { img: '41.jpg', desc: 'Cueca pra noite núpcias 120R$', valor: '', pix: '' },
+    { img: '42.jpg', desc: 'Curso de culinária pra noiva 320R$', valor: '', pix: '' },
+    { img: '43.jpg', desc: 'Rolo pra quando noivo precisar 150R$', valor: '', pix: '' },
+    { img: '44.jpg', desc: 'Aviãozinho 100R$', valor: '', pix: '' },
+    { img: '45.jpg', desc: 'Ajudar com o terno do noivo 430R$', valor: '', pix: '' },
+    { img: '46.jpg', desc: 'Vale pra noiva deixar o noivo jogar 110R$', valor: '', pix: '' },
+    { img: '47.jpg', desc: 'Barbeador pro noivo 70R$', valor: '', pix: '' },
+    { img: '48.jpg', desc: 'Deus te iluminou e você resolveu dar uma ótima ajuda na nossa lua de mel 4.999R$', valor: '', pix: '' },
+    { img: '49.jpg', desc: 'Dar pitaco/falar mal da festa 3.500R$', valor: '', pix: '' },
+    { img: '50.jpg', desc: 'Capacete pra se proteger do rolo 310R$', valor: '', pix: '' },
+  ];
+
+  const grid = document.getElementById('presentesGrid');
+  presentes.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'item';
+    div.innerHTML = `
+      <img src="imagens 2/${p.img}" alt="Presente">
+      <div class="descricao">${p.desc}</div>
+      ${p.valor ? `<div class="valor">${p.valor}</div>` : ''}
+      ${p.pix ? `
+        <button class="btn" onclick="mostrarPix(this)">Presentear</button>
+        <div class="pix-container">
+          <a href="#" class="pix-link" onclick="copiarPix(event, '${p.pix}')">${p.pix}</a>
+          <div class="thanks">Obrigado pelo presente! ❤️</div>
+        </div>
+      ` : ''}
+    `;
+    grid.appendChild(div);
+  });
+
+  function mostrarPix(btn) {
+    const container = btn.nextElementSibling;
+    const allContainers = document.querySelectorAll('.pix-container');
+    allContainers.forEach(c => c.style.display = 'none');
+    container.style.display = 'block';
+  }
+
+  function copiarPix(event, codigo) {
+    event.preventDefault();
+    navigator.clipboard.writeText(codigo).then(() => {
+      const msg = event.target.nextElementSibling;
+      msg.style.display = 'block';
+    });
+  }
+
+  function toggleDropdown() {
+    const dropdown = document.getElementById('dropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+  }
+</script>
 
 </body>
 </html>
