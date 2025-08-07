@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Railon & Nathália</title>
-  <link rel="icon" href="imagens/26.jpeg" type="image/jpeg" />
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Railon & Nathália • 11/10/2025</title>
+  <link rel="icon" href="imagens/26.jpeg" type="image/jpeg">
+  <!-- Fontes Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <!-- CSS (vamos externalizar depois) -->
   <style>
-    /* Fundo rotativo */
+    /* RESET & VARIÁVEIS */
+    :root {
+      --cor-primaria: #5a7d5a;
+      --cor-secundaria: #d4b483;
+      --cor-texto: #3d4d3d;
+      --cor-fundo: #f9f5f0;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    /* ESTRUTURA BASE */
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--cor-texto);
+      background-color: var(--cor-fundo);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    /* FUNDO ROTATIVO */
     #background-slider {
       position: fixed;
       top: 0; left: 0;
@@ -15,269 +39,320 @@
       height: 100vh;
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
-      transition: opacity 1.2s ease-in-out;
       z-index: -1;
-      opacity: 1;
+      opacity: 0.7;
+      transition: opacity 1.2s ease-in-out;
     }
-
-    body {
-      margin: 0;
-      font-family: 'Georgia', serif;
-      color: #3d4d3d;
-      /* Remove o background estático antigo */
-      /* background-image: url('imagens/15.jpeg'); */
-      /* background-size: cover; */
-      /* background-repeat: no-repeat; */
-      /* background-attachment: fixed; */
-      /* background-position: center; */
+    
+    /* HEADER */
+    .header {
+      text-align: center;
+      padding: 2rem 0;
+      position: relative;
     }
-    header {
+    .header h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 4rem;
+      color: var(--cor-primaria);
+      margin-bottom: 0.5rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+    .header p.date {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 3px;
+      font-size: 1.2rem;
+    }
+    
+    /* SEÇÃO PRINCIPAL */
+    section {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: rgba(255,255,255,0.85);
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    /* TIMER */
+    #timer {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--cor-primaria);
+      margin: 1rem 0;
+    }
+    
+    /* GALERIA */
+    .gallery-container {
+      position: relative;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+    .gallery img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    /* LOCAIS */
+    .location {
+      margin-bottom: 2rem;
+    }
+    .location h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--cor-primaria);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .location h3::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 2px;
+      background: var(--cor-secundaria);
+      margin: 0.5rem auto;
+    }
+    .location-img {
+      width: 100%;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+    
+    /* BOTÕES */
+    .btn-container {
       display: flex;
       justify-content: center;
-      align-items: center;
-      padding: 20px;
-      font-size: 2em;
-      font-family: 'Brush Script MT', cursive;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
-    .save-date {
-      text-align: center;
-      font-family: 'Brush Script MT', cursive;
-      margin-top: 40px;
-    }
-    .save-date h2 {
-      font-size: 2em;
-      margin: 0;
-    }
-    .save-date h3 {
-      font-size: 1.5em;
-      margin: 0 0 20px;
-    }
-    #timer {
-      font-size: 2em;
-      font-weight: bold;
-      text-align: center;
-    }
-    .text-intro {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
-      background: rgba(255,255,255,0.8);
-      border-radius: 12px;
-      font-family: Georgia, serif;
-      text-align: center;
-    }
-    .text-intro b {
-      font-weight: bold;
-    }
-    .galeria {
-      display: flex;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      padding: 20px;
-      gap: 10px;
-    }
-    .galeria img {
-      height: 200px;
-      border-radius: 10px;
+    .btn {
+      padding: 0.8rem 1.5rem;
+      background: var(--cor-primaria);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
       cursor: pointer;
-      transition: transform 0.3s;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      text-align: center;
     }
-    .galeria img:hover {
+    .btn:hover {
+      background: var(--cor-secundaria);
+      transform: translateY(-2px);
+    }
+    
+    /* FORMULÁRIO */
+    .rsvp-form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    /* RODAPÉ */
+    .footer {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 2rem;
+      background: white;
+    }
+    .footer img {
+      width: 30px;
+      height: 30px;
+      opacity: 0.7;
+      transition: all 0.3s ease;
+    }
+    .footer img:hover {
+      opacity: 1;
       transform: scale(1.1);
     }
-    .local-section {
-      text-align: center;
-      padding: 30px;
-      background-color: rgba(255, 255, 255, 0.8);
-      margin: 20px;
-      border-radius: 12px;
-    }
-    .local-section img.local {
-      width: 100%;
-      max-width: 500px;
-      border-radius: 12px;
-    }
-    .local-section a img {
-      width: 25px;
-      height: 25px;
-      margin-top: 10px;
-    }
-    .confirmacao {
-      text-align: center;
-      padding: 30px;
-      background-color: rgba(255,255,255,0.8);
-      margin: 20px;
-      border-radius: 12px;
-    }
-    .botao-central {
-      text-align: center;
-      margin-top: 20px;
-    }
-    .botao-central a {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 25px;
-      background-color: #3d4d3d;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-    }
-    .rodape {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 20px;
-      background-color: white;
-    }
-    .rodape img {
-      width: 40px;
-      height: 40px;
+    
+    /* RESPONSIVO */
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 3rem;
+      }
+      section {
+        padding: 1.5rem;
+        margin: 1.5rem;
+      }
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
     }
   </style>
 </head>
 <body>
-
-  <!-- Fundo rotativo das imagens -->
+  <!-- Fundo rotativo -->
   <div id="background-slider"></div>
 
-  <header>
-    Railon & Nathália
+  <!-- Cabeçalho -->
+  <header class="header">
+    <h1>Railon & Nathália</h1>
+    <p class="date">11 de outubro de 2025</p>
   </header>
 
-  <section class="save-date">
-    <h2>Save the Date</h2>
-    <h3>11 de outubro de 2025 às 20h</h3>
+  <!-- Contagem regressiva -->
+  <section class="countdown">
     <div id="timer"></div>
   </section>
 
-  <section class="text-intro">
-    <p><b>Railon</b> e <b>Nathália</b> Duas histórias que se cruzaram no tempo,
-    duas vidas que agora seguem juntas rumo a um novo capítulo. <b>Railon</b> e <b>Nathália</b> descobriram no amor a força
-    que une, a leveza que conforta e a beleza de compartilhar os dias bons ou desafiadores com alguém que escolhem amar todos os dias.</p>
-    <p>Casar é mais do que uma celebração, é um ato de coragem, de entrega e de esperança. E é com o coração
-    cheio de gratidão que compartilhamos esse momento com pessoas tão especiais como você.<br>
-    Obrigado por fazer parte da nossa história. Sua presença é o nosso maior presente. 💛</p>
+  <!-- Nossa história -->
+  <section class="love-story">
+    <h2>Nossa História</h2>
+    <p>Dois caminhos que se encontraram, duas almas que se completam. Estamos escrevendo nossa história juntos e queremos você nesse capítulo especial.</p>
   </section>
 
-  <section class="galeria">
-    <script>
-      const galeria = document.currentScript.parentElement;
-      for (let i = 1; i <= 30; i++) {
-        const img = document.createElement('img');
-        img.src = `imagens/${i}.jpeg`;
-        img.alt = `Foto ${i}`;
-        img.onclick = () => img.style.transform = 'scale(1.5)';
-        galeria.appendChild(img);
-      }
-    </script>
-  </section>
-
-  <section class="local-section">
-    <h3>Cerimônia</h3>
-    <div class="galeria">
-      <img src="igreja/igreja externa.jpg" alt="Igreja Externa" class="local" />
-      <img src="igreja/igreja interna.jpg" alt="Igreja Interna" class="local" />
+  <!-- Galeria de fotos -->
+  <section class="gallery-section">
+    <h2>Nossos Momentos</h2>
+    <div class="gallery-container">
+      <div class="gallery" id="main-gallery"></div>
     </div>
-    <a href="https://share.google/UPtoWQbdjtaDD3sYw" target="_blank">
-      <img src="localização.png" alt="Localização" />
-    </a>
-    <p>Av.L2 Sul, Quadra 601, Módulos 3/4 - Asa Sul, Brasília - DF, 70200-610</p>
   </section>
 
-  <section class="local-section">
+  <!-- Localização Cerimônia -->
+  <section class="location">
+    <h3>Cerimônia</h3>
+    <img src="igreja/igreja externa.jpg" alt="Igreja" class="location-img">
+    <p>Av. L2 Sul, Quadra 601, Módulos 3/4 - Asa Sul, Brasília - DF</p>
+    <div class="btn-container">
+      <a href="https://share.google/UPtoWQbdjtaDD3sYw" target="_blank" class="btn">Ver no mapa</a>
+    </div>
+  </section>
+
+  <!-- Localização Festa -->
+  <section class="location">
     <h3>Festa</h3>
-    <img src="evento/festa.jpg" alt="Festa" class="local" />
-    <a href="https://maps.app.goo.gl/zruXh9voZ9H4T8o36" target="_blank">
-      <img src="localização.png" alt="Localização" />
-    </a>
-    <p>Rua divina providência, chacara 08 - Ponte alta norte do Gama, Brasília - DF, 72426-150</p>
+    <img src="evento/festa.jpg" alt="Local da festa" class="location-img">
+    <p>Rua Divina Providência, Chácara 08 - Ponte Alta Norte, Gama - DF</p>
+    <div class="btn-container">
+      <a href="https://maps.app.goo.gl/zruXh9voZ9H4T8o36" target="_blank" class="btn">Ver no mapa</a>
+    </div>
   </section>
 
-  <div class="botao-central">
-    <a href="presentes.html" target="_blank">Presentes</a>
-    <a href="#sorteio">Sorteio</a>
-  </div>
+  <!-- Botões de ação -->
+  <section class="actions">
+    <div class="btn-container">
+      <a href="presentes.html" class="btn">Lista de Presentes</a>
+      <a href="#rsvp" class="btn">Confirmar Presença</a>
+    </div>
+  </section>
 
-  <section class="confirmacao">
-    <h3>Confirmação de Presença</h3>
-    <form id="rsvp-form">
-      <input type="text" name="nome" placeholder="Seu nome" required /><br /><br />
-      <div id="acompanhantes"></div>
-      <button type="button" onclick="adicionarAcompanhante()">+ Acompanhante</button><br /><br />
-      <button type="submit">Confirmar Presença</button>
+  <!-- Confirmação de presença -->
+  <section class="rsvp" id="rsvp">
+    <h2>Confirmação de Presença</h2>
+    <form class="rsvp-form" id="rsvp-form">
+      <div class="form-group">
+        <label for="nome">Seu nome completo</label>
+        <input type="text" id="nome" name="nome" required>
+      </div>
+      <div class="form-group">
+        <label for="convidados">Número de acompanhantes</label>
+        <input type="number" id="convidados" name="convidados" min="0" max="5" value="0">
+      </div>
+      <button type="submit" class="btn">Confirmar</button>
     </form>
-    <p id="mensagem-confirmacao"></p>
+    <p id="confirmation-message"></p>
   </section>
 
-  <div class="rodape">
+  <!-- Rodapé -->
+  <footer class="footer">
     <a href="https://open.spotify.com/playlist/7IRDa27ZR2ouWWPGsdcz2B?si=51dfd98ef3ea40f9" target="_blank">
-      <img src="spotify.png" alt="Spotify" />
+      <img src="spotify.png" alt="Spotify">
     </a>
     <a href="https://www.instagram.com/railon.q/" target="_blank">
-      <img src="instagram.png" alt="Instagram Noivo" />
+      <img src="instagram.png" alt="Instagram Noivo">
     </a>
     <a href="https://www.instagram.com/nathesilvaa/" target="_blank">
-      <img src="instagram.png" alt="Instagram Noiva" />
+      <img src="instagram.png" alt="Instagram Noiva">
     </a>
-  </div>
+  </footer>
 
+  <!-- JavaScript -->
   <script>
-    // Script para o fundo rotativo
+    // Background Slider
     const backgroundSlider = document.getElementById('background-slider');
-    const images = [];
-    for(let i = 1; i <= 30; i++) {
-      images.push(`imagens/${i}.jpeg`);
-    }
-
+    const images = Array.from({length: 30}, (_, i) => `imagens/${i+1}.jpeg`);
     let currentIndex = 0;
-    backgroundSlider.style.backgroundImage = `url('${images[currentIndex]}')`;
-
-    setInterval(() => {
-      backgroundSlider.style.opacity = 0; // fade out
+    
+    function changeBackground() {
+      backgroundSlider.style.opacity = 0;
       setTimeout(() => {
         currentIndex = (currentIndex + 1) % images.length;
         backgroundSlider.style.backgroundImage = `url('${images[currentIndex]}')`;
-        backgroundSlider.style.opacity = 1; // fade in
-      }, 1200);
-    }, 5000);
-
-    // Timer contagem regressiva
-    const targetDate = new Date("October 11, 2025 20:00:00").getTime();
-    const timer = document.getElementById("timer");
-    setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }, 1000);
-
-    // Adicionar acompanhante no formulário
-    function adicionarAcompanhante() {
-      const div = document.createElement('div');
-      div.innerHTML = '<input type="text" name="acompanhante" placeholder="Nome do acompanhante"><br><br>';
-      document.getElementById('acompanhantes').appendChild(div);
+        backgroundSlider.style.opacity = 0.7;
+      }, 600);
     }
+    setInterval(changeBackground, 5000);
+    backgroundSlider.style.backgroundImage = `url('${images[0]}')`;
 
-    // Enviar confirmação para Google Sheets
-    document.getElementById("rsvp-form").addEventListener("submit", function(e) {
+    // Contagem regressiva
+    const timer = document.getElementById('timer');
+    const targetDate = new Date('October 11, 2025 20:00:00').getTime();
+    
+    function updateTimer() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+      
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // Carregar galeria
+    const gallery = document.getElementById('main-gallery');
+    images.forEach((img, index) => {
+      const imgElement = document.createElement('img');
+      imgElement.src = img;
+      imgElement.alt = `Foto ${index + 1}`;
+      imgElement.loading = 'lazy';
+      gallery.appendChild(imgElement);
+    });
+
+    // Formulário RSVP
+    document.getElementById('rsvp-form').addEventListener('submit', function(e) {
       e.preventDefault();
       const nome = this.nome.value;
-      const total = 1 + document.querySelectorAll('[name=acompanhante]').length;
-      const data = new Date().toLocaleDateString();
-      fetch("https://script.google.com/macros/s/AKfycbz6n4bA_3QNlMnBbjGIwYldj5gP-SthNea91cxMajIGYJOdyizKmT1vhweT6FbEzDd5dQ/exec", {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ Nome: nome, Quantidade: total, Data: data })
-      });
-      document.getElementById("mensagem-confirmacao").innerText = `Obrigado, ${nome}, por confirmar presença!`;
-      this.reset();
-      document.getElementById("acompanhantes").innerHTML = "";
+      const convidados = this.convidados.value;
+      
+      // Simulação de envio (substitua pela sua integração real)
+      setTimeout(() => {
+        document.getElementById('confirmation-message').textContent = 
+          `Obrigado, ${nome}! Sua presença${convidados > 0 ? ` e de ${convidados} acompanhantes ` : ' '}foi confirmada.`;
+        this.reset();
+      }, 1000);
     });
   </script>
 </body>
