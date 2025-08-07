@@ -229,7 +229,25 @@
       transform: translateY(-1px);
       box-shadow: 0 5px 10px rgb(0 0 0 / 0.12);
     }
-    /* Mantendo o estilo do footer com ajustes conforme pedido */
+    /* Mensagem Avisos Importantes estilo botão não clicável */
+    .details-message {
+      max-width: 600px;
+      margin: 2rem auto 0.5rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      text-align: center;
+      color: white;
+      background-color: var(--cor-primaria);
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      user-select: none;
+      box-shadow: 0 3px 8px rgb(0 0 0 / 0.12);
+      pointer-events: none; /* não clicável */
+      cursor: default;
+    }
+
     .footer-info {
       max-width: 600px;
       margin: 1rem auto 1rem;
@@ -271,14 +289,6 @@
       opacity: 1;
       transform: scale(1.15);
       outline: none;
-    }
-    .details-message {
-      max-width: 600px;
-      margin: 2rem auto 0.5rem;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1rem;
-      text-align: center;
-      color: var(--cor-texto);
     }
     .sr-only {
       position: absolute;
@@ -383,9 +393,9 @@
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdpNWAQEKuFOas6k86uvG6vr89E1QFUtSFpXWtEQ_BzxcSu2Q/viewform?embedded=true" width="100%" height="935" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
   </section>
 
-  <!-- Mensagem detalhes importantes -->
-  <div class="details-message" role="note" aria-label="Mensagem de detalhes importantes">
-    <p>Detalhes importantes: Por favor, chegue com antecedência para aproveitar cada momento especial.</p>
+  <!-- Avisos Importantes destacados como botão visual -->
+  <div class="details-message" role="note" aria-label="Avisos importantes">
+    <p>Avisos importantes: Por favor, chegue com antecedência para aproveitar cada momento especial.</p>
   </div>
 
   <!-- Rodapé ajustado com ícone Spotify à direita da mensagem -->
