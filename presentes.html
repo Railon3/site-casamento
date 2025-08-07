@@ -1,127 +1,199 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
-  <title>Presentes - Railon & Nathália</title>
-  <link rel="icon" href="imagens/26.jpeg" type="image/jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presentes</title>
+  <link rel="icon" type="image/jpeg" href="imagens/26.jpeg">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <style>
     body {
+      background-color: #f9f9f9;
+      font-family: 'Open Sans', sans-serif;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #ffffff;
-      color: #2e4e36; /* verde oliva escuro */
+      padding: 0;
     }
+
     header {
-      text-align: center;
-      padding: 20px;
-      font-family: 'Brush Script MT', cursive;
-      font-size: 2em;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      background-color: #e0e0e0;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+    }
+
+    .menu-button {
+      background-color: #6B8E23;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 10px 20px;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .dropdown a:hover {
       background-color: #f0f0f0;
     }
-    .container {
+
+    h1 {
+      text-align: center;
+      margin: 20px 0;
+      font-family: "Brush Script MT", cursive;
+      color: #556B2F;
+    }
+
+    .presentes-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       padding: 20px;
-      gap: 20px;
     }
+
     .presente {
-      background-color: #f7f7f7;
-      border: 2px solid #b5c8b2;
-      border-radius: 15px;
-      width: 280px;
-      text-align: center;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin: 15px;
       padding: 15px;
-      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+      width: 220px;
+      text-align: center;
     }
+
     .presente img {
       max-width: 100%;
-      border-radius: 12px;
+      border-radius: 10px;
     }
-    .descricao {
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    .valor {
-      font-size: 1.1em;
-      margin-top: 8px;
-      color: #4d4d4d;
-    }
-    .btn-presentear {
-      margin-top: 10px;
-      background-color: #2e4e36;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .btn-presentear:hover {
-      background-color: #3c6547;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-    }
-    .btn-voltar {
-      background-color: #2e4e36;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
+
+    .presente h3 {
+      margin: 10px 0 5px;
       font-size: 16px;
+      color: #333;
     }
-    .btn-voltar:hover {
-      background-color: #3c6547;
+
+    .presente p {
+      font-weight: bold;
+      margin: 5px 0;
+      color: #556B2F;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 15px;
+      background-color: #6B8E23;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #556B2F;
+    }
+
+    .pix-link {
+      word-break: break-all;
+      margin-top: 10px;
+      color: #0066cc;
+      font-size: 0.9em;
+      display: none;
+    }
+
+    .thanks {
+      margin-top: 5px;
+      font-size: 0.85em;
+      color: green;
+      display: none;
     }
   </style>
 </head>
+
 <body>
-
-  <header>Railon & Nathália</header>
-
-  <div class="container">
-    <!-- Loop de presentes -->
-    <!-- Repita o bloco abaixo para cada presente -->
-    <!-- Exemplo de presente -->
-    <div class="presente">
-      <img src="imagens 2/34.jpg" alt="Presente 34">
-      <div class="descricao">Liquidificador</div>
-      <div class="valor">R$ 120,00</div>
-      <button class="btn-presentear" onclick="copyPix()">Presentear</button>
+  <header>
+    <button class="menu-button" onclick="toggleDropdown()">Menu</button>
+    <div id="dropdown" class="dropdown">
+      <a href="sorteio.html" target="_blank">Sorteio</a>
+      <a href="#">Presentes</a>
     </div>
+  </header>
 
-    <div class="presente">
-      <img src="imagens 2/35.jpg" alt="Presente 35">
-      <div class="descricao">Jogo de Cama</div>
-      <div class="valor">R$ 150,00</div>
-      <button class="btn-presentear" onclick="copyPix()">Presentear</button>
-    </div>
-
-    <div class="presente">
-      <img src="imagens 2/36.jpg" alt="Presente 36">
-      <div class="descricao">Aspirador de Pó</div>
-      <div class="valor">R$ 180,00</div>
-      <button class="btn-presentear" onclick="copyPix()">Presentear</button>
-    </div>
-
-    <!-- Continue adicionando de 37.jpg até 50.jpg com suas descrições e valores -->
-  </div>
-
-  <footer>
-    <a href="index.html" class="btn-voltar">Voltar para o início</a>
-  </footer>
+  <h1>Escolha um Presente para Nos Abençoar</h1>
+  <div class="presentes-container" id="presentesContainer"></div>
 
   <script>
-    function copyPix() {
-      const chavePix = "00020126360014BR.GOV.BCB.PIX0114+5561999999995204000053039865802BR5920RAILON E NATHALIA6009BRASILIA62070503***6304ABCD";
-      navigator.clipboard.writeText(chavePix).then(() => {
-        alert("Chave Pix copiada! Obrigado pelo presente. 💚");
+    const presentes = [
+      { img: '34.jpg', desc: 'Mais um controle pra que o casal não brigue', valor: '68$', pix: '00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO DE62070503***6304F2D6' },
+      { img: '35.jpg', desc: 'Miojo gourmet', valor: '', pix: '' },
+      { img: '36.jpg', desc: 'Toma aqui um 50R$', valor: '', pix: '' },
+      { img: '37.jpg', desc: 'Caneca pro noivo 90R$', valor: '', pix: '' },
+      { img: '38.jpg', desc: 'Cílios da noiva 190R$', valor: '', pix: '' },
+      { img: '39.jpg', desc: 'Pra Dizer que eu nao ajudei com nada 60R$', valor: '', pix: '' },
+      { img: '40.jpg', desc: 'Comprar a paciencia do noivo 189R$', valor: '', pix: '' },
+      { img: '41.jpg', desc: 'Cueca pra noite núpcias 120R$', valor: '', pix: '' },
+      { img: '42.jpg', desc: 'Curso de culinária pra noiva 320R$', valor: '', pix: '' },
+      { img: '43.jpg', desc: 'Rolo pra quando noivo precisar 150R$', valor: '', pix: '' },
+      { img: '44.jpg', desc: 'Aviãozinho 100R$', valor: '', pix: '' },
+      { img: '45.jpg', desc: 'Ajudar com o terno do noivo 430R$', valor: '', pix: '' },
+      { img: '46.jpg', desc: 'Vale pra noiva deixar o noivo jogar 110R$', valor: '', pix: '' },
+      { img: '47.jpg', desc: 'Barbeador pro noivo 70R$', valor: '', pix: '' },
+      { img: '48.jpg', desc: 'Deus te iluminou e você resolveu dar uma ótima ajuda na nossa lua de mel 4.999R$', valor: '', pix: '' },
+      { img: '49.jpg', desc: 'Dar pitaco/falar mal da festa 3.500R$', valor: '', pix: '' },
+      { img: '50.jpg', desc: 'Capacete pra se proterger do rolo 310R$', valor: '', pix: '' }
+    ];
+
+    const container = document.getElementById('presentesContainer');
+
+    presentes.forEach(p => {
+      const div = document.createElement('div');
+      div.className = 'presente';
+      div.innerHTML = `
+        <img src="imagens 2/${p.img}" alt="Presente">
+        <h3>${p.desc}</h3>
+        ${p.valor ? `<p>${p.valor}</p>` : ''}
+        ${p.pix ? `<button class="btn" onclick="copiarPix(this, '${p.pix}')">Presentear</button>` : ''}
+        <div class="pix-link">${p.pix}</div>
+        <div class="thanks">Obrigado pelo presente! ❤️</div>
+      `;
+      container.appendChild(div);
+    });
+
+    function copiarPix(btn, codigo) {
+      navigator.clipboard.writeText(codigo).then(() => {
+        const pixDiv = btn.nextElementSibling;
+        const thanksDiv = pixDiv.nextElementSibling;
+        pixDiv.style.display = 'block';
+        thanksDiv.style.display = 'block';
       });
     }
-  </script>
 
+    function toggleDropdown() {
+      const dropdown = document.getElementById('dropdown');
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
 </body>
+
 </html>
