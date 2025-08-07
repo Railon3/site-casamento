@@ -11,202 +11,501 @@
     rel="stylesheet"
   />
   <style>
-    /* RESET & VARIÁVEIS */
+    /* ===== VARIÁVEIS & RESET ===== */
     :root {
-      --cor-primaria: #5a7d5a;
-      --cor-secundaria: #d4b483;
-      --cor-texto: #3d4d3d;
-      --cor-fundo: #f9f5f0;
-      --cor-erro: #d9534f; /* Cor para erros de formulário */
-      --cor-successo: #5cb85c; /* Cor para confirmações */
-      --radius: 12px;
-      --transition: 0.3s ease;
+      --primary-color: #800000;
+      --secondary-color: #b30059;
+      --accent-color: #d4b483;
+      --light-bg: #fffaf5;
+      --text-color: #333;
+      --font-main: 'Montserrat', sans-serif;
+      --font-decorative: 'Great Vibes', cursive;
+
+      --border-radius: 1rem;
+      --transition-time: 0.3s;
+      --box-shadow-light: 0 5px 15px rgba(0, 0, 0, 0.05);
+      --error-color: #d9534f;
+      --success-color: #5cb85c;
     }
 
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    /* ESTRUTURA BASE */
-    body {
-      font-family: 'Montserrat', sans-serif;
-      color: var(--cor-texto);
-      background-color: var(--cor-fundo);
-      line-height: 1.6;
-      overflow-x: hidden;
+    html {
+      scroll-behavior: smooth;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      scroll-behavior: smooth; /* Rolagem suave para âncoras */
-    }
-    a {
-      color: var(--cor-primaria);
-      text-decoration: none;
-      transition: color var(--transition);
-    }
-    a:hover,
-    a:focus {
-      color: var(--cor-secundaria);
-      outline: none;
     }
 
-    /* FUNDO ROTATIVO */
-    #background-slider {
-      position: fixed;
-      inset: 0; /* shorthand para top/left/right/bottom 0 */
-      width: 100vw;
-      height: 100vh;
-      background-size: cover;
-      background-position: center;
-      z-index: -1;
-      opacity: 0.7;
-      transition: opacity 1.2s ease-in-out;
-      filter: brightness(0.75) saturate(1.1); /* Deixa o fundo mais suave e equilibrado */
-      will-change: background-image, opacity; /* Performance */
+    body {
+      font-family: var(--font-main);
+      background-color: var(--light-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+      min-height: 100vh;
+      background-attachment: fixed;
     }
 
-    /* HEADER */
-    .header {
-      text-align: center;
-      padding: 3rem 1rem 2rem;
-      position: relative;
-      background-color: rgba(255 255 255 / 0.85);
-      box-shadow: 0 4px 10px rgb(0 0 0 / 0.05);
-      border-radius: var(--radius);
-      max-width: 800px;
-      margin: 2rem auto;
-    }
-    .header h1 {
-      font-family: 'Dancing Script', cursive;
-      font-size: clamp(2.5rem, 5vw, 4rem); /* Tamanho responsivo */
-      color: var(--cor-primaria);
-      margin-bottom: 0.5rem;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-      letter-spacing: 0.05em;
-    }
-    .header p.date {
-      font-family: 'Playfair Display', serif;
-      letter-spacing: 3px;
-      font-weight: 500;
-      font-size: 1.3rem;
-      color: var(--cor-texto);
-    }
-
-    /* CONTADOR REGRESSIVO */
-    .countdown-container {
-      text-align: center;
-      margin: 2rem auto 3rem;
-      max-width: 600px;
-    }
-    #timer {
-      font-family: 'Montserrat', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
+    /* ===== TIPOGRAFIA ===== */
+    h1,
+    h2,
+    h3 {
       font-weight: 700;
-      color: var(--cor-primaria);
-      letter-spacing: 0.15em;
-      background-color: rgba(255 255 255 / 0.8);
-      padding: 1rem 2rem;
-      border-radius: var(--radius);
-      box-shadow: 0 8px 15px rgb(0 0 0 / 0.07);
-      display: inline-block;
-      min-width: 280px;
-      user-select: none;
+      line-height: 1.2;
+      color: var(--primary-color);
+      margin-bottom: 0.8rem;
+      scroll-margin-top: 80px;
     }
 
-    /* NOSSA HISTÓRIA */
-    .love-story {
-      max-width: 900px;
-      margin: 0 auto 3rem;
-      padding: 2.5rem 2rem;
-      background: rgba(255 255 255 / 0.9);
-      border-radius: var(--radius);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-      text-align: center;
-      line-height: 1.8;
-      font-size: 1.125rem;
-      color: var(--cor-texto);
-    }
-    .love-story p {
-      margin-bottom: 1.5rem;
-    }
-    .love-story p:last-child {
-      font-weight: 600;
-      color: var(--cor-primaria);
-      font-size: 1.2rem;
-    }
-
-    /* SEÇÕES GERAIS */
-    section {
-      max-width: 1000px;
-      margin: 3rem auto;
-      padding: 2.5rem 2rem;
-      background: rgba(255 255 255 / 0.9);
-      border-radius: var(--radius);
-      box-shadow: 0 5px 20px rgb(0 0 0 / 0.06);
-      scroll-margin-top: 80px; /* para âncora evitar topo fixo */
-    }
-    h2, h3 {
-      font-family: 'Playfair Display', serif;
-      color: var(--cor-primaria);
-      margin-bottom: 1rem;
-      text-align: center;
+    h2 {
+      font-size: 2rem;
       position: relative;
+      margin-bottom: 3rem;
     }
-    h2::after, h3::after {
+
+    h2::after {
       content: '';
       display: block;
       width: 60px;
       height: 3px;
-      background: var(--cor-secundaria);
-      margin: 0.5rem auto 1.5rem;
+      background: var(--accent-color);
+      margin: 0.8rem auto 0;
       border-radius: 2px;
     }
 
-    /* GALERIA */
-    .gallery-container {
-      position: relative;
+    /* ===== HEADER ===== */
+    .header {
+      background-color: rgba(248, 215, 218, 0.9);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
     }
-    .gallery {
+
+    .nomes-noivos {
+      font-family: var(--font-decorative);
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      color: var(--primary-color);
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+      user-select: none;
+    }
+
+    /* ===== MENU MOBILE ===== */
+    .menu-toggle {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--primary-color);
+      z-index: 1100;
+      background: transparent;
+      border: none;
+      transition: color var(--transition-time);
+    }
+
+    .menu-toggle:focus {
+      outline-offset: 3px;
+      outline-color: var(--secondary-color);
+      outline-style: solid;
+    }
+
+    .nav-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100vh;
+      background: rgba(252, 228, 236, 0.98);
+      transition: right var(--transition-time) ease;
+      z-index: 1050;
+      padding-top: 5rem;
+      box-shadow: -4px 0 12px rgb(0 0 0 / 0.1);
+    }
+
+    .nav-menu.active {
+      right: 0;
+    }
+
+    .nav-menu ul {
+      list-style: none;
+      padding: 0 1rem;
+    }
+
+    .nav-menu li {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .nav-menu a {
+      display: block;
+      padding: 1rem;
+      text-decoration: none;
+      color: var(--primary-color);
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background var(--transition-time), padding-left var(--transition-time);
+      border-radius: var(--border-radius);
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a:focus {
+      background: rgba(255, 255, 255, 0.3);
+      padding-left: 1.5rem;
+      outline: none;
+    }
+
+    /* ===== SEÇÕES ===== */
+    .section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* História do Casal */
+    .historia-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .historia-container {
+        flex-direction: row;
+      }
+    }
+
+    .historia-texto {
+      flex: 1;
+      text-align: left;
+      font-size: 1.1rem;
+      color: var(--text-color);
+      line-height: 1.7;
+    }
+
+    /* Galeria de fotos na história */
+    .historia-fotos {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .historia-fotos img {
+      width: 100%;
+      border-radius: 0.5rem;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      transition: transform var(--transition-time);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .historia-fotos img:hover,
+    .historia-fotos img:focus {
+      transform: scale(1.03);
+      outline: none;
+    }
+
+    /* ===== TIMER ===== */
+    .timer-container {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow-light);
+      max-width: 600px;
+      margin: 2rem auto;
+      text-align: center;
+      user-select: none;
+    }
+
+    .timer {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    #clock {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-top: 1rem;
+      font-family: monospace;
+    }
+
+    /* ===== GALERIA ===== */
+    .galeria-section {
+      background: rgba(255, 255, 255, 0.7);
+      padding-bottom: 3rem;
+    }
+
+    .galeria-container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 1rem;
       padding: 1rem 0;
     }
-    .gallery img {
+
+    .galeria-container img {
       width: 100%;
       height: 180px;
       object-fit: cover;
-      border-radius: 8px;
-      transition: transform var(--transition), box-shadow var(--transition);
+      border-radius: 0.5rem;
       cursor: pointer;
-      filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.15));
+      transition: transform var(--transition-time), box-shadow var(--transition-time);
+      filter: drop-shadow(0 2px 5px rgb(0 0 0 / 0.1));
     }
-    .gallery img:hover,
-    .gallery img:focus {
+
+    .galeria-container img:hover,
+    .galeria-container img:focus {
       transform: scale(1.05);
-      box-shadow: 0 5px 20px rgb(0 0 0 / 0.2);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       outline: none;
-      filter: drop-shadow(0 3px 5px rgb(0 0 0 / 0.3));
     }
 
-    /* LOCAIS */
-    .location p {
-      font-size: 1.1rem;
-      text-align: center;
-      margin-bottom: 1rem;
-      color: var(--cor-texto);
-    }
-    .location-img {
+    /* ===== MODAL ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      top: 0;
+      left: 0;
       width: 100%;
-      border-radius: var(--radius);
-      margin: 1rem 0 1.5rem;
-      box-shadow: 0 5px 18px rgb(0 0 0 / 0.08);
-      object-fit: cover;
-      max-height: 350px;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      overflow-y: auto;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
     }
 
-    /* BOTÕES */
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 90vh;
+      border-radius: var(--border-radius);
+      animation: zoom 0.3s ease forwards;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    @keyframes zoom {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .close {
+      position: fixed;
+      top: 2rem;
+      right: 2.5rem;
+      color: white;
+      font-size: 3rem;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 2010;
+      background: transparent;
+      border: none;
+      transition: color var(--transition-time);
+    }
+
+    .close:hover,
+    .close:focus {
+      color: var(--accent-color);
+      outline: none;
+    }
+
+    /* ===== LOCAIS ===== */
+    .local-section {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--box-shadow-light);
+      text-align: center;
+    }
+
+    .botoes-local {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .botao-local {
+      background: var(--primary-color);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      justify-content: center;
+      transition: background-color var(--transition-time), transform var(--transition-time);
+      user-select: none;
+      cursor: pointer;
+      box-shadow: 0 5px 12px rgb(0 0 0 / 0.1);
+    }
+
+    .botao-local:hover,
+    .botao-local:focus {
+      background: var(--secondary-color);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgb(0 0 0 / 0.15);
+      outline: none;
+    }
+
+    /* ===== FORMULÁRIOS ===== */
+    .form-container {
+      max-width: 500px;
+      margin: 0 auto 3rem;
+      background: white;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow-light);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1.5px solid #ddd;
+      border-radius: 0.5rem;
+      font-family: var(--font-main);
+      font-size: 1rem;
+      transition: border-color var(--transition-time);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--secondary-color);
+      outline: none;
+      box-shadow: 0 0 8px var(--secondary-color);
+    }
+
+    .form-submit {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: background-color var(--transition-time), transform var(--transition-time);
+      width: 100%;
+      user-select: none;
+    }
+
+    .form-submit:hover,
+    .form-submit:focus {
+      background: var(--secondary-color);
+      transform: translateY(-3px);
+      outline: none;
+    }
+
+    /* ===== PRESENTES ===== */
+    .pix-box {
+      background: #fff0f5;
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      margin: 2rem auto;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: var(--box-shadow-light);
+    }
+
+    .pix-code {
+      width: 100%;
+      padding: 0.8rem;
+      font-size: 1rem;
+      margin-top: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 0.5rem;
+      background: white;
+      font-family: monospace;
+      user-select: all;
+    }
+
+    /* ===== RODAPÉ ===== */
+    .footer {
+      background: rgba(248, 215, 218, 0.9);
+      padding: 2rem 1rem 0.5rem;
+      text-align: center;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 -2px 12px rgb(0 0 0 / 0.05);
+      user-select: none;
+      max-width: 600px;
+      margin: 4rem auto 2rem;
+      border-radius: var(--border-radius);
+    }
+
+    .spotify-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    .spotify-link img {
+      width: 40px;
+      height: 40px;
+      opacity: 0.8;
+      transition: all var(--transition-time);
+      vertical-align: middle;
+    }
+
+    .spotify-link:hover img,
+    .spotify-link:focus img {
+      opacity: 1;
+      transform: scale(1.15);
+      outline: none;
+    }
+
+    .footer-info {
+      background: #fff0f5;
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      color: #4b4039;
+      font-size: 1rem;
+      text-align: left;
+      box-shadow: var(--box-shadow-light);
+      max-width: 100%;
+      line-height: 1.5;
+      white-space: pre-line; /* mantém quebras de linha no texto */
+      user-select: text;
+      margin: 0 auto 1rem;
+    }
+
+    /* ===== BOTÕES PRINCIPAIS ===== */
     .btn-container {
       display: flex;
       justify-content: center;
@@ -214,204 +513,139 @@
       flex-wrap: wrap;
       margin: 2rem auto;
       padding: 0 1rem;
+      max-width: 600px;
     }
+
     .btn {
       padding: 0.8rem 2rem;
-      background: var(--cor-primaria);
+      background: var(--primary-color);
       color: white;
       border: none;
       border-radius: 50px;
-      font-family: 'Montserrat', sans-serif;
+      font-family: var(--font-main);
       font-weight: 600;
       font-size: 1.1rem;
       cursor: pointer;
-      transition: background-color var(--transition), transform var(--transition);
+      transition: background-color var(--transition-time), transform var(--transition-time);
       text-decoration: none;
       text-align: center;
       user-select: none;
       box-shadow: 0 5px 12px rgb(0 0 0 / 0.1);
+      min-width: 140px;
     }
+
     .btn:hover,
     .btn:focus {
-      background: var(--cor-secundaria);
+      background: var(--secondary-color);
       transform: translateY(-3px);
       outline: none;
       box-shadow: 0 8px 18px rgb(0 0 0 / 0.18);
     }
+
     .btn:active {
       transform: translateY(-1px);
       box-shadow: 0 5px 10px rgb(0 0 0 / 0.12);
     }
 
-    /* FORMULÁRIO */
-    .rsvp-form {
-      max-width: 520px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      background: #fff;
-      padding: 2rem 2rem 3rem;
-      border-radius: var(--radius);
-      box-shadow: 0 5px 20px rgb(0 0 0 / 0.07);
-    }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-    }
-    .form-group label {
-      margin-bottom: 0.6rem;
-      font-weight: 600;
-      color: var(--cor-primaria);
-      font-size: 1rem;
-    }
-    .form-group input {
-      padding: 0.85rem 1rem;
-      border: 1.5px solid #ccc;
-      border-radius: 8px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1rem;
-      transition: border-color var(--transition);
-    }
-    .form-group input:focus {
-      border-color: var(--cor-secundaria);
-      outline: none;
-      box-shadow: 0 0 8px var(--cor-secundaria);
-    }
-    #confirmation-message {
-      margin-top: 1rem;
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: var(--cor-successo);
-      text-align: center;
-    }
-
-    /* RODAPÉ */
-    .footer {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 2rem 1rem;
-      background: white;
-      box-shadow: 0 -2px 12px rgb(0 0 0 / 0.05);
-      border-top-left-radius: var(--radius);
-      border-top-right-radius: var(--radius);
-      max-width: 600px;
-      margin: 4rem auto 2rem;
-    }
-    .footer a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .footer img {
-      width: 30px;
-      height: 30px;
-      opacity: 0.75;
-      transition: all var(--transition);
-    }
-    .footer img:hover,
-    .footer img:focus {
-      opacity: 1;
-      transform: scale(1.15);
-      outline: none;
-    }
-
-    /* RESPONSIVO */
+    /* ===== RESPONSIVO ===== */
     @media (max-width: 768px) {
       .header {
-        max-width: 95vw;
+        padding: 1rem;
       }
-      .header h1 {
-        font-size: 2.5rem;
-      }
-      #timer {
+
+      .nomes-noivos {
         font-size: 2rem;
-        min-width: 220px;
       }
-      section {
-        padding: 2rem 1.5rem;
-        margin: 2rem 1rem;
+
+      .section {
+        padding: 2rem 1rem;
       }
-      .gallery {
+
+      .historia-fotos {
+        grid-template-columns: 1fr;
+      }
+
+      #clock {
+        font-size: 2rem;
+      }
+
+      .galeria-container {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 0.8rem;
       }
+
       .btn-container {
-        flex-direction: column;
-        align-items: center;
-      }
-      .btn {
-        width: 100%;
-        max-width: 320px;
-      }
-      .location-img {
-        max-height: 240px;
-      }
-      .rsvp-form {
-        padding: 1.5rem 1rem 2rem;
-        max-width: 100%;
-        gap: 1rem;
+        justify-content: center;
       }
     }
 
     @media (max-width: 400px) {
-      .header h1 {
-        font-size: 2rem;
+      h2 {
+        font-size: 1.5rem;
       }
-      .love-story {
-        font-size: 1rem;
-        padding: 1.5rem 1rem;
+
+      .nomes-noivos {
+        font-size: 1.7rem;
+      }
+
+      #clock {
+        font-size: 1.6rem;
       }
     }
   </style>
 </head>
+
 <body>
   <!-- Fundo rotativo -->
   <div id="background-slider" aria-hidden="true"></div>
 
   <!-- Cabeçalho -->
   <header class="header">
-    <h1>Railon &amp; Nathália</h1>
+    <h1 class="nomes-noivos">Railon &amp; Nathália</h1>
     <p class="date" aria-label="Data do casamento">11 de outubro de 2025</p>
   </header>
 
   <!-- Contagem regressiva -->
-  <div class="countdown-container" aria-live="polite" aria-atomic="true" aria-relevant="text">
-    <div id="timer" role="timer" aria-label="Contagem regressiva para o casamento"></div>
+  <div class="timer-container" aria-live="polite" aria-atomic="true" aria-relevant="text">
+    <div id="clock" role="timer" aria-label="Contagem regressiva para o casamento">...</div>
   </div>
 
   <!-- Nossa história -->
-  <section class="love-story" aria-labelledby="historia-title">
-    <h2 id="historia-title" class="sr-only">Nossa História</h2>
-    <p>
-      Railon e Nathália. Duas histórias que se cruzaram no tempo, duas vidas que agora seguem juntas rumo a um novo capítulo. Railon e Nathália descobriram no amor a força que une, a leveza que conforta e a beleza de compartilhar os dias bons ou desafiadores com alguém que escolhem amar todos os dias.
-    </p>
-    <p>
-      Casar é mais do que uma celebração, é um ato de coragem, de entrega e de esperança. E é com o coração cheio de gratidão que compartilhamos esse momento com pessoas tão especiais como você.
-    </p>
-    <p>Obrigado por fazer parte da nossa história. Sua presença é o nosso maior presente. 💛</p>
-  </section>
-
-  <!-- Galeria de fotos -->
-  <section class="gallery-section" aria-label="Galeria de fotos dos nossos momentos">
-    <h2>Nossos Momentos</h2>
-    <div class="gallery-container">
-      <div class="gallery" id="main-gallery" role="list"></div>
+  <section class="section historia-container" aria-labelledby="historia-title">
+    <article class="historia-texto">
+      <h2 id="historia-title">Nossa História</h2>
+      <p>
+        Railon e Nathália. Duas histórias que se cruzaram no tempo, duas vidas que agora seguem juntas rumo a um novo capítulo. Railon e Nathália descobriram no amor a força que une, a leveza que conforta e a beleza de compartilhar os dias bons ou desafiadores com alguém que escolhem amar todos os dias.
+      </p>
+      <p>
+        Casar é mais do que uma celebração, é um ato de coragem, de entrega e de esperança. E é com o coração cheio de gratidão que compartilhamos esse momento com pessoas tão especiais como você.
+      </p>
+      <p>Obrigado por fazer parte da nossa história. Sua presença é o nosso maior presente. 💛</p>
+    </article>
+    <div class="historia-fotos" aria-label="Fotos do casal">
+      <img src="imagens/1.jpeg" alt="Foto do casal 1" tabindex="0" />
+      <img src="imagens/2.jpeg" alt="Foto do casal 2" tabindex="0" />
+      <img src="imagens/3.jpeg" alt="Foto do casal 3" tabindex="0" />
+      <img src="imagens/4.jpeg" alt="Foto do casal 4" tabindex="0" />
     </div>
   </section>
 
+  <!-- Galeria de fotos -->
+  <section class="section galeria-section" aria-label="Galeria de fotos dos nossos momentos">
+    <h2>Nossos Momentos</h2>
+    <div class="galeria-container" id="main-gallery" role="list"></div>
+  </section>
+
   <!-- Localização Cerimônia -->
-  <section class="location" aria-labelledby="cerimonia-title">
+  <section class="section local-section" aria-labelledby="cerimonia-title">
     <h3 id="cerimonia-title">Cerimônia</h3>
-    <img src="igreja/igreja externa.jpg" alt="Fachada da igreja onde será realizada a cerimônia" class="location-img" />
+    <img src="igreja/igreja externa.jpg" alt="Fachada da igreja onde será realizada a cerimônia" />
     <p>Av. L2 Sul, Quadra 601, Módulos 3/4 - Asa Sul, Brasília - DF</p>
-    <div class="btn-container">
+    <div class="botoes-local">
       <a
         href="https://share.google/UPtoWQbdjtaDD3sYw"
         target="_blank"
         rel="noopener noreferrer"
-        class="btn"
+        class="botao-local"
         aria-label="Abrir mapa da localização da cerimônia no Google Maps"
         >Ver no mapa</a
       >
@@ -419,67 +653,52 @@
   </section>
 
   <!-- Localização Festa -->
-  <section class="location" aria-labelledby="festa-title">
+  <section class="section local-section" aria-labelledby="festa-title">
     <h3 id="festa-title">Festa</h3>
-    <img src="evento/festa.jpg" alt="Local da festa de casamento decorado" class="location-img" />
+    <img src="evento/festa.jpg" alt="Local da festa de casamento decorado" />
     <p>Rua Divina Providência, Chácara 08 - Ponte Alta Norte, Gama - DF</p>
-    <div class="btn-container">
+    <div class="botoes-local">
       <a
         href="https://maps.app.goo.gl/zruXh9voZ9H4T8o36"
         target="_blank"
         rel="noopener noreferrer"
-        class="btn"
+        class="botao-local"
         aria-label="Abrir mapa da localização da festa no Google Maps"
         >Ver no mapa</a
       >
     </div>
   </section>
 
-  <!-- Botões de ação -->
+  <!-- Botões de ação: só 2 agora -->
   <div class="btn-container" role="navigation" aria-label="Navegação principal do site">
     <a href="presentes.html" class="btn">Lista de Presentes</a>
     <a href="#sorteio" class="btn" id="sorteio-button">Sorteio</a>
-    <a href="#rsvp" class="btn">Confirmar Presença</a>
   </div>
 
-  <!-- Confirmação de presença -->
-  <section class="rsvp" id="rsvp" aria-labelledby="rsvp-title">
-    <h2 id="rsvp-title">Confirmação de Presença</h2>
-    <form class="rsvp-form" id="rsvp-form" novalidate>
-      <div class="form-group">
-        <label for="nome">Seu nome completo</label>
-        <input type="text" id="nome" name="nome" required autocomplete="name" aria-required="true" aria-describedby="nome-error" />
-        <span id="nome-error" class="error-message" aria-live="assertive"></span>
-      </div>
-      <div class="form-group">
-        <label for="convidados">Número de acompanhantes</label>
-        <input
-          type="number"
-          id="convidados"
-          name="convidados"
-          min="0"
-          max="5"
-          value="0"
-          aria-describedby="convidados-desc"
-        />
-        <small id="convidados-desc" class="sr-only">Número máximo de acompanhantes: 5</small>
-      </div>
-      <button type="submit" class="btn" aria-label="Confirmar presença">Confirmar</button>
-    </form>
-    <p id="confirmation-message" role="alert" aria-live="assertive"></p>
-  </section>
+  <!-- Confirmação de presença removida conforme pedido -->
 
   <!-- Rodapé -->
-  <footer class="footer" role="contentinfo" aria-label="Redes sociais do casal">
-    <a href="https://open.spotify.com/playlist/7IRDa27ZR2ouWWPGsdcz2B?si=51dfd98ef3ea40f9" target="_blank" rel="noopener noreferrer" aria-label="Playlist de Spotify do casamento">
-      <img src="spotify.png" alt="Ícone Spotify" />
-    </a>
-    <a href="https://www.instagram.com/railon.q/" target="_blank" rel="noopener noreferrer" aria-label="Instagram do noivo Railon">
-      <img src="instagram.png" alt="Ícone Instagram noivo" />
-    </a>
-    <a href="https://www.instagram.com/nathesilvaa/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da noiva Nathália">
-      <img src="instagram.png" alt="Ícone Instagram noiva" />
-    </a>
+  <footer class="footer" role="contentinfo" aria-label="Rodapé do site com redes sociais e informações">
+    <a
+      href="https://open.spotify.com/playlist/7IRDa27ZR2ouWWPGsdcz2B?si=51dfd98ef3ea40f9"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="spotify-link"
+      aria-label="Playlist de Spotify do casamento"
+      ><img src="spotify.png" alt="Ícone Spotify"/></a
+    >
+
+    <div class="footer-info" aria-live="polite">
+      💍 Cerimônia: Início pontualmente às 20h (cheguem com 30min de antecedência para não perderem nosso "Sim"!).
+      
+      🍾 Sobre as bebidas na festa:
+      • Não serviremos bebidas alcoólicas, mas quem desejar consumir, pode trazer a sua preferida (em cooler pessoal).
+      • Teremos gelo à vontade, água, refrigerantes e sucos disponíveis para todos.
+      
+      "O amor já nos deixa bêbados de felicidade – mas quem quiser brindar com algo extra, é só trazer seu drink especial!" 🥂
+      
+      Agradecemos pelo carinho e por fazerem parte do nosso dia!
+    </div>
   </footer>
 
   <!-- JavaScript -->
@@ -494,23 +713,24 @@
         backgroundSlider.style.opacity = 0;
         setTimeout(() => {
           currentIndex = (currentIndex + 1) % images.length;
-          backgroundSlider.style.backgroundImage = `url('${images[currentIndex]}')`;
+          backgroundSlider.style.backgroundImage = \`url('\${images[currentIndex]}')\`;
           backgroundSlider.style.opacity = 0.7;
         }, 600);
       }
       setInterval(changeBackground, 5000);
-      backgroundSlider.style.backgroundImage = `url('${images[0]}')`;
+      backgroundSlider.style.backgroundImage = \`url('\${images[0]}')\`;
 
-      // Contagem regressiva
-      const timer = document.getElementById('timer');
-      const targetDate = new Date('October 11, 2025 20:00:00').getTime();
+      // Countdown Timer
+      const clock = document.getElementById('clock');
+      const targetDate = new Date('2025-10-11T20:00:00-03:00').getTime();
 
       function updateTimer() {
         const now = new Date().getTime();
         const diff = targetDate - now;
 
         if (diff <= 0) {
-          timer.textContent = 'O grande dia chegou!';
+          clock.textContent = 'O grande dia chegou! 🎉';
+          clearInterval(timerInterval);
           return;
         }
 
@@ -519,92 +739,80 @@
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-        timer.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        clock.textContent = \`\${days}d \${hours}h \${minutes}m \${seconds}s\`;
       }
-      setInterval(updateTimer, 1000);
+      const timerInterval = setInterval(updateTimer, 1000);
       updateTimer();
 
-      // Carregar galeria dinamicamente
-      const gallery = document.getElementById('main-gallery');
-      images.forEach((img, index) => {
-        const imgElement = document.createElement('img');
-        imgElement.src = img;
-        imgElement.alt = `Foto ${index + 1} do casal Railon e Nathália`;
-        imgElement.loading = 'lazy';
-        imgElement.tabIndex = 0;
-        imgElement.setAttribute('role', 'listitem');
-        gallery.appendChild(imgElement);
-      });
+      // Load Gallery Dynamically
+      async function loadGalleryImages() {
+        try {
+          const response = await fetch('assets/data/gallery.json');
+          if (!response.ok) throw new Error('Falha ao carregar arquivo da galeria.');
 
-      // Formulário RSVP com validação simples e mensagem de erro acessível
-      const rsvpForm = document.getElementById('rsvp-form');
-      const nomeInput = rsvpForm.nome;
-      const convidadosInput = rsvpForm.convidados;
-      const confirmationMessage = document.getElementById('confirmation-message');
-      const nomeError = document.getElementById('nome-error');
+          const galleryContainer = document.querySelector('.galeria-container');
+          if (!galleryContainer) return;
 
-      rsvpForm.addEventListener('submit', function (e) {
-        e.preventDefault();
+          const images = await response.json();
+          galleryContainer.innerHTML = images
+            .map(
+              (img) =>
+                \`<img src="\${img.src}" alt="\${img.alt || 'Foto do casal'}" loading="lazy" tabindex="0" />\`
+            )
+            .join('');
 
-        // Reset mensagens
-        nomeError.textContent = '';
-        confirmationMessage.textContent = '';
-        confirmationMessage.style.color = '';
+          initGallery();
+        } catch (error) {
+          console.error('Erro ao carregar galeria:', error);
+        }
+      }
 
-        // Validação simples
-        const nomeValue = nomeInput.value.trim();
-        if (!nomeValue || nomeValue.length < 3) {
-          nomeError.textContent = 'Por favor, informe seu nome completo válido.';
-          nomeInput.focus();
-          return;
+      // Gallery Modal
+      function initGallery() {
+        const galleryImages = document.querySelectorAll('.galeria-container img');
+        const modal = document.getElementById('image-modal');
+        const modalImg = document.getElementById('modal-image');
+        const closeModal = document.querySelector('.close');
+
+        if (!modal || !modalImg || !closeModal) return;
+
+        function openModal(e) {
+          e.preventDefault();
+          modalImg.src = this.src;
+          modalImg.alt = this.alt || '';
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
         }
 
-        const convidadosValue = parseInt(convidadosInput.value, 10);
-        if (isNaN(convidadosValue) || convidadosValue < 0 || convidadosValue > 5) {
-          confirmationMessage.style.color = 'var(--cor-erro)';
-          confirmationMessage.textContent = 'Número de acompanhantes inválido.';
-          convidadosInput.focus();
-          return;
+        function closeGalleryModal() {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
         }
 
-        // Simulação de envio (substitua pela sua integração real)
-        setTimeout(() => {
-          confirmationMessage.style.color = 'var(--cor-successo)';
-          confirmationMessage.textContent = `Obrigado, ${nomeValue}! Sua presença${
-            convidadosValue > 0 ? ` e de ${convidadosValue} acompanhante${convidadosValue > 1 ? 's' : ''}` : ''
-          } foi confirmada.`;
-          rsvpForm.reset();
-          nomeInput.focus();
-        }, 1000);
-      });
+        galleryImages.forEach((img) => {
+          img.addEventListener('click', openModal);
+          img.style.cursor = 'pointer';
+        });
 
-      // Mensagem sorteio
-      const sorteioButton = document.getElementById('sorteio-button');
-      sorteioButton.addEventListener('click', function (e) {
-        e.preventDefault();
-        alert('Em breve teremos novidades sobre o sorteio!');
-      });
+        closeModal.addEventListener('click', closeGalleryModal);
+
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeGalleryModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && modal.classList.contains('active')) closeGalleryModal();
+        });
+      }
+
+      loadGalleryImages();
     });
   </script>
 
-  <!-- Visually hidden class para acessibilidade -->
-  <style>
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-    .error-message {
-      color: var(--cor-erro);
-      font-size: 0.875rem;
-      margin-top: 0.3rem;
-      min-height: 1.25em;
-    }
-  </style>
+  <!-- Modal HTML for image gallery -->
+  <div class="modal" id="image-modal" aria-modal="true" role="dialog" aria-labelledby="modal-image-label" tabindex="-1">
+    <button class="close" aria-label="Fechar imagem do modal">×</button>
+    <img id="modal-image" alt="" />
+  </div>
 </body>
 </html>
