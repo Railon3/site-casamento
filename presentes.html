@@ -72,11 +72,12 @@
       flex-direction: column;
       height: 100%;
     }
+    /* Imagem sem borda arredondada para não cortar as fotos */
     .presente-card img {
       width: 100%;
       height: 160px;
       object-fit: cover;
-      border-radius: 8px;
+      /* remove border-radius para preservar visual da imagem */
       margin-bottom: 0.8rem;
       box-shadow: 0 3px 8px rgb(0 0 0 / 0.1);
     }
@@ -129,6 +130,24 @@
       visibility: visible;
       opacity: 1;
     }
+    /* Avisos importantes estilo botão visual não clicável */
+    .details-message {
+      max-width: 600px;
+      margin: 2rem auto 0.5rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      text-align: center;
+      color: white;
+      background-color: var(--cor-primaria);
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      user-select: none;
+      box-shadow: 0 3px 8px rgb(0 0 0 / 0.12);
+      pointer-events: none; /* não clicável */
+      cursor: default;
+    }
     footer.footer {
       background: white;
       padding: 2rem 1rem;
@@ -136,7 +155,7 @@
       text-align: center;
       font-size: 0.9rem;
       box-shadow: 0 -2px 12px rgb(0 0 0 / 0.05);
-      margin-top: auto;
+      margin-top: 1rem;
       font-family: 'Montserrat', sans-serif;
       user-select: text;
     }
@@ -165,14 +184,14 @@
         <img src="imagens 2/36.jpg" alt="Toma aqui um" />
         <div class="presente-nome">Toma aqui um</div>
         <div class="presente-valor">R$ 50,00</div>
-        <button class="presentear-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO DE62070503***6304F2D6">Presentear</button>
+        <button class="presentear-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Presentear</button>
       </article>
       <!-- Presente 3 -->
       <article class="presente-card">
         <img src="imagens 2/37.jpg" alt="Caneca pro noivo" />
         <div class="presente-nome">Caneca pro noivo</div>
         <div class="presente-valor">R$ 90,00</div>
-        <button class="presentear-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO DE62070503***6304F2D6">Presentear</button>
+        <button class="presentear-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Presentear</button>
       </article>
       <!-- Presente 4 -->
       <article class="presente-card">
@@ -269,6 +288,10 @@
 
     <div id="copy-feedback" role="alert" aria-live="assertive">Código PIX copiado!</div>
   </main>
+
+  <div class="details-message" role="note" aria-label="Avisos importantes">
+    <p>Avisos importantes: Por favor, chegue com antecedência para aproveitar cada momento especial.</p>
+  </div>
 
   <footer class="footer">
     <p>© 2025 Railon & Nathália. Todos os direitos reservados.</p>
