@@ -3,199 +3,164 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Presentes - Railon & Nathália</title>
-  <link rel="icon" type="image/jpeg" href="imagens/26.jpeg"/>
+  <title>Presentes</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap"/>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-
     body {
+      background-color: #ffffff;
+      font-family: 'Open Sans', sans-serif;
       margin: 0;
       padding: 0;
-      font-family: 'Open Sans', sans-serif;
-      background-color: #ffffff;
       color: #333;
     }
 
-    header {
-      background-color: #556B2F;
-      color: white;
-      padding: 1rem;
+    h1 {
       text-align: center;
-      font-family: 'Dancing Script', cursive;
-      font-size: 2rem;
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      color: #556b2f;
+      margin-top: 30px;
     }
 
-    h2 {
-      text-align: center;
-      margin-top: 1rem;
-      font-family: 'Dancing Script', cursive;
-      font-size: 2rem;
-      color: #556B2F;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1100px;
+      margin: auto;
     }
 
-    .presente-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      padding: 1rem;
-    }
-
-    .presente {
-      width: 200px;
-      border: 2px solid #ccc;
-      border-radius: 10px;
-      padding: 1rem;
-      text-align: center;
+    .item {
       background-color: #f9f9f9;
-      font-family: 'Open Sans', sans-serif;
+      border: 1px solid #ddd;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.2s;
     }
 
-    .presente img {
+    .item:hover {
+      transform: scale(1.02);
+    }
+
+    .item img {
       width: 100%;
-      border-radius: 10px;
+      height: 220px;
+      object-fit: cover;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
     }
 
-    .nome-presente {
-      margin: 0.5rem 0;
-      font-weight: bold;
-      font-size: 1.1rem;
+    .descricao {
+      padding: 10px 15px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.3em;
+      color: #556b2f;
     }
 
-    .valor-presente {
-      color: #556B2F;
-      margin-bottom: 0.5rem;
-      font-size: 1rem;
+    .valor {
+      font-size: 1.1em;
+      color: #444;
+      margin-bottom: 10px;
     }
 
-    .btn-presentear {
-      background-color: #556B2F;
+    .btn {
+      background-color: #556b2f;
       color: white;
+      padding: 10px 20px;
+      margin-bottom: 15px;
       border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
+      border-radius: 25px;
+      font-size: 1em;
       cursor: pointer;
       transition: background-color 0.3s;
     }
 
-    .btn-presentear:hover {
+    .btn:hover {
       background-color: #6b8e23;
     }
 
     .pix-container {
-      margin-top: 1rem;
-      background-color: #eee;
-      padding: 0.5rem;
-      border-radius: 5px;
+      margin-top: 15px;
       display: none;
     }
 
-    .btn-copiar {
+    .pix-link {
+      font-size: 0.9em;
+      word-break: break-all;
+      color: #0000ee;
+      text-decoration: underline;
+    }
+
+    .copy-btn {
+      margin-top: 8px;
       background-color: #444;
       color: white;
       border: none;
-      padding: 0.3rem 0.6rem;
-      border-radius: 5px;
+      padding: 6px 12px;
+      border-radius: 15px;
       cursor: pointer;
-      margin-top: 0.5rem;
-    }
-
-    .agradecimento {
-      margin-top: 0.5rem;
-      font-family: 'Dancing Script', cursive;
-      color: #556B2F;
-      font-size: 1.1rem;
+      font-size: 0.9em;
     }
 
     @media (max-width: 600px) {
-      .presente {
+      h1 {
+        font-size: 2em;
+      }
+
+      .descricao {
+        font-size: 1.2em;
+      }
+
+      .btn {
         width: 90%;
+        font-size: 1em;
       }
     }
   </style>
 </head>
 <body>
-  <header>Escolha seu presente para Railon & Nathália</header>
-  <h2>Com carinho, escolha um presente para os noivos</h2>
-  <div class="presente-container">
-    <!-- Presentes de 34 a 50 -->
-    <!-- Exemplo de um presente -->
-    <!-- Copie e repita esse bloco mudando o número da imagem e valor -->
-    <!-- Cada bloco abaixo está gerado automaticamente para 34 a 50 -->
-    <!-- Você pode alterar os valores ou nomes conforme desejar -->
-    <!-- INÍCIO DOS PRESENTES -->
-    <!-- Os dados do Pix podem ser genéricos ou reais -->
-    <!-- Use sempre nomes diferentes se quiser -->
 
-    <!-- Aqui vão todos os 17 presentes -->
-    <!-- Gerando dinamicamente abaixo -->
-    <!-- Você pode substituir o nome e valor se quiser -->
-    <!-- Copie mais blocos conforme necessário -->
-    <!-- Cada um tem estrutura idêntica -->
+  <h1>Presentes</h1>
 
-    <!-- PRESENTES -->
-    <!-- Gerado via script para todos de 34 a 50 -->
-    <!-- Começo -->
-    <!-- Aqui já está todos inseridos -->
-
-    <!-- Script PHP ou JS não usado por ser HTML puro -->
-
-    <!-- Loop manual dos presentes -->
-    <!-- Começa do 34 até 50 -->
-    <!-- Gerado abaixo com HTML puro -->
-
-    <!-- Gera 17 blocos de presente -->
-    <!-- Use este modelo e edite conforme desejar -->
-
-    <!-- Aqui vão os 17 presentes -->
-    <!-- COMEÇO DOS PRESENTES GERADOS -->
-    <!-- Cada presente tem nome genérico (Presente 34 etc) -->
-    <!-- Valor fictício (você pode ajustar) -->
-
-    <!-- Gerando com script interno -->
-
-    <!-- Estes foram gerados dinamicamente a partir da sua pasta -->
-
-    <!-- Abaixo estão todos os presentes -->
-    <!-- Copie, edite ou reorganize conforme quiser -->
-    <!-- Cada item usa a imagem 34.jpg até 50.jpg -->
-    <!-- Se quiser mudar valores ou nomes, edite diretamente -->
-
-    <!-- Você pode modificar os textos e valores à vontade -->
-
-    <!-- Começa -->
-
-    <!-- Presente 34 -->
-    <div class="presente">
-      <img src="imagens 2/34.jpg" alt="Presente 34"/>
-      <p class="nome-presente">Presente 34</p>
-      <p class="valor-presente">R$ 100,00</p>
-      <button class="btn-presentear" onclick="mostrarPix(this)">Presentear</button>
+  <div class="grid">
+    <!-- Repita isso para cada imagem de 34.jpg a 50.jpg -->
+    <!-- Exemplo com uma imagem -->
+    <div class="item">
+      <img src="imagens 2/34.jpg" alt="Presente 1">
+      <div class="descricao">Para ajudar na nossa nova jornada</div>
+      <div class="valor">R$ 100,00</div>
+      <button class="btn" onclick="mostrarPix(this)">Presentear</button>
       <div class="pix-container">
-        <p>Chave Pix: railonpix@email.com</p>
-        <button class="btn-copiar" onclick="copiarPix(this)">Copiar</button>
-        <p class="agradecimento" style="display:none;">Muito obrigado pelo carinho!</p>
+        <a class="pix-link" href="pix://00020126360014BR.GOV.BCB.PIX0114+55619845737670215Railon & Nathália5204000053039865802BR5920RAILON E NATHALIA6009BRASILIA61080540900062070503***63041F2F" target="_blank">
+          00020126360014BR.GOV.BCB.PIX0114+55619845737670215Railon & Nathália5204000053039865802BR5920RAILON E NATHALIA6009BRASILIA61080540900062070503***63041F2F
+        </a>
+        <br/>
+        <button class="copy-btn" onclick="copiarPix(this)">Copiar Pix</button>
       </div>
     </div>
 
-    <!-- Repita o bloco acima mudando os números (35 até 50) -->
-    <!-- Para não deixar enorme aqui, você pode gerar no seu VS Code com script -->
-    <!-- Mas posso gerar todos os 17 blocos para você se quiser agora -->
+    <!-- Copie e edite para os outros presentes (35.jpg até 50.jpg) -->
 
   </div>
 
   <script>
-    function mostrarPix(botao) {
-      const container = botao.nextElementSibling;
-      container.style.display = "block";
+    function mostrarPix(button) {
+      const container = button.nextElementSibling;
+      const allContainers = document.querySelectorAll('.pix-container');
+      allContainers.forEach(c => c.style.display = 'none');
+      container.style.display = 'block';
     }
 
-    function copiarPix(botao) {
-      const pixText = botao.previousElementSibling.textContent.replace('Chave Pix: ', '');
-      navigator.clipboard.writeText(pixText);
-      botao.nextElementSibling.style.display = "block";
+    function copiarPix(button) {
+      const pix = button.previousElementSibling.textContent;
+      navigator.clipboard.writeText(pix).then(() => {
+        alert("Chave Pix copiada com sucesso!");
+      });
     }
   </script>
+
 </body>
 </html>
