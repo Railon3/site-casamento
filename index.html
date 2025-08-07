@@ -8,7 +8,7 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', cursive;
+      font-family: 'Georgia', serif;
       background-image: url('imagens/15.jpeg');
       background-size: cover;
       background-repeat: no-repeat;
@@ -22,41 +22,11 @@
       align-items: center;
       padding: 20px;
       font-size: 2em;
-      font-family: cursive;
-    }
-    .menu-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background-color: transparent;
-      border: 2px solid #3d4d3d;
-      border-radius: 8px;
-      padding: 10px;
-      cursor: pointer;
-    }
-    .menu-content {
-      display: none;
-      position: absolute;
-      top: 60px;
-      right: 20px;
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      z-index: 1000;
-    }
-    .menu-content a {
-      display: block;
-      padding: 10px;
-      text-decoration: none;
-      color: #3d4d3d;
-    }
-    .menu-content a:hover {
-      background: #f0f0f0;
+      font-family: 'Brush Script MT', cursive;
     }
     .save-date {
       text-align: center;
-      font-family: cursive;
+      font-family: 'Brush Script MT', cursive;
       margin-top: 40px;
     }
     .save-date h2 {
@@ -78,7 +48,7 @@
       padding: 20px;
       background: rgba(255,255,255,0.8);
       border-radius: 12px;
-      font-family: cursive;
+      font-family: Georgia, serif;
       text-align: center;
     }
     .text-intro b {
@@ -107,10 +77,15 @@
       margin: 20px;
       border-radius: 12px;
     }
-    .local-section img {
+    .local-section img.local {
       width: 100%;
       max-width: 500px;
       border-radius: 12px;
+    }
+    .local-section a img {
+      width: 25px;
+      height: 25px;
+      margin-top: 10px;
     }
     .confirmacao {
       text-align: center;
@@ -118,6 +93,20 @@
       background-color: rgba(255,255,255,0.8);
       margin: 20px;
       border-radius: 12px;
+    }
+    .botao-central {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .botao-central a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 25px;
+      background-color: #3d4d3d;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
     }
     .rodape {
       display: flex;
@@ -137,15 +126,9 @@
     Railon & Nathália
   </header>
 
-  <button class="menu-btn" onclick="toggleMenu()">☰</button>
-  <div class="menu-content" id="menu">
-    <a href="#sorteio">Sorteio</a>
-    <a href="presentes.html" target="_blank">Presentes</a>
-  </div>
-
   <section class="save-date">
     <h2>Save the Date</h2>
-    <h3>11 de outubro de 2025 às 18h</h3>
+    <h3>11 de outubro de 2025 às 20h</h3>
     <div id="timer"></div>
   </section>
 
@@ -159,17 +142,13 @@
   </section>
 
   <section class="galeria">
-    <!-- Galeria de fotos 1 a 30 -->
-    <!-- Exemplo de imagem -->
-    <!-- <img src="imagens/1.jpeg" alt="Foto 1"> -->
-    <!-- Repetir para as demais até 30.jpeg -->
     <script>
       const galeria = document.currentScript.parentElement;
       for (let i = 1; i <= 30; i++) {
         const img = document.createElement('img');
         img.src = `imagens/${i}.jpeg`;
         img.alt = `Foto ${i}`;
-        img.onclick = () => img.requestFullscreen();
+        img.onclick = () => img.style.transform = 'scale(1.5)';
         galeria.appendChild(img);
       }
     </script>
@@ -178,8 +157,8 @@
   <section class="local-section">
     <h3>Cerimônia</h3>
     <div class="galeria">
-      <img src="igreja/igreja externa.jpg" alt="Igreja Externa">
-      <img src="igreja/igreja interna.jpg" alt="Igreja Interna">
+      <img src="igreja/igreja externa.jpg" alt="Igreja Externa" class="local">
+      <img src="igreja/igreja interna.jpg" alt="Igreja Interna" class="local">
     </div>
     <a href="https://share.google/UPtoWQbdjtaDD3sYw" target="_blank">
       <img src="localização.png" alt="Localização">
@@ -189,12 +168,17 @@
 
   <section class="local-section">
     <h3>Festa</h3>
-    <img src="evento/festa.jpg" alt="Festa">
+    <img src="evento/festa.jpg" alt="Festa" class="local">
     <a href="https://maps.app.goo.gl/zruXh9voZ9H4T8o36" target="_blank">
       <img src="localização.png" alt="Localização">
     </a>
     <p>Rua divina providência, chacara 08 - Ponte alta norte do Gama, Brasília - DF, 72426-150</p>
   </section>
+
+  <div class="botao-central">
+    <a href="presentes.html" target="_blank">Presentes</a>
+    <a href="#sorteio">Sorteio</a>
+  </div>
 
   <section class="confirmacao">
     <h3>Confirmação de Presença</h3>
@@ -220,12 +204,7 @@
   </div>
 
   <script>
-    function toggleMenu() {
-      const menu = document.getElementById("menu");
-      menu.style.display = menu.style.display === "block" ? "none" : "block";
-    }
-
-    const targetDate = new Date("October 11, 2025 18:00:00").getTime();
+    const targetDate = new Date("October 11, 2025 20:00:00").getTime();
     const timer = document.getElementById("timer");
     setInterval(() => {
       const now = new Date().getTime();
