@@ -1,127 +1,182 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Presentes | Railon & Nathália</title>
-  <link rel="stylesheet" href="style.css"> <!-- Se você estiver usando o mesmo CSS do index -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Presentes - Railon & Nathália</title>
+  <link rel="icon" href="imagens/26.jpeg" type="image/jpeg" />
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
     body {
-      font-family: Arial, sans-serif;
-      background-color: #fdfdfb;
       margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #2f4f4f;
+    }
+    header {
+      text-align: center;
       padding: 20px;
+      font-size: 2.5em;
+      font-family: 'Great Vibes', cursive;
+      background-color: #e6f0d4;
+      color: #3d4d3d;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    main {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 10px;
+    }
+    .presente {
+      background-color: white;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       text-align: center;
     }
-
-    h1 {
-      font-family: 'Brush Script MT', cursive;
-      font-size: 2.5em;
-      margin-bottom: 10px;
+    .presente img {
+      max-width: 250px;
+      width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .presente img:hover {
+      transform: scale(1.05);
+    }
+    .descricao {
+      margin-top: 10px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.3em;
+    }
+    .preco {
+      margin-top: 5px;
+      font-weight: bold;
+      font-size: 1.1em;
       color: #556b2f;
     }
-
-    .presente-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 30px;
-    }
-
-    .presente {
-      width: 180px;
-      background-color: #ffffff;
-      border: 2px solid #ccc;
-      border-radius: 10px;
-      padding: 10px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .presente img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-
-    .botao-presentear {
-      margin-top: 10px;
-      background-color: #6b8e23;
+    .btn-presentear {
+      margin-top: 15px;
+      padding: 10px 25px;
+      font-size: 1.1em;
+      background-color: #556b2f;
       color: white;
       border: none;
-      padding: 10px;
-      border-radius: 5px;
+      border-radius: 10px;
       cursor: pointer;
+      transition: background-color 0.3s;
     }
-
-    .pix-info {
-      display: none;
-      margin-top: 10px;
-      font-size: 0.9em;
-      color: #333;
+    .btn-presentear:hover {
+      background-color: #3d4d3d;
+    }
+    #pix-code {
+      margin-top: 20px;
+      font-family: monospace;
+      background-color: #f0f0f0;
+      padding: 15px;
+      border-radius: 8px;
       word-break: break-all;
-    }
-
-    .agradecimento {
-      margin-top: 10px;
-      color: #008000;
       display: none;
-      font-weight: bold;
+    }
+    #msg-agradecimento {
+      margin-top: 20px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.4em;
+      color: #4b732d;
+      display: none;
     }
   </style>
 </head>
 <body>
 
-  <h1>Escolha um Presente 💝</h1>
-  <p>Se desejar nos presentear, clique em "Presentear" e use o Pix exibido.</p>
+<header>Presentes - Railon & Nathália</header>
 
-  <div class="presente-container">
-    <!-- Repita esse bloco de .presente para cada imagem -->
-    <!-- Exemplo para 34.jpg -->
-    <!-- Você pode duplicar e só trocar o número da imagem -->
-    <!-- Lembrando que suas imagens estão na pasta imagens 2 -->
+<main>
+  <div id="presentes-container"></div>
 
-    <!-- Exemplo 1 -->
-    <div class="presente">
-      <img src="imagens 2/34.jpg" alt="Presente 1">
-      <button class="botao-presentear" onclick="mostrarPix(this)">Presentear</button>
-      <div class="pix-info">PIX: railonpix@email.com</div>
-      <div class="agradecimento">Obrigado pelo carinho! 💚</div>
-    </div>
+  <div id="pix-code"></div>
+  <div id="msg-agradecimento"></div>
+</main>
 
-    <!-- Exemplo 2 -->
-    <div class="presente">
-      <img src="imagens 2/35.jpg" alt="Presente 2">
-      <button class="botao-presentear" onclick="mostrarPix(this)">Presentear</button>
-      <div class="pix-info">PIX: railonpix@email.com</div>
-      <div class="agradecimento">Obrigado pelo carinho! 💚</div>
-    </div>
+<script>
+  const presentes = [
+    {img:"imagens 2/34.jpg", desc:"Mais um controle pra que o casal não brigue", preco:"68$"},
+    {img:"imagens 2/35.jpg", desc:"Miojo gourmet", preco:"--"},
+    {img:"imagens 2/36.jpg", desc:"Toma aqui um 50R$", preco:"50$"},
+    {img:"imagens 2/37.jpg", desc:"Caneca pro noivo", preco:"90$"},
+    {img:"imagens 2/38.jpg", desc:"Cílios da noiva", preco:"190$"},
+    {img:"imagens 2/39.jpg", desc:"Pra dizer que eu não ajudei com nada", preco:"60$"},
+    {img:"imagens 2/40.jpg", desc:"Comprar a paciência do noivo", preco:"189$"},
+    {img:"imagens 2/41.jpg", desc:"Cueca pra noite núpcias", preco:"120$"},
+    {img:"imagens 2/42.jpg", desc:"Curso de culinária pra noiva", preco:"320$"},
+    {img:"imagens 2/43.jpg", desc:"Rolo pra quando noivo precisar", preco:"150$"},
+    {img:"imagens 2/44.jpg", desc:"Aviãozinho", preco:"100$"},
+    {img:"imagens 2/45.jpg", desc:"Ajudar com o terno do noivo", preco:"430$"},
+    {img:"imagens 2/46.jpg", desc:"Vale pra noiva deixar o noivo jogar", preco:"110$"},
+    {img:"imagens 2/47.jpg", desc:"Barbeador pro noivo", preco:"70$"},
+    {img:"imagens 2/48.jpg", desc:"Deus te iluminou e você resolveu dar uma ótima ajuda na nossa lua de mel", preco:"4,999$"},
+    {img:"imagens 2/49.jpg", desc:"Dar pitaco/falar mal da festa", preco:"3,500$"},
+    {img:"imagens 2/50.jpg", desc:"Capacete pra se proteger do rolo", preco:"310$"},
+  ];
 
-    <!-- Continue do 36 até o 50 -->
-    <!-- Copie e cole os blocos acima trocando o número da imagem -->
+  const pixCode = "00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO DE62070503***6304F2D6";
 
-  </div>
+  const container = document.getElementById("presentes-container");
+  const pixDisplay = document.getElementById("pix-code");
+  const msgAgradecimento = document.getElementById("msg-agradecimento");
 
-  <script>
-    function mostrarPix(button) {
-      const card = button.parentElement;
-      const pixInfo = card.querySelector('.pix-info');
-      const agradecimento = card.querySelector('.agradecimento');
+  function mostrarPix() {
+    pixDisplay.style.display = "block";
+    pixDisplay.textContent = pixCode;
+    msgAgradecimento.style.display = "none";
+  }
 
-      pixInfo.style.display = 'block';
-      agradecimento.style.display = 'block';
+  function esconderPixEagradecer() {
+    pixDisplay.style.display = "none";
+    msgAgradecimento.style.display = "block";
+    msgAgradecimento.textContent = "Obrigado pelo presente! 💛";
+  }
 
-      // Copiar Pix automaticamente
-      navigator.clipboard.writeText(pixInfo.textContent.trim())
-        .then(() => {
-          button.textContent = "Copiado!";
-          setTimeout(() => {
-            button.textContent = "Presentear";
-          }, 2000);
-        });
-    }
-  </script>
+  function criarPresente(presente) {
+    const div = document.createElement("div");
+    div.classList.add("presente");
+
+    const img = document.createElement("img");
+    img.src = presente.img;
+    img.alt = presente.desc;
+    img.onclick = () => {
+      const w = window.open("");
+      w.document.write(`<img src="${presente.img}" style="width:100%">`);
+    };
+    div.appendChild(img);
+
+    const desc = document.createElement("div");
+    desc.className = "descricao";
+    desc.textContent = presente.desc;
+    div.appendChild(desc);
+
+    const preco = document.createElement("div");
+    preco.className = "preco";
+    preco.textContent = presente.preco;
+    div.appendChild(preco);
+
+    const btn = document.createElement("button");
+    btn.className = "btn-presentear";
+    btn.textContent = "Presentear";
+    btn.onclick = () => {
+      mostrarPix();
+      setTimeout(() => {
+        esconderPixEagradecer();
+      }, 10000); // depois de 10 segundos troca mensagem
+    };
+    div.appendChild(btn);
+
+    container.appendChild(div);
+  }
+
+  presentes.forEach(criarPresente);
+</script>
 
 </body>
 </html>
-
