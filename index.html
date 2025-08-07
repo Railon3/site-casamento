@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Railon & Nathália</title>
-  <link rel="icon" href="imagens/26.jpeg" type="image/jpeg">
+  <link rel="icon" href="imagens/26.jpeg" type="image/jpeg" />
+  
   <style>
+    /* Fundo rotativo */
+    #background-slider {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: opacity 1.2s ease-in-out;
+      z-index: -1;
+      opacity: 1;
+    }
+
     body {
       margin: 0;
       font-family: 'Georgia', serif;
-      background-image: url('imagens/15.jpeg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-position: center;
       color: #3d4d3d;
+      /* Remove o background estático antigo */
+      /* background-image: url('imagens/15.jpeg'); */
+      /* background-size: cover; */
+      /* background-repeat: no-repeat; */
+      /* background-attachment: fixed; */
+      /* background-position: center; */
     }
     header {
       display: flex;
@@ -122,6 +138,10 @@
   </style>
 </head>
 <body>
+
+  <!-- Fundo rotativo das imagens -->
+  <div id="background-slider"></div>
+
   <header>
     Railon & Nathália
   </header>
@@ -157,20 +177,20 @@
   <section class="local-section">
     <h3>Cerimônia</h3>
     <div class="galeria">
-      <img src="igreja/igreja externa.jpg" alt="Igreja Externa" class="local">
-      <img src="igreja/igreja interna.jpg" alt="Igreja Interna" class="local">
+      <img src="igreja/igreja externa.jpg" alt="Igreja Externa" class="local" />
+      <img src="igreja/igreja interna.jpg" alt="Igreja Interna" class="local" />
     </div>
     <a href="https://share.google/UPtoWQbdjtaDD3sYw" target="_blank">
-      <img src="localização.png" alt="Localização">
+      <img src="localização.png" alt="Localização" />
     </a>
     <p>Av.L2 Sul, Quadra 601, Módulos 3/4 - Asa Sul, Brasília - DF, 70200-610</p>
   </section>
 
   <section class="local-section">
     <h3>Festa</h3>
-    <img src="evento/festa.jpg" alt="Festa" class="local">
+    <img src="evento/festa.jpg" alt="Festa" class="local" />
     <a href="https://maps.app.goo.gl/zruXh9voZ9H4T8o36" target="_blank">
-      <img src="localização.png" alt="Localização">
+      <img src="localização.png" alt="Localização" />
     </a>
     <p>Rua divina providência, chacara 08 - Ponte alta norte do Gama, Brasília - DF, 72426-150</p>
   </section>
@@ -183,9 +203,9 @@
   <section class="confirmacao">
     <h3>Confirmação de Presença</h3>
     <form id="rsvp-form">
-      <input type="text" name="nome" placeholder="Seu nome" required><br><br>
+      <input type="text" name="nome" placeholder="Seu nome" required /><br /><br />
       <div id="acompanhantes"></div>
-      <button type="button" onclick="adicionarAcompanhante()">+ Acompanhante</button><br><br>
+      <button type="button" onclick="adicionarAcompanhante()">+ Acompanhante</button><br /><br />
       <button type="submit">Confirmar Presença</button>
     </form>
     <p id="mensagem-confirmacao"></p>
@@ -193,17 +213,37 @@
 
   <div class="rodape">
     <a href="https://open.spotify.com/playlist/7IRDa27ZR2ouWWPGsdcz2B?si=51dfd98ef3ea40f9" target="_blank">
-      <img src="spotify.png" alt="Spotify">
+      <img src="spotify.png" alt="Spotify" />
     </a>
     <a href="https://www.instagram.com/railon.q/" target="_blank">
-      <img src="instagram.png" alt="Instagram Noivo">
+      <img src="instagram.png" alt="Instagram Noivo" />
     </a>
     <a href="https://www.instagram.com/nathesilvaa/" target="_blank">
-      <img src="instagram.png" alt="Instagram Noiva">
+      <img src="instagram.png" alt="Instagram Noiva" />
     </a>
   </div>
 
   <script>
+    // Script para o fundo rotativo
+    const backgroundSlider = document.getElementById('background-slider');
+    const images = [];
+    for(let i = 1; i <= 30; i++) {
+      images.push(`imagens/${i}.jpeg`);
+    }
+
+    let currentIndex = 0;
+    backgroundSlider.style.backgroundImage = `url('${images[currentIndex]}')`;
+
+    setInterval(() => {
+      backgroundSlider.style.opacity = 0; // fade out
+      setTimeout(() => {
+        currentIndex = (currentIndex + 1) % images.length;
+        backgroundSlider.style.backgroundImage = `url('${images[currentIndex]}')`;
+        backgroundSlider.style.opacity = 1; // fade in
+      }, 1200);
+    }, 5000);
+
+    // Timer contagem regressiva
     const targetDate = new Date("October 11, 2025 20:00:00").getTime();
     const timer = document.getElementById("timer");
     setInterval(() => {
@@ -216,12 +256,14 @@
       timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }, 1000);
 
+    // Adicionar acompanhante no formulário
     function adicionarAcompanhante() {
       const div = document.createElement('div');
       div.innerHTML = '<input type="text" name="acompanhante" placeholder="Nome do acompanhante"><br><br>';
       document.getElementById('acompanhantes').appendChild(div);
     }
 
+    // Enviar confirmação para Google Sheets
     document.getElementById("rsvp-form").addEventListener("submit", function(e) {
       e.preventDefault();
       const nome = this.nome.value;
