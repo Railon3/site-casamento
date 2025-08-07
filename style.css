@@ -1,818 +1,519 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1" />
-  <title>Railon & Nathália • 11/10/2025</title>
-  <link rel="icon" href="imagens/26.jpeg" type="image/jpeg" />
-  <!-- Fontes Google -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&family=Dancing+Script:wght@700&display=swap"
-    rel="stylesheet"
-  />
-  <style>
-    /* ===== VARIÁVEIS & RESET ===== */
-    :root {
-      --primary-color: #800000;
-      --secondary-color: #b30059;
-      --accent-color: #d4b483;
-      --light-bg: #fffaf5;
-      --text-color: #333;
-      --font-main: 'Montserrat', sans-serif;
-      --font-decorative: 'Great Vibes', cursive;
-
-      --border-radius: 1rem;
-      --transition-time: 0.3s;
-      --box-shadow-light: 0 5px 15px rgba(0, 0, 0, 0.05);
-      --error-color: #d9534f;
-      --success-color: #5cb85c;
-    }
-
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    body {
-      font-family: var(--font-main);
-      background-color: var(--light-bg);
-      color: var(--text-color);
-      line-height: 1.6;
-      min-height: 100vh;
-      background-attachment: fixed;
-    }
-
-    /* ===== TIPOGRAFIA ===== */
-    h1,
-    h2,
-    h3 {
-      font-weight: 700;
-      line-height: 1.2;
-      color: var(--primary-color);
-      margin-bottom: 0.8rem;
-      scroll-margin-top: 80px;
-    }
-
-    h2 {
-      font-size: 2rem;
-      position: relative;
-      margin-bottom: 3rem;
-    }
-
-    h2::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 3px;
-      background: var(--accent-color);
-      margin: 0.8rem auto 0;
-      border-radius: 2px;
-    }
-
-    /* ===== HEADER ===== */
-    .header {
-      background-color: rgba(248, 215, 218, 0.9);
-      padding: 1.5rem 2rem;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(5px);
-      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
-    }
-
-    .nomes-noivos {
-      font-family: var(--font-decorative);
-      font-size: clamp(1.8rem, 5vw, 2.5rem);
-      color: var(--primary-color);
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-      user-select: none;
-    }
-
-    /* ===== MENU MOBILE ===== */
-    .menu-toggle {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: var(--primary-color);
-      z-index: 1100;
-      background: transparent;
-      border: none;
-      transition: color var(--transition-time);
-    }
-
-    .menu-toggle:focus {
-      outline-offset: 3px;
-      outline-color: var(--secondary-color);
-      outline-style: solid;
-    }
-
-    .nav-menu {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 80%;
-      max-width: 300px;
-      height: 100vh;
-      background: rgba(252, 228, 236, 0.98);
-      transition: right var(--transition-time) ease;
-      z-index: 1050;
-      padding-top: 5rem;
-      box-shadow: -4px 0 12px rgb(0 0 0 / 0.1);
-    }
-
-    .nav-menu.active {
-      right: 0;
-    }
-
-    .nav-menu ul {
-      list-style: none;
-      padding: 0 1rem;
-    }
-
-    .nav-menu li {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .nav-menu a {
-      display: block;
-      padding: 1rem;
-      text-decoration: none;
-      color: var(--primary-color);
-      font-weight: 600;
-      font-size: 1rem;
-      transition: background var(--transition-time), padding-left var(--transition-time);
-      border-radius: var(--border-radius);
-    }
-
-    .nav-menu a:hover,
-    .nav-menu a:focus {
-      background: rgba(255, 255, 255, 0.3);
-      padding-left: 1.5rem;
-      outline: none;
-    }
-
-    /* ===== SEÇÕES ===== */
-    .section {
-      padding: 4rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    /* História do Casal */
-    .historia-container {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    @media (min-width: 768px) {
-      .historia-container {
-        flex-direction: row;
-      }
-    }
-
-    .historia-texto {
-      flex: 1;
-      text-align: left;
-      font-size: 1.1rem;
-      color: var(--text-color);
-      line-height: 1.7;
-    }
-
-    /* Galeria de fotos na história */
-    .historia-fotos {
-      flex: 1;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-    }
-
-    .historia-fotos img {
-      width: 100%;
-      border-radius: 0.5rem;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-      transition: transform var(--transition-time);
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .historia-fotos img:hover,
-    .historia-fotos img:focus {
-      transform: scale(1.03);
-      outline: none;
-    }
-
-    /* ===== TIMER ===== */
-    .timer-container {
-      background: rgba(255, 255, 255, 0.8);
-      padding: 2rem;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow-light);
-      max-width: 600px;
-      margin: 2rem auto;
-      text-align: center;
-      user-select: none;
-    }
-
-    .timer {
-      font-size: 1.5rem;
-      color: var(--primary-color);
-    }
-
-    #clock {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      font-weight: 700;
-      margin-top: 1rem;
-      font-family: monospace;
-    }
-
-    /* ===== GALERIA ===== */
-    .galeria-section {
-      background: rgba(255, 255, 255, 0.7);
-      padding-bottom: 3rem;
-    }
-
-    .galeria-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
-      padding: 1rem 0;
-    }
-
-    .galeria-container img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 0.5rem;
-      cursor: pointer;
-      transition: transform var(--transition-time), box-shadow var(--transition-time);
-      filter: drop-shadow(0 2px 5px rgb(0 0 0 / 0.1));
-    }
-
-    .galeria-container img:hover,
-    .galeria-container img:focus {
-      transform: scale(1.05);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      outline: none;
-    }
-
-    /* ===== MODAL ===== */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      overflow-y: auto;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-
-    .modal.active {
-      display: flex;
-    }
-
-    .modal-content {
-      max-width: 90%;
-      max-height: 90vh;
-      border-radius: var(--border-radius);
-      animation: zoom 0.3s ease forwards;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    }
-
-    @keyframes zoom {
-      from {
-        transform: scale(0.8);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    .close {
-      position: fixed;
-      top: 2rem;
-      right: 2.5rem;
-      color: white;
-      font-size: 3rem;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 2010;
-      background: transparent;
-      border: none;
-      transition: color var(--transition-time);
-    }
-
-    .close:hover,
-    .close:focus {
-      color: var(--accent-color);
-      outline: none;
-    }
-
-    /* ===== LOCAIS ===== */
-    .local-section {
-      background: white;
-      border-radius: var(--border-radius);
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: var(--box-shadow-light);
-      text-align: center;
-    }
-
-    .botoes-local {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .botao-local {
-      background: var(--primary-color);
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      justify-content: center;
-      transition: background-color var(--transition-time), transform var(--transition-time);
-      user-select: none;
-      cursor: pointer;
-      box-shadow: 0 5px 12px rgb(0 0 0 / 0.1);
-    }
-
-    .botao-local:hover,
-    .botao-local:focus {
-      background: var(--secondary-color);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 15px rgb(0 0 0 / 0.15);
-      outline: none;
-    }
-
-    /* ===== FORMULÁRIOS ===== */
-    .form-container {
-      max-width: 500px;
-      margin: 0 auto 3rem;
-      background: white;
-      padding: 2rem;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow-light);
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      color: var(--primary-color);
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      border: 1.5px solid #ddd;
-      border-radius: 0.5rem;
-      font-family: var(--font-main);
-      font-size: 1rem;
-      transition: border-color var(--transition-time);
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--secondary-color);
-      outline: none;
-      box-shadow: 0 0 8px var(--secondary-color);
-    }
-
-    .form-submit {
-      background: var(--primary-color);
-      color: white;
-      border: none;
-      padding: 0.8rem 1.5rem;
-      border-radius: 50px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: background-color var(--transition-time), transform var(--transition-time);
-      width: 100%;
-      user-select: none;
-    }
-
-    .form-submit:hover,
-    .form-submit:focus {
-      background: var(--secondary-color);
-      transform: translateY(-3px);
-      outline: none;
-    }
-
-    /* ===== PRESENTES ===== */
-    .pix-box {
-      background: #fff0f5;
-      padding: 1.5rem;
-      border-radius: var(--border-radius);
-      margin: 2rem auto;
-      max-width: 500px;
-      text-align: center;
-      box-shadow: var(--box-shadow-light);
-    }
-
-    .pix-code {
-      width: 100%;
-      padding: 0.8rem;
-      font-size: 1rem;
-      margin-top: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 0.5rem;
-      background: white;
-      font-family: monospace;
-      user-select: all;
-    }
-
-    /* ===== RODAPÉ ===== */
-    .footer {
-      background: rgba(248, 215, 218, 0.9);
-      padding: 2rem 1rem 0.5rem;
-      text-align: center;
-      backdrop-filter: blur(5px);
-      box-shadow: 0 -2px 12px rgb(0 0 0 / 0.05);
-      user-select: none;
-      max-width: 600px;
-      margin: 4rem auto 2rem;
-      border-radius: var(--border-radius);
-    }
-
-    .spotify-link {
-      display: inline-block;
-      margin-bottom: 1.5rem;
-    }
-
-    .spotify-link img {
-      width: 40px;
-      height: 40px;
-      opacity: 0.8;
-      transition: all var(--transition-time);
-      vertical-align: middle;
-    }
-
-    .spotify-link:hover img,
-    .spotify-link:focus img {
-      opacity: 1;
-      transform: scale(1.15);
-      outline: none;
-    }
-
-    .footer-info {
-      background: #fff0f5;
-      border-radius: var(--border-radius);
-      padding: 1.5rem;
-      color: #4b4039;
-      font-size: 1rem;
-      text-align: left;
-      box-shadow: var(--box-shadow-light);
-      max-width: 100%;
-      line-height: 1.5;
-      white-space: pre-line; /* mantém quebras de linha no texto */
-      user-select: text;
-      margin: 0 auto 1rem;
-    }
-
-    /* ===== BOTÕES PRINCIPAIS ===== */
-    .btn-container {
-      display: flex;
-      justify-content: center;
-      gap: 1.25rem;
-      flex-wrap: wrap;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      max-width: 600px;
-    }
-
-    .btn {
-      padding: 0.8rem 2rem;
-      background: var(--primary-color);
-      color: white;
-      border: none;
-      border-radius: 50px;
-      font-family: var(--font-main);
-      font-weight: 600;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background-color var(--transition-time), transform var(--transition-time);
-      text-decoration: none;
-      text-align: center;
-      user-select: none;
-      box-shadow: 0 5px 12px rgb(0 0 0 / 0.1);
-      min-width: 140px;
-    }
-
-    .btn:hover,
-    .btn:focus {
-      background: var(--secondary-color);
-      transform: translateY(-3px);
-      outline: none;
-      box-shadow: 0 8px 18px rgb(0 0 0 / 0.18);
-    }
-
-    .btn:active {
-      transform: translateY(-1px);
-      box-shadow: 0 5px 10px rgb(0 0 0 / 0.12);
-    }
-
-    /* ===== RESPONSIVO ===== */
-    @media (max-width: 768px) {
-      .header {
-        padding: 1rem;
-      }
-
-      .nomes-noivos {
-        font-size: 2rem;
-      }
-
-      .section {
-        padding: 2rem 1rem;
-      }
-
-      .historia-fotos {
-        grid-template-columns: 1fr;
-      }
-
-      #clock {
-        font-size: 2rem;
-      }
-
-      .galeria-container {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      }
-
-      .btn-container {
-        justify-content: center;
-      }
-    }
-
-    @media (max-width: 400px) {
-      h2 {
-        font-size: 1.5rem;
-      }
-
-      .nomes-noivos {
-        font-size: 1.7rem;
-      }
-
-      #clock {
-        font-size: 1.6rem;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <!-- Fundo rotativo -->
-  <div id="background-slider" aria-hidden="true"></div>
-
-  <!-- Cabeçalho -->
-  <header class="header">
-    <h1 class="nomes-noivos">Railon &amp; Nathália</h1>
-    <p class="date" aria-label="Data do casamento">11 de outubro de 2025</p>
-  </header>
-
-  <!-- Contagem regressiva -->
-  <div class="timer-container" aria-live="polite" aria-atomic="true" aria-relevant="text">
-    <div id="clock" role="timer" aria-label="Contagem regressiva para o casamento">...</div>
-  </div>
-
-  <!-- Nossa história -->
-  <section class="section historia-container" aria-labelledby="historia-title">
-    <article class="historia-texto">
-      <h2 id="historia-title">Nossa História</h2>
-      <p>
-        Railon e Nathália. Duas histórias que se cruzaram no tempo, duas vidas que agora seguem juntas rumo a um novo capítulo. Railon e Nathália descobriram no amor a força que une, a leveza que conforta e a beleza de compartilhar os dias bons ou desafiadores com alguém que escolhem amar todos os dias.
-      </p>
-      <p>
-        Casar é mais do que uma celebração, é um ato de coragem, de entrega e de esperança. E é com o coração cheio de gratidão que compartilhamos esse momento com pessoas tão especiais como você.
-      </p>
-      <p>Obrigado por fazer parte da nossa história. Sua presença é o nosso maior presente. 💛</p>
-    </article>
-    <div class="historia-fotos" aria-label="Fotos do casal">
-      <img src="imagens/1.jpeg" alt="Foto do casal 1" tabindex="0" />
-      <img src="imagens/2.jpeg" alt="Foto do casal 2" tabindex="0" />
-      <img src="imagens/3.jpeg" alt="Foto do casal 3" tabindex="0" />
-      <img src="imagens/4.jpeg" alt="Foto do casal 4" tabindex="0" />
-    </div>
-  </section>
-
-  <!-- Galeria de fotos -->
-  <section class="section galeria-section" aria-label="Galeria de fotos dos nossos momentos">
-    <h2>Nossos Momentos</h2>
-    <div class="galeria-container" id="main-gallery" role="list"></div>
-  </section>
-
-  <!-- Localização Cerimônia -->
-  <section class="section local-section" aria-labelledby="cerimonia-title">
-    <h3 id="cerimonia-title">Cerimônia</h3>
-    <img src="igreja/igreja externa.jpg" alt="Fachada da igreja onde será realizada a cerimônia" />
-    <p>Av. L2 Sul, Quadra 601, Módulos 3/4 - Asa Sul, Brasília - DF</p>
-    <div class="botoes-local">
-      <a
-        href="https://share.google/UPtoWQbdjtaDD3sYw"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="botao-local"
-        aria-label="Abrir mapa da localização da cerimônia no Google Maps"
-        >Ver no mapa</a
-      >
-    </div>
-  </section>
-
-  <!-- Localização Festa -->
-  <section class="section local-section" aria-labelledby="festa-title">
-    <h3 id="festa-title">Festa</h3>
-    <img src="evento/festa.jpg" alt="Local da festa de casamento decorado" />
-    <p>Rua Divina Providência, Chácara 08 - Ponte Alta Norte, Gama - DF</p>
-    <div class="botoes-local">
-      <a
-        href="https://maps.app.goo.gl/zruXh9voZ9H4T8o36"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="botao-local"
-        aria-label="Abrir mapa da localização da festa no Google Maps"
-        >Ver no mapa</a
-      >
-    </div>
-  </section>
-
-  <!-- Botões de ação: só 2 agora -->
-  <div class="btn-container" role="navigation" aria-label="Navegação principal do site">
-    <a href="presentes.html" class="btn">Lista de Presentes</a>
-    <a href="#sorteio" class="btn" id="sorteio-button">Sorteio</a>
-  </div>
-
-  <!-- Confirmação de presença removida conforme pedido -->
-
-  <!-- Rodapé -->
-  <footer class="footer" role="contentinfo" aria-label="Rodapé do site com redes sociais e informações">
-    <a
-      href="https://open.spotify.com/playlist/7IRDa27ZR2ouWWPGsdcz2B?si=51dfd98ef3ea40f9"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="spotify-link"
-      aria-label="Playlist de Spotify do casamento"
-      ><img src="spotify.png" alt="Ícone Spotify"/></a
-    >
-
-    <div class="footer-info" aria-live="polite">
-      💍 Cerimônia: Início pontualmente às 20h (cheguem com 30min de antecedência para não perderem nosso "Sim"!).
-      
-      🍾 Sobre as bebidas na festa:
-      • Não serviremos bebidas alcoólicas, mas quem desejar consumir, pode trazer a sua preferida (em cooler pessoal).
-      • Teremos gelo à vontade, água, refrigerantes e sucos disponíveis para todos.
-      
-      "O amor já nos deixa bêbados de felicidade – mas quem quiser brindar com algo extra, é só trazer seu drink especial!" 🥂
-      
-      Agradecemos pelo carinho e por fazerem parte do nosso dia!
-    </div>
-  </footer>
-
-  <!-- JavaScript -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Background Slider
-      const backgroundSlider = document.getElementById('background-slider');
-      const images = Array.from({ length: 30 }, (_, i) => `imagens/${i + 1}.jpeg`);
-      let currentIndex = 0;
-
-      function changeBackground() {
-        backgroundSlider.style.opacity = 0;
-        setTimeout(() => {
-          currentIndex = (currentIndex + 1) % images.length;
-          backgroundSlider.style.backgroundImage = \`url('\${images[currentIndex]}')\`;
-          backgroundSlider.style.opacity = 0.7;
-        }, 600);
-      }
-      setInterval(changeBackground, 5000);
-      backgroundSlider.style.backgroundImage = \`url('\${images[0]}')\`;
-
-      // Countdown Timer
-      const clock = document.getElementById('clock');
-      const targetDate = new Date('2025-10-11T20:00:00-03:00').getTime();
-
-      function updateTimer() {
-        const now = new Date().getTime();
-        const diff = targetDate - now;
-
-        if (diff <= 0) {
-          clock.textContent = 'O grande dia chegou! 🎉';
-          clearInterval(timerInterval);
-          return;
-        }
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-        clock.textContent = \`\${days}d \${hours}h \${minutes}m \${seconds}s\`;
-      }
-      const timerInterval = setInterval(updateTimer, 1000);
-      updateTimer();
-
-      // Load Gallery Dynamically
-      async function loadGalleryImages() {
-        try {
-          const response = await fetch('assets/data/gallery.json');
-          if (!response.ok) throw new Error('Falha ao carregar arquivo da galeria.');
-
-          const galleryContainer = document.querySelector('.galeria-container');
-          if (!galleryContainer) return;
-
-          const images = await response.json();
-          galleryContainer.innerHTML = images
-            .map(
-              (img) =>
-                \`<img src="\${img.src}" alt="\${img.alt || 'Foto do casal'}" loading="lazy" tabindex="0" />\`
-            )
-            .join('');
-
-          initGallery();
-        } catch (error) {
-          console.error('Erro ao carregar galeria:', error);
-        }
-      }
-
-      // Gallery Modal
-      function initGallery() {
-        const galleryImages = document.querySelectorAll('.galeria-container img');
-        const modal = document.getElementById('image-modal');
-        const modalImg = document.getElementById('modal-image');
-        const closeModal = document.querySelector('.close');
-
-        if (!modal || !modalImg || !closeModal) return;
-
-        function openModal(e) {
-          e.preventDefault();
-          modalImg.src = this.src;
-          modalImg.alt = this.alt || '';
-          modal.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        }
-
-        function closeGalleryModal() {
-          modal.classList.remove('active');
-          document.body.style.overflow = '';
-        }
-
-        galleryImages.forEach((img) => {
-          img.addEventListener('click', openModal);
-          img.style.cursor = 'pointer';
-        });
-
-        closeModal.addEventListener('click', closeGalleryModal);
-
-        modal.addEventListener('click', (e) => {
-          if (e.target === modal) closeGalleryModal();
-        });
-
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && modal.classList.contains('active')) closeGalleryModal();
-        });
-      }
-
-      loadGalleryImages();
-    });
-  </script>
-
-  <!-- Modal HTML for image gallery -->
-  <div class="modal" id="image-modal" aria-modal="true" role="dialog" aria-labelledby="modal-image-label" tabindex="-1">
-    <button class="close" aria-label="Fechar imagem do modal">×</button>
-    <img id="modal-image" alt="" />
-  </div>
-</body>
-</html>
+/* ===== VARIÁVEIS & RESET ===== */
+:root {
+  --primary-color: #800000;
+  --secondary-color: #b30059;
+  --accent-color: #d4b483;
+  --light-bg: #fffaf5;
+  --text-color: #333;
+  --font-main: 'Montserrat', sans-serif;
+  --font-decorative: 'Great Vibes', cursive;
+
+  /* Novas variáveis para facilitar manutenção */
+  --border-radius: 1rem;
+  --transition-time: 0.3s;
+  --box-shadow-light: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Melhor https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-behavior */
+html {
+  scroll-behavior: smooth;
+  /* Melhorar fontes nas telas */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Corpo */
+body {
+  font-family: var(--font-main);
+  background-color: var(--light-bg);
+  color: var(--text-color);
+  line-height: 1.6;
+  min-height: 100vh;
+  background-attachment: fixed; /* efeito sutil em backgrounds se existirem */
+}
+
+/* ===== TIPOGRAFIA ===== */
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--primary-color);
+  margin-bottom: 0.8rem;
+  scroll-margin-top: 80px; /* Evita ocultar conteúdo atrás de cabeçalho fixo */
+}
+
+h2 {
+  font-size: 2rem;
+  position: relative;
+  margin-bottom: 3rem; /* mais espaçamento para o ::after */
+}
+
+h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--accent-color);
+  margin: 0.8rem auto 0;
+  border-radius: 2px;
+}
+
+/* ===== HEADER ===== */
+.header {
+  background-color: rgba(248, 215, 218, 0.9);
+  padding: 1.5rem 2rem;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+}
+
+.nomes-noivos {
+  font-family: var(--font-decorative);
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  color: var(--primary-color);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  user-select: none;
+}
+
+/* ===== MENU MOBILE ===== */
+.menu-toggle {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--primary-color);
+  z-index: 1100;
+  background: transparent;
+  border: none;
+  transition: color var(--transition-time);
+}
+
+.menu-toggle:focus {
+  outline-offset: 3px;
+  outline-color: var(--secondary-color);
+  outline-style: solid;
+}
+
+.nav-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 300px;
+  height: 100vh;
+  background: rgba(252, 228, 236, 0.98);
+  transition: right var(--transition-time) ease;
+  z-index: 1050;
+  padding-top: 5rem;
+  box-shadow: -4px 0 12px rgb(0 0 0 / 0.1);
+}
+
+.nav-menu.active {
+  right: 0;
+}
+
+.nav-menu ul {
+  list-style: none;
+  padding: 0 1rem;
+}
+
+.nav-menu li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.nav-menu a {
+  display: block;
+  padding: 1rem;
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background var(--transition-time), padding-left var(--transition-time);
+  border-radius: var(--border-radius);
+}
+
+.nav-menu a:hover,
+.nav-menu a:focus {
+  background: rgba(255, 255, 255, 0.3);
+  padding-left: 1.5rem;
+  outline: none;
+}
+
+/* ===== SEÇÕES ===== */
+.section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* História do Casal */
+.historia-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .historia-container {
+    flex-direction: row;
+  }
+}
+
+.historia-texto {
+  flex: 1;
+  text-align: left;
+  font-size: 1.1rem;
+  color: var(--text-color);
+  line-height: 1.7;
+}
+
+/* Galeria de fotos na história */
+.historia-fotos {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.historia-fotos img {
+  width: 100%;
+  border-radius: 0.5rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: transform var(--transition-time);
+  cursor: pointer;
+  user-select: none;
+}
+
+.historia-fotos img:hover,
+.historia-fotos img:focus {
+  transform: scale(1.03);
+  outline: none;
+}
+
+/* ===== TIMER ===== */
+.timer-container {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-light);
+  max-width: 600px;
+  margin: 2rem auto;
+  text-align: center;
+  user-select: none;
+}
+
+.timer {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+#clock {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  margin-top: 1rem;
+  font-family: monospace;
+}
+
+/* ===== GALERIA ===== */
+.galeria-section {
+  background: rgba(255, 255, 255, 0.7);
+  padding-bottom: 3rem;
+}
+
+.galeria-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.galeria-container img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform var(--transition-time), box-shadow var(--transition-time);
+  filter: drop-shadow(0 2px 5px rgb(0 0 0 / 0.1));
+}
+
+.galeria-container img:hover,
+.galeria-container img:focus {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+/* ===== MODAL ===== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  overflow-y: auto;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  max-width: 90%;
+  max-height: 90vh;
+  border-radius: var(--border-radius);
+  animation: zoom 0.3s ease forwards;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.close {
+  position: fixed;
+  top: 2rem;
+  right: 2.5rem;
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 2010;
+  background: transparent;
+  border: none;
+  transition: color var(--transition-time);
+}
+
+.close:hover,
+.close:focus {
+  color: var(--accent-color);
+  outline: none;
+}
+
+/* ===== LOCAIS ===== */
+.local-section {
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--box-shadow-light);
+  text-align: center;
+}
+
+.botoes-local {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.botao-local {
+  background: var(--primary-color);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  transition: background-color var(--transition-time), transform var(--transition-time);
+  user-select: none;
+  cursor: pointer;
+  box-shadow: 0 5px 12px rgb(0 0 0 / 0.1);
+}
+
+.botao-local:hover,
+.botao-local:focus {
+  background: var(--secondary-color);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgb(0 0 0 / 0.15);
+  outline: none;
+}
+
+/* ===== FORMULÁRIOS ===== */
+.form-container {
+  max-width: 500px;
+  margin: 0 auto 3rem;
+  background: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-light);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1.5px solid #ddd;
+  border-radius: 0.5rem;
+  font-family: var(--font-main);
+  font-size: 1rem;
+  transition: border-color var(--transition-time);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--secondary-color);
+  outline: none;
+  box-shadow: 0 0 8px var(--secondary-color);
+}
+
+.form-submit {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: background-color var(--transition-time), transform var(--transition-time);
+  width: 100%;
+  user-select: none;
+}
+
+.form-submit:hover,
+.form-submit:focus {
+  background: var(--secondary-color);
+  transform: translateY(-3px);
+  outline: none;
+}
+
+/* ===== PRESENTES ===== */
+.pix-box {
+  background: #fff0f5;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  margin: 2rem auto;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: var(--box-shadow-light);
+}
+
+.pix-code {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  background: white;
+  font-family: monospace;
+  user-select: all; /* facilita copiar o código PIX */
+}
+
+/* ===== RODAPÉ ===== */
+.footer {
+  background: rgba(248, 215, 218, 0.9);
+  padding: 2rem;
+  text-align: center;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 -2px 12px rgb(0 0 0 / 0.05);
+  user-select: none;
+}
+
+.redes {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.redes a {
+  color: var(--primary-color);
+  font-size: 1.7rem;
+  transition: color var(--transition-time), transform var(--transition-time);
+}
+
+.redes a:hover,
+.redes a:focus {
+  color: var(--secondary-color);
+  transform: translateY(-3px);
+  outline: none;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+
+  .nomes-noivos {
+    font-size: 2rem;
+  }
+
+  .section {
+    padding: 2rem 1rem;
+  }
+
+  .historia-fotos {
+    grid-template-columns: 1fr;
+  }
+
+  #clock {
+    font-size: 2rem;
+  }
+
+  .galeria-container {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+/* Para telas pequenas, garantir acessibilidade */
+@media (max-width: 400px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .nomes-noivos {
+    font-size: 1.7rem;
+  }
+
+  #clock {
+    font-size: 1.6rem;
+  }
+}
