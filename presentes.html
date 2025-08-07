@@ -71,15 +71,18 @@
       display: flex;
       flex-direction: column;
       height: 100%;
+      position: relative;
     }
-    /* Imagem sem borda arredondada para não cortar as fotos */
+    /* Ajuste para mostrar a imagem completa e proporcional */
     .presente-card img {
       width: 100%;
-      height: 160px;
-      object-fit: cover;
-      /* remove border-radius para preservar visual da imagem */
+      height: auto;
+      max-height: 160px;
       margin-bottom: 0.8rem;
       box-shadow: 0 3px 8px rgb(0 0 0 / 0.1);
+      object-fit: contain; /* evita cortar a imagem */
+      border-radius: 0; /* sem arredondamento para manter proporção limpa */
+      background: #f0f0f0; /* leve fundo para evitar espaços em branco */
     }
     .presente-nome {
       font-weight: 700;
@@ -104,6 +107,8 @@
       border-radius: 50px;
       transition: background-color var(--transition), transform var(--transition);
       user-select: none;
+      width: 100%;
+      /* espaço para o botão de copiar aparecer abaixo */
     }
     button.presentear-btn:hover,
     button.presentear-btn:focus {
@@ -115,38 +120,51 @@
       transform: translateY(0);
       background: var(--cor-primaria);
     }
-    /* Mensagem PIX copiado com suavidade na transição */
+    /* Botão "Copiar PIX" que abre embaixo do presentear */
+    button.copiar-pix-btn {
+      margin-top: 0.6rem;
+      background: var(--cor-secundaria);
+      border: none;
+      color: white;
+      padding: 0.55rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border-radius: 50px;
+      width: 100%;
+      display: block;
+      transition: background-color var(--transition), transform var(--transition);
+      user-select: none;
+    }
+    button.copiar-pix-btn:hover,
+    button.copiar-pix-btn:focus {
+      background: var(--cor-primaria);
+      outline: none;
+      transform: translateY(-2px);
+    }
+    button.copiar-pix-btn:active {
+      transform: translateY(0);
+      background: var(--cor-secundaria);
+    }
+    /* Container do botão copiar PIX oculto inicialmente */
+    .copy-pix-container {
+      display: none;
+    }
+    /* Mensagem PIX copiado / agradecimento com suavidade */
     #copy-feedback {
       margin-top: 1rem;
       font-weight: 600;
       color: var(--cor-successo);
       text-align: center;
-      min-height: 1.3em;
+      min-height: 1.5em;
       visibility: hidden;
       opacity: 0;
       transition: visibility 0.3s ease, opacity 0.3s ease;
+      font-family: 'Montserrat', sans-serif;
     }
     #copy-feedback.visible {
       visibility: visible;
       opacity: 1;
-    }
-    /* Avisos importantes estilo botão visual não clicável */
-    .details-message {
-      max-width: 600px;
-      margin: 2rem auto 0.5rem;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1rem;
-      text-align: center;
-      color: white;
-      background-color: var(--cor-primaria);
-      padding: 0.8rem 1.5rem;
-      border-radius: 25px;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      user-select: none;
-      box-shadow: 0 3px 8px rgb(0 0 0 / 0.12);
-      pointer-events: none; /* não clicável */
-      cursor: default;
     }
     footer.footer {
       background: white;
@@ -177,121 +195,165 @@
         <img src="imagens 2/35.jpg" alt="Miojo gourmet" />
         <div class="presente-nome">Miojo gourmet</div>
         <div class="presente-valor">R$ 35,00</div>
-        <button class="presentear-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO DE62070503***6304F2D6">Presentear</button>
+        <button class="presentear-btn" aria-expanded="false" aria-controls="copy-pix-1" aria-label="Mostrar opção para copiar PIX do Miojo gourmet">Presentear</button>
+        <div class="copy-pix-container" id="copy-pix-1">
+          <button class="copiar-pix-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO DE62070503***6304F2D6">Copiar PIX</button>
+        </div>
       </article>
       <!-- Presente 2 -->
       <article class="presente-card">
         <img src="imagens 2/36.jpg" alt="Toma aqui um" />
         <div class="presente-nome">Toma aqui um</div>
         <div class="presente-valor">R$ 50,00</div>
-        <button class="presentear-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Presentear</button>
+        <button class="presentear-btn" aria-expanded="false" aria-controls="copy-pix-2" aria-label="Mostrar opção para copiar PIX do Toma aqui um">Presentear</button>
+        <div class="copy-pix-container" id="copy-pix-2">
+          <button class="copiar-pix-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Copiar PIX</button>
+        </div>
       </article>
       <!-- Presente 3 -->
       <article class="presente-card">
         <img src="imagens 2/37.jpg" alt="Caneca pro noivo" />
         <div class="presente-nome">Caneca pro noivo</div>
         <div class="presente-valor">R$ 90,00</div>
-        <button class="presentear-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Presentear</button>
+        <button class="presentear-btn" aria-expanded="false" aria-controls="copy-pix-3" aria-label="Mostrar opção para copiar PIX da Caneca pro noivo">Presentear</button>
+        <div class="copy-pix-container" id="copy-pix-3">
+          <button class="copiar-pix-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Copiar PIX</button>
+        </div>
       </article>
       <!-- Presente 4 -->
       <article class="presente-card">
         <img src="imagens 2/38.jpg" alt="Cílios da noiva" />
         <div class="presente-nome">Cílios da noiva</div>
         <div class="presente-valor">R$ 190,00</div>
-        <button class="presentear-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Presentear</button>
+        <button class="presentear-btn" aria-expanded="false" aria-controls="copy-pix-4" aria-label="Mostrar opção para copiar PIX dos Cílios da noiva">Presentear</button>
+        <div class="copy-pix-container" id="copy-pix-4">
+          <button class="copiar-pix-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Copiar PIX</button>
+        </div>
       </article>
       <!-- Presente 5 -->
       <article class="presente-card">
         <img src="imagens 2/39.jpg" alt="Pra Dizer que eu nao ajudei com nada" />
         <div class="presente-nome">Pra Dizer que eu nao ajudei com nada</div>
         <div class="presente-valor">R$ 60,00</div>
-        <button class="presentear-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Presentear</button>
+        <button class="presentear-btn" aria-expanded="false" aria-controls="copy-pix-5" aria-label="Mostrar opção para copiar PIX do Pra Dizer que eu nao ajudei com nada">Presentear</button>
+        <div class="copy-pix-container" id="copy-pix-5">
+          <button class="copiar-pix-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Copiar PIX</button>
+        </div>
       </article>
       <!-- Presente 6 -->
       <article class="presente-card">
         <img src="imagens 2/40.jpg" alt="Comprar a paciencia do noivo" />
         <div class="presente-nome">Comprar a paciencia do noivo</div>
         <div class="presente-valor">R$ 189,00</div>
-        <button class="presentear-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Presentear</button>
+        <button class="presentear-btn" aria-expanded="false" aria-controls="copy-pix-6" aria-label="Mostrar opção para copiar PIX do Comprar a paciencia do noivo">Presentear</button>
+        <div class="copy-pix-container" id="copy-pix-6">
+          <button class="copiar-pix-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Copiar PIX</button>
+        </div>
       </article>
       <!-- Presente 7 -->
       <article class="presente-card">
         <img src="imagens 2/41.jpg" alt="Cueca pra noite núpcias" />
         <div class="presente-nome">Cueca pra noite núpcias</div>
         <div class="presente-valor">R$ 120,00</div>
-        <button class="presentear-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Presentear</button>
+        <button class="presentear-btn" aria-expanded="false" aria-controls="copy-pix-7" aria-label="Mostrar opção para copiar PIX da Cueca pra noite núpcias">Presentear</button>
+        <div class="copy-pix-container" id="copy-pix-7">
+          <button class="copiar-pix-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Copiar PIX</button>
+        </div>
       </article>
       <!-- Presente 8 -->
       <article class="presente-card">
         <img src="imagens 2/42.jpg" alt="Curso de culinária pra noiva" />
         <div class="presente-nome">Curso de culinária pra noiva</div>
         <div class="presente-valor">R$ 320,00</div>
-        <button class="presentear-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Presentear</button>
+        <button class="presentear-btn" aria-expanded="false" aria-controls="copy-pix-8" aria-label="Mostrar opção para copiar PIX do Curso de culinária pra noiva">Presentear</button>
+        <div class="copy-pix-container" id="copy-pix-8">
+          <button class="copiar-pix-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Copiar PIX</button>
+        </div>
       </article>
       <!-- Presente 9 -->
       <article class="presente-card">
         <img src="imagens 2/43.jpg" alt="Rolo pra quando noivo precisar" />
         <div class="presente-nome">Rolo pra quando noivo precisar</div>
         <div class="presente-valor">R$ 150,00</div>
-        <button class="presentear-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Presentear</button>
+        <button class="presentear-btn" aria-expanded="false" aria-controls="copy-pix-9" aria-label="Mostrar opção para copiar PIX do Rolo pra quando noivo precisar">Presentear</button>
+        <div class="copy-pix-container" id="copy-pix-9">
+          <button class="copiar-pix-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Copiar PIX</button>
+        </div>
       </article>
       <!-- Presente 10 -->
       <article class="presente-card">
         <img src="imagens 2/44.jpg" alt="Aviãozinho" />
         <div class="presente-nome">Aviãozinho</div>
         <div class="presente-valor">R$ 100,00</div>
-        <button class="presentear-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Presentear</button>
+        <button class="presentear-btn" aria-expanded="false" aria-controls="copy-pix-10" aria-label="Mostrar opção para copiar PIX do Aviãozinho">Presentear</button>
+        <div class="copy-pix-container" id="copy-pix-10">
+          <button class="copiar-pix-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Copiar PIX</button>
+        </div>
       </article>
       <!-- Presente 11 -->
       <article class="presente-card">
         <img src="imagens 2/45.jpg" alt="Ajudar com o terno do noivo" />
         <div class="presente-nome">Ajudar com o terno do noivo</div>
         <div class="presente-valor">R$ 430,00</div>
-        <button class="presentear-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Presentear</button>
+        <button class="presentear-btn" aria-expanded="false" aria-controls="copy-pix-11" aria-label="Mostrar opção para copiar PIX do Ajudar com o terno do noivo">Presentear</button>
+        <div class="copy-pix-container" id="copy-pix-11">
+          <button class="copiar-pix-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Copiar PIX</button>
+        </div>
       </article>
       <!-- Presente 12 -->
       <article class="presente-card">
         <img src="imagens 2/46.jpg" alt="Vale pra noiva deixar o noivo jogar" />
         <div class="presente-nome">Vale pra noiva deixar o noivo jogar</div>
         <div class="presente-valor">R$ 110,00</div>
-        <button class="presentear-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Presentear</button>
+        <button class="presentear-btn" aria-expanded="false" aria-controls="copy-pix-12" aria-label="Mostrar opção para copiar PIX do Vale pra noiva deixar o noivo jogar">Presentear</button>
+        <div class="copy-pix-container" id="copy-pix-12">
+          <button class="copiar-pix-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Copiar PIX</button>
+        </div>
       </article>
       <!-- Presente 13 -->
       <article class="presente-card">
         <img src="imagens 2/47.jpg" alt="Barbeador pro noivo" />
         <div class="presente-nome">Barbeador pro noivo</div>
         <div class="presente-valor">R$ 70,00</div>
-        <button class="presentear-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Presentear</button>
+        <button class="presentear-btn" aria-expanded="false" aria-controls="copy-pix-13" aria-label="Mostrar opção para copiar PIX do Barbeador pro noivo">Presentear</button>
+        <div class="copy-pix-container" id="copy-pix-13">
+          <button class="copiar-pix-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Copiar PIX</button>
+        </div>
       </article>
       <!-- Presente 14 -->
       <article class="presente-card">
         <img src="imagens 2/48.jpg" alt="Deus te iluminou e você resolveu dar uma ótima ajuda na nossa lua de mel" />
         <div class="presente-nome">Deus te iluminou e você resolveu dar uma ótima ajuda na nossa lua de mel</div>
         <div class="presente-valor">R$ 4.999,00</div>
-        <button class="presentear-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Presentear</button>
+        <button class="presentear-btn" aria-expanded="false" aria-controls="copy-pix-14" aria-label="Mostrar opção para copiar PIX do Deus te iluminou e você resolveu dar uma ótima ajuda na nossa lua de mel">Presentear</button>
+        <div class="copy-pix-container" id="copy-pix-14">
+          <button class="copiar-pix-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Copiar PIX</button>
+        </div>
       </article>
       <!-- Presente 15 -->
       <article class="presente-card">
         <img src="imagens 2/49.jpg" alt="Dar pitaco/falar mal da festa" />
         <div class="presente-nome">Dar pitaco/falar mal da festa</div>
         <div class="presente-valor">R$ 3.500,00</div>
-        <button class="presentear-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Presentear</button>
+        <button class="presentear-btn" aria-expanded="false" aria-controls="copy-pix-15" aria-label="Mostrar opção para copiar PIX do Dar pitaco/falar mal da festa">Presentear</button>
+        <div class="copy-pix-container" id="copy-pix-15">
+          <button class="copiar-pix-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Copiar PIX</button>
+        </div>
       </article>
       <!-- Presente 16 -->
       <article class="presente-card">
         <img src="imagens 2/50.jpg" alt="Capacete pra se proterger do rolo" />
         <div class="presente-nome">Capacete pra se proterger do rolo</div>
         <div class="presente-valor">R$ 310,00</div>
-        <button class="presentear-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Presentear</button>
+        <button class="presentear-btn" aria-expanded="false" aria-controls="copy-pix-16" aria-label="Mostrar opção para copiar PIX do Capacete pra se proterger do rolo">Presentear</button>
+        <div class="copy-pix-container" id="copy-pix-16">
+          <button class="copiar-pix-btn" data-pix="00020101021126580014br.gov.bcb.pix0136a5835591-8414-434c-890c-18d44c61ff0a5204000053039865802BR5923RAILON QUEIROZ DA SILVA6013VALPARAISO_DE62070503***6304F2D6">Copiar PIX</button>
+        </div>
       </article>
     </div>
 
-    <div id="copy-feedback" role="alert" aria-live="assertive">Código PIX copiado!</div>
+    <div id="copy-feedback" role="alert" aria-live="assertive"></div>
   </main>
-
-  <div class="details-message" role="note" aria-label="Avisos importantes">
-    <p>Avisos importantes: Por favor, chegue com antecedência para aproveitar cada momento especial.</p>
-  </div>
 
   <footer class="footer">
     <p>© 2025 Railon & Nathália. Todos os direitos reservados.</p>
@@ -300,18 +362,37 @@
   </footer>
 
   <script>
-    const buttons = document.querySelectorAll('.presentear-btn');
+    const presentButtons = document.querySelectorAll('.presentear-btn');
+    const copyPixContainers = document.querySelectorAll('.copy-pix-container');
+    const copyButtons = document.querySelectorAll('.copiar-pix-btn');
     const copyFeedback = document.getElementById('copy-feedback');
 
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        const pixCode = button.getAttribute('data-pix');
+    presentButtons.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        // Fechar todos os sub-botões
+        copyPixContainers.forEach((container, i) => {
+          container.style.display = 'none';
+          presentButtons[i].setAttribute('aria-expanded', 'false');
+        });
+        if (!expanded) {
+          // Abrir o atual
+          copyPixContainers[index].style.display = 'block';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
 
-        // Copiar para área de transferência
+    copyButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const pixCode = btn.getAttribute('data-pix');
         navigator.clipboard.writeText(pixCode).then(() => {
-          // Mostrar feedback
+          copyFeedback.textContent = 'Muito obrigado pelo presente! ❤️';
           copyFeedback.classList.add('visible');
-          setTimeout(() => copyFeedback.classList.remove('visible'), 2000);
+          setTimeout(() => {
+            copyFeedback.classList.remove('visible');
+            copyFeedback.textContent = '';
+          }, 3000);
         }).catch(() => {
           alert('Não foi possível copiar o código PIX. Por favor, copie manualmente:\n' + pixCode);
         });
