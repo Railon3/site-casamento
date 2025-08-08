@@ -1,144 +1,222 @@
-/* Sorteio.css */
-
-/* Variáveis de cores e estilos principais */
-:root {
-  --cor-primaria: #5a7d5a;
-  --cor-secundaria: #d4b483;
-  --cor-texto: #3d4d3d;
-  --cor-fundo: #f9f5f0;
-  --radius: 12px;
-  --transition: 0.3s ease;
-}
-
-/* Reset básico */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* Fonte caligráfica para títulos */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
 body {
-  font-family: 'Montserrat', sans-serif;
-  background: var(--cor-fundo);
-  color: var(--cor-texto);
-  line-height: 1.6;
-  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f4f7f0;
+  margin: 0;
+  padding: 0;
+  color: #3b4d1a;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  min-height: 100vh;
 }
 
-main {
-  max-width: 720px;
-  margin: 3rem auto 2rem;
-  padding: 0 1rem;
-  flex-grow: 1;
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: var(--radius);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-}
-
-header.header {
+header {
   text-align: center;
-  padding: 1rem 0 2rem;
-}
-
-header.header h1 {
-  font-family: 'Dancing Script', cursive;
-  font-size: clamp(2.5rem, 6vw, 3.8rem);
-  color: var(--cor-primaria);
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-  margin-bottom: 0.5rem;
-}
-
-header.header p.date {
-  font-family: 'Playfair Display', serif;
-  font-weight: 600;
-  color: var(--cor-secundaria);
-  font-size: 1.3rem;
-  letter-spacing: 2px;
-}
-
-/* Imagem do prêmio */
-.prize-image {
-  display: block;
-  max-width: 100%;
-  max-height: 320px;
-  margin: 2rem auto 1.5rem;
-  border-radius: var(--radius);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  object-fit: contain;
-}
-
-/* Texto das instruções */
-.instructions {
-  text-align: center;
-  background: var(--cor-primaria);
+  padding: 25px 10px 10px;
+  background-color: #556b2f;
   color: white;
-  padding: 1rem 1.5rem;
-  border-radius: var(--radius);
-  font-weight: 600;
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  font-family: 'Great Vibes', cursive;
+}
+
+header h1 {
+  font-size: 3.2rem;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.subtitulo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.8rem;
+  margin-top: 5px;
+  gap: 10px;
+}
+
+.trevo {
+  font-size: 2.2rem;
   user-select: none;
 }
 
-/* Estilo do iframe do Google Forms */
-iframe {
-  width: 100%;
-  min-height: 850px;
-  border: none;
-  border-radius: var(--radius);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
-}
-
-/* Rodapé */
-footer.footer {
+.container {
+  max-width: 480px;
+  margin: 30px auto 60px;
   background: white;
-  padding: 2rem 1rem;
-  color: var(--cor-texto);
-  text-align: center;
-  font-size: 0.9rem;
-  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.05);
-  font-family: 'Montserrat', sans-serif;
-  user-select: text;
-  border-radius: 0 0 var(--radius) var(--radius);
-  max-width: 720px;
-  margin: 0 auto 2rem;
+  padding: 20px 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgb(85 107 47 / 0.3);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-footer.footer a {
-  color: var(--cor-primaria);
+.premio-img {
+  width: 90%;
+  max-width: 350px;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(85, 107, 47, 0.4);
+}
+
+.info {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.valor {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.controle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.controle button {
+  background-color: #556b2f;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  padding: 6px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.controle button:hover {
+  background-color: #445a22;
+}
+
+.controle input {
+  width: 50px;
+  font-size: 1.3rem;
+  text-align: center;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #fefefe;
+  user-select: none;
+}
+
+.total {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #314212;
+  margin-bottom: 20px;
+}
+
+.pix-section {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.pix-titulo {
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.pix-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.pix-info p {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.pix-info button {
+  background-color: #556b2f;
+  border: none;
+  color: white;
+  padding: 7px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.pix-info button:hover {
+  background-color: #445a22;
+}
+
+.qr-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.qr-wrap img {
+  width: 300px;
+  height: 300px;
+  border-radius: 14px;
+  box-shadow: 0 0 15px rgba(85, 107, 47, 0.4);
+}
+
+.instrucao {
+  font-size: 1rem;
+  color: #3b4d1a;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.btn-registrar {
+  display: inline-block;
+  background-color: #3b4d1a;
+  color: white;
+  padding: 14px 30px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+}
+
+.btn-registrar:hover {
+  background-color: #2a3710;
+}
+
+footer {
+  background-color: #556b2f;
+  color: white;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 0.9rem;
+  user-select: none;
+}
+
+footer nav {
+  margin-bottom: 8px;
+}
+
+footer nav a {
+  color: white;
+  margin: 0 12px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+footer nav a:hover {
   text-decoration: underline;
 }
 
-/* Responsividade */
-@media (max-width: 600px) {
-  main {
-    margin: 2rem 0 2rem;
-    padding: 0 1rem;
-    border-radius: 0;
-    box-shadow: none;
-  }
-
-  .prize-image {
-    max-height: 250px;
-  }
-
-  header.header h1 {
-    font-size: clamp(2rem, 7vw, 3rem);
-  }
-
-  header.header p.date {
-    font-size: 1.1rem;
-  }
-
-  .instructions {
-    font-size: 1rem;
-    padding: 0.8rem 1rem;
-  }
+footer p {
+  margin: 0;
 }
-
