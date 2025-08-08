@@ -1,519 +1,101 @@
-/* ===== VARIÁVEIS & RESET ===== */
-:root {
-  --primary-color: #800000;
-  --secondary-color: #b30059;
-  --accent-color: #d4b483;
-  --light-bg: #fffaf5;
-  --text-color: #333;
-  --font-main: 'Montserrat', sans-serif;
-  --font-decorative: 'Great Vibes', cursive;
-
-  /* Novas variáveis para facilitar manutenção */
-  --border-radius: 1rem;
-  --transition-time: 0.3s;
-  --box-shadow-light: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Melhor https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-behavior */
-html {
-  scroll-behavior: smooth;
-  /* Melhorar fontes nas telas */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Corpo */
 body {
-  font-family: var(--font-main);
-  background-color: var(--light-bg);
-  color: var(--text-color);
-  line-height: 1.6;
-  min-height: 100vh;
-  background-attachment: fixed; /* efeito sutil em backgrounds se existirem */
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
 }
 
-/* ===== TIPOGRAFIA ===== */
-h1,
-h2,
-h3 {
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--primary-color);
-  margin-bottom: 0.8rem;
-  scroll-margin-top: 80px; /* Evita ocultar conteúdo atrás de cabeçalho fixo */
+.container {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
 }
 
-h2 {
-  font-size: 2rem;
-  position: relative;
-  margin-bottom: 3rem; /* mais espaçamento para o ::after */
+h1 {
+    color: #556B2F;
 }
 
-h2::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: var(--accent-color);
-  margin: 0.8rem auto 0;
-  border-radius: 2px;
+.premio-img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
 
-/* ===== HEADER ===== */
-.header {
-  background-color: rgba(248, 215, 218, 0.9);
-  padding: 1.5rem 2rem;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  backdrop-filter: blur(5px);
-  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+.valor {
+    font-size: 18px;
+    margin: 10px 0;
 }
 
-.nomes-noivos {
-  font-family: var(--font-decorative);
-  font-size: clamp(1.8rem, 5vw, 2.5rem);
-  color: var(--primary-color);
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-  user-select: none;
+.controle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
-/* ===== MENU MOBILE ===== */
-.menu-toggle {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  font-size: 1.8rem;
-  cursor: pointer;
-  color: var(--primary-color);
-  z-index: 1100;
-  background: transparent;
-  border: none;
-  transition: color var(--transition-time);
+.controle button {
+    padding: 10px;
+    font-size: 20px;
+    background-color: #556B2F;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
-.menu-toggle:focus {
-  outline-offset: 3px;
-  outline-color: var(--secondary-color);
-  outline-style: solid;
+.controle input {
+    width: 50px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
 }
 
-.nav-menu {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 80%;
-  max-width: 300px;
-  height: 100vh;
-  background: rgba(252, 228, 236, 0.98);
-  transition: right var(--transition-time) ease;
-  z-index: 1050;
-  padding-top: 5rem;
-  box-shadow: -4px 0 12px rgb(0 0 0 / 0.1);
+.total {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px 0;
 }
 
-.nav-menu.active {
-  right: 0;
+.pix {
+    margin: 20px 0;
 }
 
-.nav-menu ul {
-  list-style: none;
-  padding: 0 1rem;
+#pix-chave {
+    width: 80%;
+    padding: 5px;
+    font-size: 16px;
+    margin-bottom: 5px;
 }
 
-.nav-menu li {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+.pix button {
+    padding: 8px 12px;
+    background-color: #556B2F;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
-.nav-menu a {
-  display: block;
-  padding: 1rem;
-  text-decoration: none;
-  color: var(--primary-color);
-  font-weight: 600;
-  font-size: 1rem;
-  transition: background var(--transition-time), padding-left var(--transition-time);
-  border-radius: var(--border-radius);
+.qr img {
+    max-width: 200px;
+    margin-top: 10px;
 }
 
-.nav-menu a:hover,
-.nav-menu a:focus {
-  background: rgba(255, 255, 255, 0.3);
-  padding-left: 1.5rem;
-  outline: none;
+.btn-registrar {
+    display: inline-block;
+    background-color: #228B22;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
 }
 
-/* ===== SEÇÕES ===== */
-.section {
-  padding: 4rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* História do Casal */
-.historia-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  align-items: center;
-}
-
-@media (min-width: 768px) {
-  .historia-container {
-    flex-direction: row;
-  }
-}
-
-.historia-texto {
-  flex: 1;
-  text-align: left;
-  font-size: 1.1rem;
-  color: var(--text-color);
-  line-height: 1.7;
-}
-
-/* Galeria de fotos na história */
-.historia-fotos {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
-
-.historia-fotos img {
-  width: 100%;
-  border-radius: 0.5rem;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  transition: transform var(--transition-time);
-  cursor: pointer;
-  user-select: none;
-}
-
-.historia-fotos img:hover,
-.historia-fotos img:focus {
-  transform: scale(1.03);
-  outline: none;
-}
-
-/* ===== TIMER ===== */
-.timer-container {
-  background: rgba(255, 255, 255, 0.8);
-  padding: 2rem;
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow-light);
-  max-width: 600px;
-  margin: 2rem auto;
-  text-align: center;
-  user-select: none;
-}
-
-.timer {
-  font-size: 1.5rem;
-  color: var(--primary-color);
-}
-
-#clock {
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  font-weight: 700;
-  margin-top: 1rem;
-  font-family: monospace;
-}
-
-/* ===== GALERIA ===== */
-.galeria-section {
-  background: rgba(255, 255, 255, 0.7);
-  padding-bottom: 3rem;
-}
-
-.galeria-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-  padding: 1rem 0;
-}
-
-.galeria-container img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: transform var(--transition-time), box-shadow var(--transition-time);
-  filter: drop-shadow(0 2px 5px rgb(0 0 0 / 0.1));
-}
-
-.galeria-container img:hover,
-.galeria-container img:focus {
-  transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  outline: none;
-}
-
-/* ===== MODAL ===== */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  overflow-y: auto;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-}
-
-.modal.active {
-  display: flex;
-}
-
-.modal-content {
-  max-width: 90%;
-  max-height: 90vh;
-  border-radius: var(--border-radius);
-  animation: zoom 0.3s ease forwards;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-}
-
-@keyframes zoom {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.close {
-  position: fixed;
-  top: 2rem;
-  right: 2.5rem;
-  color: white;
-  font-size: 3rem;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 2010;
-  background: transparent;
-  border: none;
-  transition: color var(--transition-time);
-}
-
-.close:hover,
-.close:focus {
-  color: var(--accent-color);
-  outline: none;
-}
-
-/* ===== LOCAIS ===== */
-.local-section {
-  background: white;
-  border-radius: var(--border-radius);
-  padding: 2rem;
-  margin-bottom: 2rem;
-  box-shadow: var(--box-shadow-light);
-  text-align: center;
-}
-
-.botoes-local {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.botao-local {
-  background: var(--primary-color);
-  color: white;
-  padding: 0.8rem 1.5rem;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  justify-content: center;
-  transition: background-color var(--transition-time), transform var(--transition-time);
-  user-select: none;
-  cursor: pointer;
-  box-shadow: 0 5px 12px rgb(0 0 0 / 0.1);
-}
-
-.botao-local:hover,
-.botao-local:focus {
-  background: var(--secondary-color);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 15px rgb(0 0 0 / 0.15);
-  outline: none;
-}
-
-/* ===== FORMULÁRIOS ===== */
-.form-container {
-  max-width: 500px;
-  margin: 0 auto 3rem;
-  background: white;
-  padding: 2rem;
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow-light);
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: var(--primary-color);
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 0.8rem 1rem;
-  border: 1.5px solid #ddd;
-  border-radius: 0.5rem;
-  font-family: var(--font-main);
-  font-size: 1rem;
-  transition: border-color var(--transition-time);
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: var(--secondary-color);
-  outline: none;
-  box-shadow: 0 0 8px var(--secondary-color);
-}
-
-.form-submit {
-  background: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 50px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 1.1rem;
-  transition: background-color var(--transition-time), transform var(--transition-time);
-  width: 100%;
-  user-select: none;
-}
-
-.form-submit:hover,
-.form-submit:focus {
-  background: var(--secondary-color);
-  transform: translateY(-3px);
-  outline: none;
-}
-
-/* ===== PRESENTES ===== */
-.pix-box {
-  background: #fff0f5;
-  padding: 1.5rem;
-  border-radius: var(--border-radius);
-  margin: 2rem auto;
-  max-width: 500px;
-  text-align: center;
-  box-shadow: var(--box-shadow-light);
-}
-
-.pix-code {
-  width: 100%;
-  padding: 0.8rem;
-  font-size: 1rem;
-  margin-top: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 0.5rem;
-  background: white;
-  font-family: monospace;
-  user-select: all; /* facilita copiar o código PIX */
-}
-
-/* ===== RODAPÉ ===== */
-.footer {
-  background: rgba(248, 215, 218, 0.9);
-  padding: 2rem;
-  text-align: center;
-  backdrop-filter: blur(5px);
-  box-shadow: 0 -2px 12px rgb(0 0 0 / 0.05);
-  user-select: none;
-}
-
-.redes {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-
-.redes a {
-  color: var(--primary-color);
-  font-size: 1.7rem;
-  transition: color var(--transition-time), transform var(--transition-time);
-}
-
-.redes a:hover,
-.redes a:focus {
-  color: var(--secondary-color);
-  transform: translateY(-3px);
-  outline: none;
-}
-
-/* ===== RESPONSIVO ===== */
-@media (max-width: 768px) {
-  .header {
-    padding: 1rem;
-  }
-
-  .nomes-noivos {
-    font-size: 2rem;
-  }
-
-  .section {
-    padding: 2rem 1rem;
-  }
-
-  .historia-fotos {
-    grid-template-columns: 1fr;
-  }
-
-  #clock {
-    font-size: 2rem;
-  }
-
-  .galeria-container {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  }
-}
-
-/* Para telas pequenas, garantir acessibilidade */
-@media (max-width: 400px) {
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  .nomes-noivos {
-    font-size: 1.7rem;
-  }
-
-  #clock {
-    font-size: 1.6rem;
-  }
+.btn-registrar:hover {
+    background-color: #006400;
 }
