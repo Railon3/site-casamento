@@ -1,68 +1,166 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorteio - Combo de Whisky</title>
-    <link rel="stylesheet" href="Sorteio.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sorteio - Railon & Nathália</title>
+  <link rel="stylesheet" href="Sorteio.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
 </head>
 <body>
-    <div class="container">
-        <h1>Sorteio - Combo de Whisky</h1>
-        <img src="imagens 2/33.jpg" alt="Combo de Whisky" class="premio-img">
+  <header>
+    <h1>Railon &amp; Nathália</h1>
+    <div class="subtitulo">
+      <span>Sorteio</span>
+      <span class="trevo">🍀</span>
+    </div>
+  </header>
 
-        <div class="info">
-            <p class="valor">Valor por cota: <strong>R$ 15,00</strong></p>
-            <div class="controle">
-                <button id="menos">-</button>
-                <input type="number" id="quantidade" value="1" min="1" readonly>
-                <button id="mais">+</button>
-            </div>
-            <p class="total">Total: <span id="total">R$ 15,00</span></p>
-        </div>
+  <main class="container">
+    <img src="imagens 2/33.jpg" alt="Combo de Whisky" class="premio-img" />
 
-        <div class="pix">
-            <p>Chave Pix:</p>
-            <input type="text" value="SUA_CHAVE_PIX_AQUI" id="pix-chave" readonly>
-            <button onclick="copiarPix()">Copiar Chave</button>
-            <div class="qr">
-                <img src="imagens 2/qrcodepix.png" alt="QR Code Pix">
-            </div>
-        </div>
-
-        <a href="https://docs.google.com/forms/d/SEU_FORM_ID/viewform" target="_blank" class="btn-registrar">
-            Registrar compra
-        </a>
+    <div class="info">
+      <p class="valor">Valor por cota: <strong>R$ 10,00</strong></p>
+      <div class="controle">
+        <button id="menos">-</button>
+        <input type="number" id="quantidade" value="1" min="1" readonly />
+        <button id="mais">+</button>
+      </div>
+      <p class="total">Total: <span id="total">R$ 10,00</span></p>
     </div>
 
-    <script>
-        const valorPorCota = 15;
-        const quantidade = document.getElementById('quantidade');
-        const total = document.getElementById('total');
+    <section class="pix-section">
+      <p class="pix-titulo">Pague com Pix</p>
+      <div class="pix-info">
+        <p>Chave Pix: <strong>+5561994066994</strong></p>
+        <button id="copiarPix">Copiar chave</button>
+      </div>
+      <div class="qr-wrap">
+        <img id="pixQr" alt="QR Code Pix" />
+      </div>
+      <p class="instrucao">
+        Escaneie o QR Code com o app do seu banco para pagar o valor total.
+      </p>
+    </section>
 
-        document.getElementById('mais').addEventListener('click', () => {
-            quantidade.value = parseInt(quantidade.value) + 1;
-            atualizarTotal();
-        });
+    <a href="https://docs.google.com/forms/d/SEU_FORM_ID/viewform" target="_blank" class="btn-registrar">
+      Registrar compra
+    </a>
+  </main>
 
-        document.getElementById('menos').addEventListener('click', () => {
-            if (quantidade.value > 1) {
-                quantidade.value = parseInt(quantidade.value) - 1;
-                atualizarTotal();
+  <footer>
+    <nav>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">Termos de Uso</a>
+      <a href="#">Contato</a>
+    </nav>
+    <p>© 2025 Railon & Nathália</p>
+  </footer>
+
+  <script>
+    const valorPorCota = 10.0;
+    const chavePix = "+5561994066994";
+    const nomeRecebedor = "Railon Queiroz";
+    const cidade = "BRASILIA";
+    const txid = "SORTEIOWHISKY";
+
+    const quantidadeEl = document.getElementById("quantidade");
+    const totalEl = document.getElementById("total");
+    const pixQr = document.getElementById("pixQr");
+    const copiarPixBtn = document.getElementById("copiarPix");
+
+    document.getElementById("mais").addEventListener("click", () => {
+      quantidadeEl.value = parseInt(quantidadeEl.value) + 1;
+      atualizarTotalEQRCode();
+    });
+
+    document.getElementById("menos").addEventListener("click", () => {
+      if (parseInt(quantidadeEl.value) > 1) {
+        quantidadeEl.value = parseInt(quantidadeEl.value) - 1;
+        atualizarTotalEQRCode();
+      }
+    });
+
+    copiarPixBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(chavePix).then(() => {
+        alert("Chave Pix copiada: " + chavePix);
+      }).catch(() => {
+        alert("Erro ao copiar a chave Pix.");
+      });
+    });
+
+    // Gera o payload EMV do Pix (QR Code oficial)
+    // Função baseada no padrão do Banco Central do Brasil
+    function geraPayloadPix(chave, nome, cidade, valor, txid) {
+      // Função para montar cada campo EMV
+      function campo(id, value) {
+        const length = value.length.toString().padStart(2, "0");
+        return id + length + value;
+      }
+
+      // Monta o payload Pix completo
+      const gui = campo("00", "01"); // Payload Format Indicator
+      const merchantAccountInfo = campo(
+        "26",
+        campo("00", "BR.GOV.BCB.PIX") +
+          campo("01", chave) +
+          campo("02", txid)
+      );
+      const merchantCategoryCode = campo("52", "0000");
+      const transactionCurrency = campo("53", "986"); // Real Brasileiro
+      const transactionAmount = campo("54", valor.toFixed(2));
+      const countryCode = campo("58", "BR");
+      const merchantName = campo("59", nome.toUpperCase());
+      const merchantCity = campo("60", cidade.toUpperCase());
+      const additionalDataField = campo("62", campo("05", txid));
+
+      const payloadSemCRC =
+        gui +
+        merchantAccountInfo +
+        merchantCategoryCode +
+        transactionCurrency +
+        transactionAmount +
+        countryCode +
+        merchantName +
+        merchantCity +
+        additionalDataField;
+
+      // Calcula CRC16-CCITT
+      const crc16 = (str) => {
+        let crc = 0xffff;
+        const polynomial = 0x1021;
+        for (let i = 0; i < str.length; i++) {
+          crc ^= str.charCodeAt(i) << 8;
+          for (let j = 0; j < 8; j++) {
+            if (crc & 0x8000) {
+              crc = (crc << 1) ^ polynomial;
+            } else {
+              crc <<= 1;
             }
-        });
-
-        function atualizarTotal() {
-            total.textContent = `R$ ${(quantidade.value * valorPorCota).toFixed(2).replace('.', ',')}`;
+            crc &= 0xffff;
+          }
         }
+        return crc.toString(16).toUpperCase().padStart(4, "0");
+      };
 
-        function copiarPix() {
-            const chave = document.getElementById('pix-chave');
-            chave.select();
-            chave.setSelectionRange(0, 99999);
-            document.execCommand('copy');
-            alert('Chave Pix copiada!');
-        }
-    </script>
+      const crc = campo("63", crc16(payloadSemCRC));
+      return payloadSemCRC + crc;
+    }
+
+    function atualizarTotalEQRCode() {
+      const qtd = parseInt(quantidadeEl.value);
+      const total = qtd * valorPorCota;
+      totalEl.textContent = `R$ ${total.toFixed(2).replace(".", ",")}`;
+
+      const payload = geraPayloadPix(chavePix, nomeRecebedor, cidade, total, txid);
+      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(
+        payload
+      )}`;
+      pixQr.src = qrUrl;
+    }
+
+    // Inicializa a página
+    atualizarTotalEQRCode();
+  </script>
 </body>
 </html>
