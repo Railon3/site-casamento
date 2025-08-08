@@ -381,7 +381,7 @@
   <!-- Botões de ação -->
   <div class="btn-container" role="navigation" aria-label="Navegação principal do site">
     <a href="presentes.html" class="btn">Lista de Presentes</a>
-    <a href="#sorteio" class="btn" id="sorteio-button">Sorteio</a>
+    <a href="Sorteio.html" class="btn" id="sorteio-button">Sorteio</a>
   </div>
 
   <!-- Substituindo o formulário original pelo Google Forms incorporado -->
@@ -473,7 +473,8 @@
       const sorteioButton = document.getElementById('sorteio-button');
       sorteioButton.addEventListener('click', function (e) {
         e.preventDefault();
-        alert('Em breve teremos novidades sobre o sorteio!');
+        // Mudança para abrir a página Sorteio.html
+        window.location.href = 'Sorteio.html';
       });
     });
   </script>
