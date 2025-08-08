@@ -1,1 +1,144 @@
+/* Sorteio.css */
+
+/* Variáveis de cores e estilos principais */
+:root {
+  --cor-primaria: #5a7d5a;
+  --cor-secundaria: #d4b483;
+  --cor-texto: #3d4d3d;
+  --cor-fundo: #f9f5f0;
+  --radius: 12px;
+  --transition: 0.3s ease;
+}
+
+/* Reset básico */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+main {
+  max-width: 720px;
+  margin: 3rem auto 2rem;
+  padding: 0 1rem;
+  flex-grow: 1;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+header.header {
+  text-align: center;
+  padding: 1rem 0 2rem;
+}
+
+header.header h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2.5rem, 6vw, 3.8rem);
+  color: var(--cor-primaria);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0.5rem;
+}
+
+header.header p.date {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  color: var(--cor-secundaria);
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+}
+
+/* Imagem do prêmio */
+.prize-image {
+  display: block;
+  max-width: 100%;
+  max-height: 320px;
+  margin: 2rem auto 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  object-fit: contain;
+}
+
+/* Texto das instruções */
+.instructions {
+  text-align: center;
+  background: var(--cor-primaria);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  user-select: none;
+}
+
+/* Estilo do iframe do Google Forms */
+iframe {
+  width: 100%;
+  min-height: 850px;
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+}
+
+/* Rodapé */
+footer.footer {
+  background: white;
+  padding: 2rem 1rem;
+  color: var(--cor-texto);
+  text-align: center;
+  font-size: 0.9rem;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.05);
+  font-family: 'Montserrat', sans-serif;
+  user-select: text;
+  border-radius: 0 0 var(--radius) var(--radius);
+  max-width: 720px;
+  margin: 0 auto 2rem;
+}
+
+footer.footer a {
+  color: var(--cor-primaria);
+  text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  main {
+    margin: 2rem 0 2rem;
+    padding: 0 1rem;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .prize-image {
+    max-height: 250px;
+  }
+
+  header.header h1 {
+    font-size: clamp(2rem, 7vw, 3rem);
+  }
+
+  header.header p.date {
+    font-size: 1.1rem;
+  }
+
+  .instructions {
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+  }
+}
 
