@@ -196,26 +196,6 @@
     }
 
     /* ==================== */
-    /* FEEDBACK DE COPIA */
-    /* ==================== */
-    #copy-feedback {
-      margin-top: 2rem;
-      font-weight: 600;
-      color: var(--cor-successo);
-      text-align: center;
-      min-height: 1.5em;
-      visibility: hidden;
-      opacity: 0;
-      transition: visibility 0.3s ease, opacity 0.3s ease;
-      font-family: var(--font-body);
-    }
-
-    #copy-feedback.visible {
-      visibility: visible;
-      opacity: 1;
-    }
-
-    /* ==================== */
     /* MENSAGEM DE EXPLICAÇÃO */
     /* ==================== */
     .pix-info {
@@ -229,10 +209,6 @@
       text-align: center;
       color: var(--cor-texto);
       border: 1px solid rgba(212, 180, 131, 0.3);
-    }
-
-    .pix-info strong {
-      color: var(--cor-primaria);
     }
 
     /* ==================== */
@@ -258,6 +234,26 @@
     footer.footer a:hover {
       text-decoration: none;
     }
+
+    /* ==================== */
+    /* FEEDBACK DE COPIA */
+    /* ==================== */
+    #copy-feedback {
+      margin-top: 2rem;
+      font-weight: 600;
+      color: var(--cor-successo);
+      text-align: center;
+      min-height: 1.5em;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.3s ease, opacity 0.3s ease;
+      font-family: var(--font-body);
+    }
+
+    #copy-feedback.visible {
+      visibility: visible;
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -267,12 +263,11 @@
       <p class="subtitle">Lista de Presentes</p>
     </header>
 
-    <!-- Mensagem explicativa -->
+    <!-- Mensagem explicativa (atualizada com a sua escolha) -->
     <div class="pix-info">
       <p>
-        Os presentes abaixo são apenas <strong>sugestões divertidas</strong> para você se inspirar! ❤️<br>
-        Na verdade, o presente mais especial é o seu <strong>apoio em dinheiro via PIX</strong>.<br>
-        É com esse carinho que vamos construir nosso novo lar.
+        Os presentes aqui são apenas uma forma divertida de contar um pouco da nossa história. 
+        Seja com um mimo ou só com sua energia, o importante é você estar conosco nesse dia.
       </p>
     </div>
 
