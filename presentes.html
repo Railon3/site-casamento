@@ -488,14 +488,17 @@
         });
       });
 
-      // Copiar o número de telefone (PIX por chave)
+      // Copiar o número do PIX e mostrar mensagem na hora do clique
       copyButtons.forEach((btn) => {
         btn.addEventListener('click', () => {
           const pixCode = btn.getAttribute('data-pix');
           navigator.clipboard.writeText(pixCode)
             .then(() => {
-              copyFeedback.textContent = 'Número copiado! ❤️ Agora é só colar no PIX e presentear!';
+              // Mostrar mensagem de sucesso
+              copyFeedback.textContent = 'PIX copiado! ❤️ Agora é só colar no app do seu banco e presentear!';
               copyFeedback.classList.add('visible');
+
+              // Ocultar mensagem após 3 segundos
               setTimeout(() => {
                 copyFeedback.classList.remove('visible');
                 copyFeedback.textContent = '';
